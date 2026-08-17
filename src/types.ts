@@ -82,8 +82,14 @@ export interface IEducation {
   period: string;
 }
 
+/** One line of the About bio. Only the opening line carries a bold lead-in. */
+export interface IBioLine {
+  strong?: string;
+  rest: string;
+}
+
 export interface IAbout {
-  bio: string[];
+  bio: IBioLine[];
   experience: IExperienceEntry[];
   skills: string[];
   tools: string[];

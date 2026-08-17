@@ -2,9 +2,14 @@ import type { IAbout } from '@/types';
 
 export const about: IAbout = {
   bio: [
-    'UX/UI Designer with 10+ years of experience designing web and mobile applications, enterprise software, and digital products.',
-    'Experienced in information architecture, design systems, branding, and cross-functional collaboration.',
-    'Passionate about creating intuitive, scalable, and user-centered experiences.',
+    {
+      strong: 'UX/UI Designer with 10+ years of experience',
+      rest: 'designing web and mobile applications, enterprise software, and digital products.',
+    },
+    {
+      rest: 'Experienced in information architecture, design systems, branding, and cross-functional collaboration.',
+    },
+    { rest: 'Passionate about creating intuitive, scalable, and user-centered experiences.' },
   ],
   // Oldest first, so the timeline reads left to right the way it is written.
   experience: [

@@ -36,11 +36,14 @@ const About = (): ReactElement => {
             />
           </div>
 
-          {about.bio.map((paragraph) => (
-            <p key={paragraph} className="about__bio">
-              {paragraph}
-            </p>
-          ))}
+          <div className="about__bio">
+            {about.bio.map((line) => (
+              <p key={line.rest} className="about__bio-line">
+                {line.strong ? <strong className="about__bio-strong">{line.strong} </strong> : null}
+                {line.rest}
+              </p>
+            ))}
+          </div>
 
           <ContactPills className="about__contacts" />
         </div>

@@ -78,10 +78,24 @@
   object-fit: cover;
 }
 
+// Three sentences read as one block, not three paragraphs: no measure of its
+// own, so each sentence takes a full line of the shell the way it does in the
+// design, and no space between them beyond the line height.
 .about__bio {
-  max-width: 68ch;
   font-size: var(--fs-lead);
-  color: var(--muted);
+  line-height: 1.4;
+}
+
+// Set on the line itself, not inherited from the block: the global `p` rule
+// asks for `pretty`, and a rule that matches the element beats an inherited
+// one. Balanced, a sentence that does not fit splits down the middle instead
+// of leaving two words stranded on their own line.
+.about__bio-line {
+  text-wrap: balance;
+}
+
+.about__bio-strong {
+  font-weight: 700;
 }
 
 .about__contacts {
