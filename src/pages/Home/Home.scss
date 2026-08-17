@@ -21,6 +21,7 @@
   text-transform: uppercase;
   white-space: nowrap;
   text-wrap: nowrap;
+  z-index: 1;
 }
 
 .home__stage {
@@ -58,18 +59,23 @@
   }
 }
 
-// Positioned against the link itself, centred so the head lands on that
-// link's own dot — with the links side by side, the full-screen layout's
-// offset would make each arrow point at its neighbour instead.
+// Aimed at the dot, stopping 40px short of it. The arrowhead sits at 80%
+// across and 28.3% down its own box, so `left: 50%` with a -80% pull lands the
+// tip on the link's centre line and `top` lifts it onto the dot. The translate
+// then backs it off 40px along the direction the arrow travels — (0.55, 0.83)
+// — which is why the two offsets aren't equal. Both are absolute, so the gap
+// stays 40px whatever the arrow's width.
 // `max-width: none` undoes the global `svg { max-width: 100% }`, which would
 // otherwise clamp the arrow to the label's width.
 .home__shortcut .home__arrow {
+  --arrow-gap: 40px;
+
   position: absolute;
-  top: -30px;
+  top: -20px;
   left: 50%;
   width: 96px;
   max-width: none;
-  transform: translateX(-88%);
+  transform: translate(calc(-80% - var(--arrow-gap) * 0.55), calc(var(--arrow-gap) * -0.83));
 }
 
 .home__dot {
@@ -173,6 +179,12 @@
     width: 10px;
     height: 10px;
   }
+
+  // At this scale the design's 40px reads as a stray mark rather than an
+  // arrow aimed at the dot.
+  .home__shortcut .home__arrow {
+    --arrow-gap: 16px;
+  }
 }
 
 @media (min-width: 900px) {
@@ -201,12 +213,19 @@
 }
 
 // Full-screen composition: one viewport-tall stage laid out on a 12-column
-// grid, so the page never scrolls. Guarded on height as well as width — on a
-// short window the flow layout above is the safer fallback.
-// The design's fixed sizes — 30px labels, arrows dropping 60px, an
-// edge-to-edge wordmark — need real vertical room. 800px of viewport is where
-// it stops fitting; below that the scrolling flow layout above takes over.
-@media (min-width: 1280px) and (min-height: 800px) {
+// grid, so the page fits without scrolling.
+//
+// The design's fixed sizes — 30px labels, arrows dropping 72px, an
+// edge-to-edge wordmark whose height grows with the viewport's width — need
+// real vertical room. 900px is the documented floor for the no-scroll rule:
+// below it the flow layout above takes over and the page scrolls normally.
+//
+// The height here is fixed on purpose: it gives the rows a definite size, so
+// the portrait can overflow its row instead of inflating it. What keeps the
+// contact links from being clipped by that fixed height is the vh ceiling on
+// --fs-hero, which caps how much of the screen the wordmark can eat on a
+// wide-but-short window.
+@media (min-width: 1280px) and (min-height: 900px) {
   .home__hero {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
@@ -229,7 +248,7 @@
     row-gap: clamp(0.25rem, 1.6vh, 1.75rem);
     align-items: start;
     // Headroom for the arrows, which hang above their links. Less than their
-    // full 60px on purpose — they lift into the wordmark's own slack, which
+    // full reach on purpose — they lift into the wordmark's own slack, which
     // is where the design puts them.
     padding-block: 26px 0;
     padding-inline: 0;
@@ -249,15 +268,15 @@
     align-self: start;
   }
 
-  // Stops three columns short of the edge so its arrow, which runs 320px to
-  // the right of the link, still lands inside the viewport.
   .home__shortcut--about {
-    grid-column: 9 / 12;
+    grid-column: 10 / 12;
     grid-row: 1;
   }
 
+  // Starts a column in from the edge: the arrow reaches ~250px to the left of
+  // the link's centre, and from column 2 it ran off the left of the screen.
   .home__shortcut--projects {
-    grid-column: 2 / 4;
+    grid-column: 3 / 5;
     grid-row: 2;
   }
 
@@ -270,13 +289,11 @@
     font-size: 30px;
   }
 
-  // The design's placement: hanging above the link and sweeping off to its
-  // right. Only works where the links are far apart, as they are here.
+  // Same aim and the same 40px gap, at the design's size — only `top` changes,
+  // since it tracks 28.3% of the arrow's width.
   .home__shortcut .home__arrow {
-    top: -60px;
-    left: 40px;
+    top: -72px;
     width: 280px;
-    transform: none;
   }
 
   // Sits in the flexible row alone. Spanning the link rows instead would let

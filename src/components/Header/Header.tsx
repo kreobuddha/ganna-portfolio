@@ -11,8 +11,8 @@ interface NavItem {
   end: boolean;
 }
 
+// No "Home" entry — the wordmark on the left is the way back.
 const NAV_ITEMS: NavItem[] = [
-  { to: '/', label: 'Home', end: true },
   { to: '/projects', label: 'Projects', end: false },
   { to: '/clients', label: 'Clients', end: false },
   { to: '/about', label: 'About Me', end: false },

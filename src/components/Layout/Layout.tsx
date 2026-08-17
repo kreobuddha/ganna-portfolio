@@ -2,7 +2,6 @@ import './Layout.scss';
 import { useEffect } from 'react';
 import type { ReactElement } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import clsx from 'clsx';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 
@@ -17,7 +16,7 @@ const Layout = (): ReactElement => {
   }, [pathname]);
 
   return (
-    <div className={clsx('layout', isHome && 'layout--home')}>
+    <div className="layout">
       <a className="layout__skip" href="#main">
         Skip to content
       </a>

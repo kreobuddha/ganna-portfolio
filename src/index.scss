@@ -49,8 +49,10 @@
   /* Type scale */
   /* Sized so the "My Portfolio" wordmark's glyphs span the viewport exactly —
      see .home__wordmark, which cancels the leading side bearing to match.
-     Deliberately uncapped: any max would leave a gap on a wide screen. */
-  --fs-hero: 14.19vw;
+     The vh ceiling only bites on a wide-but-short window, where the wordmark
+     would otherwise be tall enough to push the home page's contact links off
+     the bottom of the screen. There it stops short of the edges instead. */
+  --fs-hero: min(14.19vw, 30vh);
   --fs-display: clamp(2.5rem, 7vw, 6rem);
   --fs-h1: clamp(2.25rem, 5vw, 4rem);
   --fs-h2: clamp(1.75rem, 3.4vw, 3rem);
