@@ -15,13 +15,15 @@ const About = (): ReactElement => {
     <div className="about page shell">
       <header className="about__hero">
         <div className="about__portrait">
-          <img
-            className="about__portrait-image"
-            src={profile.portrait}
-            alt={profile.portraitAlt}
-            width={360}
-            height={480}
-          />
+          <div className="about__portrait-frame">
+            <img
+              className="about__portrait-image"
+              src={profile.portrait}
+              alt={profile.portraitAlt}
+              width={1920}
+              height={2560}
+            />
+          </div>
         </div>
 
         <div className="about__lead">

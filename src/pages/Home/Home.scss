@@ -92,18 +92,20 @@
   aspect-ratio: 1;
 }
 
+// Pushed outside the box so the ring of text orbits past the photo's edge
+// rather than crossing the face.
 .home__circular {
   position: absolute;
-  inset: 0;
+  inset: -13%;
 }
 
 // The hero photo already carries its own blue ground, glow and grayscale
-// toning, so the frame adds no mask, gradient or filter of its own.
-// Kept narrower than the box so the rotating ring of text clears the photo.
-// The shot fades to blue at its corners, so its square edge is invisible.
+// toning, so the frame adds no mask, gradient or filter of its own. The shot
+// fades to blue at its corners, so its square edge is invisible against the
+// page and it can fill the box.
 .home__portrait-frame {
   position: relative;
-  width: 80%;
+  width: 100%;
   aspect-ratio: 1;
 }
 

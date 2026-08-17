@@ -6,19 +6,10 @@ filename and the aspect ratio — nothing in the code needs to change.
 If you swap `.svg` for `.png` / `.jpg` / `.webp`, update the matching `src` in
 `src/data/projects.ts`, `src/data/clients.ts` or `src/data/profile.ts`.
 
-## Portrait
+## Portraits
 
-| File | Ratio | Suggested size | Used on |
-| --- | --- | --- | --- |
-| `hero-portrait.svg` | 1:1 | 1024×1024 | Home hero |
-| `portrait.svg` | 3:4 | 960×1280 | About page |
-
-`hero-portrait` is the treated shot — blue ground, radial glow and grayscale toning are baked
-into the file, and the layout adds no mask or filter on top. Export it square, with the subject
-centred.
-
-`portrait` on the About page is cropped to a circle and rendered grayscale by CSS, so supply the
-original colour photo there.
+Already done — both live in [`src/assets/portrait/`](../../src/assets/portrait) and are imported
+by `src/data/profile.ts`, so there is nothing to replace here.
 
 ## RESOLA
 

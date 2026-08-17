@@ -1,3 +1,5 @@
+import aboutPortrait from '@/assets/portrait/about-portrait.jpeg';
+import heroPortrait from '@/assets/portrait/hero-portrait.jpg';
 import type { IProfile } from '@/types';
 
 export const profile: IProfile = {
@@ -20,8 +22,8 @@ export const profile: IProfile = {
       kind: 'resume',
     },
   ],
-  heroPortrait: '/images/hero-portrait.svg',
+  heroPortrait,
   heroPortraitAlt: 'Hanna Shyliaieva, portrait',
-  portrait: '/images/portrait.svg',
+  portrait: aboutPortrait,
   portraitAlt: 'Portrait of Hanna Shyliaieva',
 };
