@@ -1,3 +1,5 @@
+// The query container --fs-hero measures itself against, so the wordmark
+// spans the content width rather than the viewport's.
 .home__hero {
   position: relative;
   display: flex;
@@ -5,6 +7,7 @@
   gap: clamp(1rem, 3vw, 2.5rem);
   padding-bottom: var(--sp-9);
   overflow: hidden;
+  container-type: inline-size;
 }
 
 // Edge to edge: --fs-hero sizes the glyphs to the viewport, and the negative
@@ -56,6 +59,21 @@
 
   &:hover .home__dot {
     transform: scale(1.4);
+  }
+
+  // Plays once per session, staggered left to right by the link's own order.
+  // `backwards` keeps it hidden through its delay instead of flashing first,
+  // and the transform composes with the layout offset in `translate`.
+  &--entering {
+    animation: home-shortcut-in 0.55s var(--ease) backwards;
+    animation-delay: calc(240ms + var(--enter-order) * 160ms);
+  }
+}
+
+@keyframes home-shortcut-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
 }
 
@@ -150,6 +168,7 @@
 .home__highlight {
   position: relative;
   padding-left: 1.1rem;
+  font-size: var(--fs-lead);
 
   strong {
     font-weight: 700;
@@ -262,9 +281,17 @@
 
   // Staggered down a diagonal. Each spans two columns so a long label has
   // room without pushing its neighbours around.
+  //
+  // The offset is a translate rather than different cells: moving them down
+  // through the grid would take that height from the flexible row and push the
+  // contact links off the bottom of the screen. A translate shifts them over
+  // the photo, which is where the design puts them, and costs no height.
   .home__shortcut {
     z-index: 2;
     align-self: start;
+    // Down the full 10%, but only 5.5% left: the arrow reaches ~250px to the
+    // left of its link, so past this the leftmost one leaves the screen.
+    translate: -5.5vw 10vh;
   }
 
   .home__shortcut--about {

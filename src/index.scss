@@ -47,12 +47,15 @@
   --font-sans: 'Satoshi', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Type scale */
-  /* Sized so the "My Portfolio" wordmark's glyphs span the viewport exactly —
-     see .home__wordmark, which cancels the leading side bearing to match.
-     The vh ceiling only bites on a wide-but-short window, where the wordmark
-     would otherwise be tall enough to push the home page's contact links off
-     the bottom of the screen. There it stops short of the edges instead. */
-  --fs-hero: min(14.19vw, 30vh);
+  /* Sized so the "My Portfolio" wordmark's glyphs span the page exactly — see
+     .home__wordmark, which cancels the leading side bearing to match. Measured
+     in cqw, not vw, so the reserved scrollbar gutter is excluded: in vw the
+     wordmark would run a gutter's width past the content and lose its last
+     letter. The vh ceiling only bites on a wide-but-short window, where the
+     wordmark would otherwise be tall enough to push the home page's contact
+     links off the bottom of the screen. There it stops short of the edges
+     instead. */
+  --fs-hero: min(14.19cqw, 30vh);
   /* One scale, named by role. Each vw ramp is set so the size lands exactly on
      its design value at a 1440px viewport and holds there on anything wider;
      below that it scales down, since 90px would not fit a phone. */
@@ -105,6 +108,12 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  /* Home fits one screen and the other pages scroll, so without this the
+     scrollbar appearing would shift the header sideways on every navigation.
+     Reserves the gutter permanently — and reserves nothing on platforms whose
+     scrollbars overlay the content (macOS, iOS, Android), where the shift
+     never happened in the first place. */
+  scrollbar-gutter: stable;
 }
 
 body {

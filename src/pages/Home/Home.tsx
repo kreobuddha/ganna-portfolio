@@ -1,5 +1,5 @@
 import './Home.scss';
-import type { ReactElement } from 'react';
+import type { CSSProperties, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import CircularText from '@/components/CircularText/CircularText';
@@ -7,6 +7,7 @@ import ContactPills from '@/components/ContactPills/ContactPills';
 import HandDrawnArrow from '@/components/HandDrawnArrow/HandDrawnArrow';
 import type { ArrowDirection } from '@/components/HandDrawnArrow/HandDrawnArrow';
 import { profile } from '@/data/profile';
+import { useFirstVisit } from '@/hooks/useFirstVisit';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 interface HomeShortcut {
@@ -24,6 +25,10 @@ const SHORTCUTS: HomeShortcut[] = [
 ];
 
 const Home = (): ReactElement => {
+  // SHORTCUTS is ordered left to right on the page, so the index doubles as
+  // the stagger order.
+  const playIntro = useFirstVisit('home-intro-played');
+
   usePageMeta(
     'Hanna Shyliaieva — UX/UI Designer',
     'Portfolio of Hanna Shyliaieva, UX/UI designer with 10+ years of experience in web, mobile and enterprise product design.'
@@ -36,11 +41,16 @@ const Home = (): ReactElement => {
 
         <div className="home__stage shell">
           <nav className="home__shortcuts" aria-label="Sections">
-            {SHORTCUTS.map((shortcut) => (
+            {SHORTCUTS.map((shortcut, index) => (
               <Link
                 key={shortcut.to}
                 to={shortcut.to}
-                className={clsx('home__shortcut', `home__shortcut--${shortcut.modifier}`)}
+                className={clsx(
+                  'home__shortcut',
+                  `home__shortcut--${shortcut.modifier}`,
+                  playIntro && 'home__shortcut--entering'
+                )}
+                style={{ '--enter-order': index } as CSSProperties}
               >
                 <HandDrawnArrow className="home__arrow" direction={shortcut.direction} />
                 <span className="home__dot" aria-hidden="true" />
