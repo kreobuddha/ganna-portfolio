@@ -2,54 +2,69 @@
   display: grid;
   gap: var(--sp-5);
   margin: 0;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 .clients__card {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-2);
-  padding: var(--sp-6);
-  background: var(--glass-1);
-  border: 1px solid var(--glass-2);
-  border-radius: var(--radius-lg);
+  gap: var(--sp-3);
+}
+
+// Each logo sits on the ground it was drawn for: dark marks on white, and the
+// white ones on the page's own blue, where a hairline is what keeps the tile
+// readable as a tile. Getting this wrong makes a logo vanish entirely.
+// The height is set outright rather than left to an aspect ratio: a tall logo
+// counts towards the row's height and would win against `aspect-ratio`, which
+// is only a suggestion, leaving the wall with tiles of four different sizes.
+.clients__tile {
+  display: grid;
+  place-items: stretch;
+  height: clamp(110px, 11vw, 150px);
+  padding: var(--sp-5);
+  border-radius: var(--radius-md);
   transition:
     border-color var(--dur) var(--ease),
-    background-color var(--dur) var(--ease),
     transform var(--dur) var(--ease);
 
-  &:hover {
-    background: var(--glass-2);
-    border-color: var(--lime);
-    transform: translateY(-4px);
+  &--dark {
+    background: var(--white);
+    border: 1px solid var(--white);
+  }
+
+  &--light {
+    background: var(--blue);
+    border: 1px solid var(--glass-3);
   }
 }
 
+// Stretched to the tile and fitted inside it, which centres every logo on the
+// same box whatever its proportions. `max-height: 100%` cannot do this job: a
+// percentage against a grid area does not resolve, so a tall logo would spill
+// out of its tile. The zero minimum matters for the same reason: a grid item's
+// automatic minimum size is its intrinsic height, and for a tall logo that
+// beats the 100% and pushes it out of the tile again.
 .clients__logo {
-  width: 56px;
-  height: 56px;
-  margin-bottom: var(--sp-3);
-  border-radius: var(--radius-sm);
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .clients__name {
-  font-size: var(--fs-title-sm);
+  font-size: var(--fs-body);
+  text-align: center;
+  color: var(--muted);
+  transition: color var(--dur) var(--ease);
 }
 
-.clients__role {
-  font-weight: 700;
+// Only the tiles that lead somewhere answer the pointer.
+.clients__card--link:hover .clients__tile {
+  border-color: var(--lime);
+  transform: translateY(-4px);
+}
+
+.clients__card--link:hover .clients__name {
   color: var(--lime);
-}
-
-.clients__period {
-  font-size: var(--fs-body);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.clients__note {
-  margin-top: var(--sp-2);
-  font-size: var(--fs-body);
-  color: var(--muted);
 }

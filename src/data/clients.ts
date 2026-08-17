@@ -1,39 +1,33 @@
+import decathlon from '@/assets/logos/decathlon.png';
+import gmcs from '@/assets/logos/gmcs.png';
+import kfc from '@/assets/logos/kfc.png';
+import leroyMerlin from '@/assets/logos/leroy-merlin.webp';
+import prisma from '@/assets/logos/prisma.png';
+import resola from '@/assets/logos/resola.png';
+import rfu from '@/assets/logos/rfu.png';
+import serviceTelecom from '@/assets/logos/service-telecom.png';
+import skolkovo from '@/assets/logos/skolkovo.png';
+import socar from '@/assets/logos/socar.png';
+import sprintsoft from '@/assets/logos/sprintsoft.png';
+import transneft from '@/assets/logos/transneft.png';
 import type { IClient } from '@/types';
 
+// Hanna's own order, kept from the logo wall she built on Framer.
+//
+// `href` is missing on three of them: Leroy Merlin's Russian site is gone
+// after the Lemana PRO rebrand, and Resola and Service Telecom have no address
+// confirmed yet. Those three render as plain tiles until one is filled in.
 export const clients: IClient[] = [
-  {
-    name: 'Freelance',
-    role: 'UX/UI Designer',
-    period: 'Feb 2021 — Present',
-    note: 'Product design for web and mobile clients, including the Resola rehabilitation platform.',
-    logo: '/images/logo-freelance.svg',
-  },
-  {
-    name: 'GMCS Verex LLC',
-    role: 'Lead UI/UX Designer',
-    period: 'Feb 2017 — Feb 2021',
-    note: 'Leading design on complex enterprise products and guiding a small design team.',
-    logo: '/images/logo-gmcs.svg',
-  },
-  {
-    name: 'SprintSoft LLC',
-    role: 'UI/UX Designer',
-    period: 'Oct 2016 — Feb 2017',
-    note: 'Interface design for client web products, working directly with developers.',
-    logo: '/images/logo-sprintsoft.svg',
-  },
-  {
-    name: 'R-Soft LLC',
-    role: 'Designer',
-    period: 'Oct 2016 — Feb 2017',
-    note: 'Visual and interface design across client projects.',
-    logo: '/images/logo-rsoft.svg',
-  },
-  {
-    name: 'Laboratory 24 LLC',
-    role: '2D Designer → Head of 2D Design Department',
-    period: 'Oct 2015 — Feb 2016',
-    note: 'Grew from 2D designer to heading the department and its output.',
-    logo: '/images/logo-lab24.svg',
-  },
+  { name: 'GMCS', logo: gmcs, href: 'https://www.gmcs.ru', ink: 'dark' },
+  { name: 'Resola', logo: resola, ink: 'light' },
+  { name: 'SprintSoft', logo: sprintsoft, href: 'https://sprintsoft.ru', ink: 'light' },
+  { name: 'Leroy Merlin', logo: leroyMerlin, ink: 'dark' },
+  { name: 'KFC', logo: kfc, href: 'https://www.kfc.ru', ink: 'dark' },
+  { name: 'SOCAR', logo: socar, href: 'https://www.socar.az', ink: 'dark' },
+  { name: 'Decathlon', logo: decathlon, href: 'https://www.decathlon.com', ink: 'dark' },
+  { name: 'Transneft', logo: transneft, href: 'https://www.transneft.ru', ink: 'dark' },
+  { name: 'Prisma', logo: prisma, href: 'https://www.prisma.fi', ink: 'dark' },
+  { name: 'Service Telecom', logo: serviceTelecom, ink: 'dark' },
+  { name: 'Russian Football Union', logo: rfu, href: 'https://www.rfs.ru', ink: 'dark' },
+  { name: 'Skolkovo', logo: skolkovo, href: 'https://sk.ru', ink: 'light' },
 ];

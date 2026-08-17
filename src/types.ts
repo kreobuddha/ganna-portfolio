@@ -58,11 +58,11 @@ export interface IProject {
 
 export interface IClient {
   name: string;
-  role: string;
-  period: string;
-  /** Short note on what the collaboration covered. */
-  note: string;
   logo: string;
+  /** The company's own site. Left out when there is nothing current to link to. */
+  href?: string;
+  /** The ink the logo is drawn in, which decides the tile it needs to sit on. */
+  ink: 'dark' | 'light';
 }
 
 export interface IExperienceEntry {

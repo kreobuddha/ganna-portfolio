@@ -37,11 +37,9 @@ Square, 1:1, at least 240×240, transparent background preferred.
 | --- | --- |
 | `logo-resola.svg` | Resola |
 | `logo-uandco.svg` | U&CO |
-| `logo-freelance.svg` | Freelance |
-| `logo-gmcs.svg` | GMCS Verex LLC |
-| `logo-sprintsoft.svg` | SprintSoft LLC |
-| `logo-rsoft.svg` | R-Soft LLC |
-| `logo-lab24.svg` | Laboratory 24 LLC |
+
+The client wall on `/clients` does not use this folder — those logos are real
+artwork, imported from `src/assets/logos/` through `src/data/clients.ts`.
 
 ## Social preview
 
