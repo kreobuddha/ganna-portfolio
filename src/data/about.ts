@@ -6,20 +6,21 @@ export const about: IAbout = {
     'Experienced in information architecture, design systems, branding, and cross-functional collaboration.',
     'Passionate about creating intuitive, scalable, and user-centered experiences.',
   ],
+  // Oldest first, so the timeline reads left to right the way it is written.
   experience: [
-    { company: 'Freelance', role: 'UX/UI Designer', period: 'February 2021 — Present' },
-    {
-      company: 'GMCS Verex LLC',
-      role: 'Lead UI/UX Designer',
-      period: 'February 2017 — February 2021',
-    },
-    { company: 'SprintSoft LLC', role: 'UI/UX Designer', period: 'October 2016 — February 2017' },
-    { company: 'R-Soft LLC', role: 'Designer', period: 'October 2016 — February 2017' },
     {
       company: 'Laboratory 24 LLC',
       role: '2D Designer → Head of 2D Design Department',
       period: 'October 2015 — February 2016',
     },
+    { company: 'R-Soft LLC', role: 'Designer', period: 'October 2016 — February 2017' },
+    { company: 'SprintSoft LLC', role: 'UI/UX Designer', period: 'October 2016 — February 2017' },
+    {
+      company: 'GMCS Verex LLC',
+      role: 'Lead UI/UX Designer',
+      period: 'February 2017 — February 2021',
+    },
+    { company: 'Freelance', role: 'UX/UI Designer', period: 'February 2021 — Present' },
   ],
   skills: [
     'Complex enterprise product design',

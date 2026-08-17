@@ -4,55 +4,56 @@
   gap: clamp(2.5rem, 6vw, 4.5rem);
 }
 
+// Runs the full content width rather than the shell's, so the rings can reach
+// the edges of the screen. `overflow: hidden` is what actually cuts them there
+// — the rings are sized to hang well past both sides.
 .about__hero {
-  display: grid;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: center;
-  grid-template-columns: minmax(0, 1fr);
-}
-
-.about__portrait {
   position: relative;
-  display: grid;
-  place-items: center;
-  justify-self: center;
-  width: min(280px, 70vw);
-  aspect-ratio: 1;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 50%, var(--blue-light) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-}
-
-.about__portrait-frame {
-  position: relative;
-  width: 82%;
-  aspect-ratio: 1;
   overflow: hidden;
-  border-radius: 50%;
+  padding-block: clamp(1rem, 4vw, 3rem);
 }
 
-// The source is a wide 3:4 shot with the head small and high in the frame, so
-// the photo is blown up past the circle and offset to sit the face dead
-// centre. Change these three numbers together if the photo is replaced.
-.about__portrait-image {
+.about__rings {
   position: absolute;
-  top: -5%;
-  left: 0;
-  width: 160%;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+// Anchored to the page edge and pulled back out by most of its own width, so
+// only the inner arc reads — the same spinning loop as the home portrait, blown
+// up. Its font size lives in the SVG's viewBox units, so it scales with the
+// ring instead of needing a size of its own.
+//
+// Written against the parent so it outweighs `.circular-text`, which sizes
+// itself to its box and would otherwise win on source order.
+.about__rings .about__ring {
+  position: absolute;
+  top: 50%;
+  width: clamp(300px, 44vw, 780px);
   height: auto;
-  filter: grayscale(1) contrast(1.05);
+  max-width: none;
+  aspect-ratio: 1;
+}
+
+.about__ring--left {
+  left: 0;
+  translate: -58% -50%;
+}
+
+.about__ring--right {
+  right: 0;
+  translate: 58% -50%;
 }
 
 .about__lead {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--sp-4);
-  max-width: 62ch;
+  align-items: center;
+  gap: var(--sp-5);
+  text-align: center;
 }
 
 .about__title {
@@ -60,12 +61,38 @@
   text-transform: uppercase;
 }
 
+// In colour and large: this is the one photo on the site shown as itself,
+// where the home portrait is a treated graphic.
+.about__portrait {
+  width: min(420px, 72vw);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+// `contain`, so the whole 3:4 shot stays visible and the circle crops only the
+// corners it has to. Nothing is scaled or offset — swap the photo and it still
+// fits.
+.about__portrait-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .about__bio {
+  max-width: 68ch;
+  font-size: var(--fs-lead);
   color: var(--muted);
 }
 
 .about__contacts {
   margin-top: var(--sp-3);
+}
+
+.about__body {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
 }
 
 .about__section {
@@ -85,7 +112,9 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  // Narrow enough that all five jobs sit on one row on a desktop, so the
+  // timeline reads straight through from the first to the current one.
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .about__entry {
@@ -169,13 +198,14 @@
   color: var(--lime);
 }
 
-@media (min-width: 900px) {
-  .about__hero {
-    grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+// On a phone the rings are wider than the column they frame, so they sit
+// further out and only clip the corners of the text.
+@media (max-width: 767px) {
+  .about__ring--left {
+    translate: -72% -50%;
   }
 
-  .about__portrait {
-    justify-self: start;
-    width: 100%;
+  .about__ring--right {
+    translate: 72% -50%;
   }
 }
