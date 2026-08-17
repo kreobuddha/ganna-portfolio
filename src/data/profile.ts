@@ -20,6 +20,8 @@ export const profile: IProfile = {
       kind: 'resume',
     },
   ],
+  heroPortrait: '/images/hero-portrait.svg',
+  heroPortraitAlt: 'Hanna Shyliaieva, portrait',
   portrait: '/images/portrait.svg',
   portraitAlt: 'Portrait of Hanna Shyliaieva',
 };

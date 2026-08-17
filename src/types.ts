@@ -18,6 +18,10 @@ export interface IProfile {
   title: string;
   highlights: IHighlight[];
   contacts: IContactLink[];
+  /** Home hero shot — square, with its own blue ground and glow baked in. */
+  heroPortrait: string;
+  heroPortraitAlt: string;
+  /** About page portrait — cropped to a circle by CSS. */
   portrait: string;
   portraitAlt: string;
 }

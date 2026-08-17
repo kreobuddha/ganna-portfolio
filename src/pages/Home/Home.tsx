@@ -56,10 +56,10 @@ const Home = (): ReactElement => {
             <div className="home__portrait-frame">
               <img
                 className="home__portrait-image"
-                src={profile.portrait}
-                alt={profile.portraitAlt}
-                width={480}
-                height={640}
+                src={profile.heroPortrait}
+                alt={profile.heroPortraitAlt}
+                width={1024}
+                height={1024}
               />
             </div>
           </div>
