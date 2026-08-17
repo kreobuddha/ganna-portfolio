@@ -1,0 +1,17 @@
+.page-heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.page-heading__title {
+  font-size: var(--fs-display);
+  text-transform: uppercase;
+}
+
+.page-heading__body {
+  max-width: 70ch;
+  font-size: var(--fs-lead);
+  color: var(--muted);
+}

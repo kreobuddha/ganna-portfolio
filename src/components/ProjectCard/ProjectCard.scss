@@ -1,0 +1,111 @@
+.project-card {
+  position: relative;
+  display: grid;
+  gap: var(--sp-6);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  background: var(--glass-1);
+  border: 1px solid var(--glass-2);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+
+  &:hover {
+    background: var(--glass-2);
+    border-color: var(--lime);
+    transform: translateY(-4px);
+  }
+}
+
+.project-card__media {
+  display: block;
+  overflow: hidden;
+  background: var(--blue-dark);
+  border-radius: var(--radius-md);
+  aspect-ratio: 16 / 10;
+}
+
+.project-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+
+  .project-card:hover & {
+    transform: scale(1.03);
+  }
+}
+
+.project-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.project-card__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.project-card__logo {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+}
+
+.project-card__title {
+  font-size: var(--fs-h2);
+  text-transform: uppercase;
+}
+
+.project-card__link {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+  }
+}
+
+.project-card__role {
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+.project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin: 0;
+}
+
+.project-card__tag {
+  padding: 0.3rem 0.75rem;
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lime);
+  border: 1px solid var(--glass-3);
+  border-radius: var(--radius-pill);
+}
+
+.project-card__summary {
+  max-width: 68ch;
+  color: var(--muted);
+}
+
+.project-card__cta {
+  font-weight: 700;
+  color: var(--lime);
+}
+
+@media (min-width: 900px) {
+  .project-card {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    align-items: center;
+  }
+}

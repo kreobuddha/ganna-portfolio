@@ -1,0 +1,55 @@
+.clients__grid {
+  display: grid;
+  gap: var(--sp-5);
+  margin: 0;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.clients__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-6);
+  background: var(--glass-1);
+  border: 1px solid var(--glass-2);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+
+  &:hover {
+    background: var(--glass-2);
+    border-color: var(--lime);
+    transform: translateY(-4px);
+  }
+}
+
+.clients__logo {
+  width: 56px;
+  height: 56px;
+  margin-bottom: var(--sp-3);
+  border-radius: var(--radius-sm);
+}
+
+.clients__name {
+  font-size: var(--fs-h3);
+}
+
+.clients__role {
+  font-weight: 700;
+  color: var(--lime);
+}
+
+.clients__period {
+  font-size: var(--fs-small);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.clients__note {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
