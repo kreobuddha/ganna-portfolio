@@ -61,9 +61,14 @@ and the "next project" link all pick it up automatically.
 
 ## Images
 
-Everything in `public/images/` is a placeholder. See
-[`public/images/README.md`](public/images/README.md) for the filename, aspect ratio and target
-size of each one. Keep the filenames and nothing in the code needs to change.
+Real artwork goes in [`src/assets/`](src/assets/README.md) (`logos/`, `projects/`, `portrait/`)
+and is pulled in with an `import` — Vite hashes the filename and fails the build if a path is
+wrong.
+
+Everything currently rendered comes from `public/images/`, which is placeholders served by URL
+string with no build-time check. [`public/images/README.md`](public/images/README.md) lists the
+filename, aspect ratio and target size of each one, so a replacement can either keep the same
+filename in `public/` or move to `src/assets/` and be imported.
 
 ## Design tokens
 
