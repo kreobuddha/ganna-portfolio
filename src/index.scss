@@ -47,8 +47,10 @@
   --font-sans: 'Satoshi', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Type scale */
-  /* Sized so the "My Portfolio" wordmark spans the viewport without clipping. */
-  --fs-hero: clamp(3rem, 13.6vw, 14rem);
+  /* Sized so the "My Portfolio" wordmark's glyphs span the viewport exactly —
+     see .home__wordmark, which cancels the leading side bearing to match.
+     Deliberately uncapped: any max would leave a gap on a wide screen. */
+  --fs-hero: 14.19vw;
   --fs-display: clamp(2.5rem, 7vw, 6rem);
   --fs-h1: clamp(2.25rem, 5vw, 4rem);
   --fs-h2: clamp(1.75rem, 3.4vw, 3rem);

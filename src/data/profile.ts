@@ -17,7 +17,7 @@ export const profile: IProfile = {
     { label: 'Telegram', href: 'https://t.me/Ganna_designer', kind: 'telegram' },
     { label: 'Email', href: 'mailto:gannashilyaevacassandra@gmail.com', kind: 'email' },
     {
-      label: 'Resume',
+      label: 'CV',
       href: 'https://drive.google.com/file/d/1DjEG-0KxBrTtjdOKNgSu_C8PPdHMTnGS/view?usp=sharing',
       kind: 'resume',
     },

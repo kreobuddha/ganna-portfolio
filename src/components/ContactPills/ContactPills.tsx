@@ -5,8 +5,6 @@ import { profile } from '@/data/profile';
 import type { ContactKind } from '@/types';
 
 interface ContactPillsProps {
-  /** `solid` renders white pills, `outline` renders bordered ones. */
-  variant?: 'solid' | 'outline';
   className?: string;
 }
 
@@ -31,13 +29,24 @@ const ICONS: Record<ContactKind, ReactElement> = {
   ),
 };
 
-const ContactPills = ({ variant = 'solid', className }: ContactPillsProps): ReactElement => {
+// The CV is the one action worth pushing, so it carries the solid fill and
+// the ways to get in touch sit back as outlines.
+const VARIANTS: Record<ContactKind, 'solid' | 'outline'> = {
+  telegram: 'outline',
+  email: 'outline',
+  resume: 'solid',
+};
+
+const ContactPills = ({ className }: ContactPillsProps): ReactElement => {
   return (
     <ul className={clsx('contact-pills', className)}>
       {profile.contacts.map((contact) => (
         <li key={contact.kind}>
           <a
-            className={clsx('contact-pills__pill', `contact-pills__pill--${variant}`)}
+            className={clsx(
+              'contact-pills__pill',
+              `contact-pills__pill--${VARIANTS[contact.kind]}`
+            )}
             href={contact.href}
             target={contact.kind === 'email' ? undefined : '_blank'}
             rel={contact.kind === 'email' ? undefined : 'noreferrer'}

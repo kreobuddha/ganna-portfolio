@@ -7,12 +7,17 @@
   overflow: hidden;
 }
 
+// Edge to edge: --fs-hero sizes the glyphs to the viewport, and the negative
+// margin cancels the M's left side bearing so the ink starts at x: 0 rather
+// than the text box. Both constants are measured from Satoshi Black at this
+// letter-spacing — re-measure if either changes.
 .home__wordmark {
   margin-top: clamp(0.5rem, 2vw, 1.5rem);
+  margin-left: -0.077em;
   font-size: var(--fs-hero);
   line-height: 0.82;
   letter-spacing: -0.045em;
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
   white-space: nowrap;
   text-wrap: nowrap;
@@ -43,42 +48,46 @@
   flex-direction: column;
   align-items: center;
   gap: var(--sp-2);
-  padding-top: 2.5rem;
 
   &:hover .home__shortcut-label {
     color: var(--lime);
   }
 
   &:hover .home__dot {
-    transform: scale(1.6);
+    transform: scale(1.4);
   }
 }
 
-// Scoped through the parent so it outranks the component's own `width: 100%`.
+// Positioned against the link itself, centred so the head lands on that
+// link's own dot — with the links side by side, the full-screen layout's
+// offset would make each arrow point at its neighbour instead.
 // `max-width: none` undoes the global `svg { max-width: 100% }`, which would
 // otherwise clamp the arrow to the label's width.
 .home__shortcut .home__arrow {
   position: absolute;
-  top: 0;
+  top: -30px;
   left: 50%;
   width: 96px;
   max-width: none;
-  transform: translateX(-108%);
+  transform: translateX(-88%);
 }
 
 .home__dot {
-  width: 7px;
-  height: 7px;
+  width: 15px;
+  height: 15px;
   background: var(--white);
   border-radius: 50%;
   transition: transform var(--dur) var(--ease);
 }
 
+// The design's 30px applies on the full-screen layout; below that the three
+// links sit in one row and have to scale down to stay on it.
 .home__shortcut-label {
-  font-size: var(--fs-small);
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0;
   text-transform: uppercase;
+  white-space: nowrap;
   transition: color var(--dur) var(--ease);
 }
 
@@ -92,11 +101,9 @@
   aspect-ratio: 1;
 }
 
-// Nudged outside the box so the ring orbits along the photo's edge and over
-// its faded corners, rather than cutting across the face.
 .home__circular {
   position: absolute;
-  inset: -10%;
+  inset: 0;
   z-index: 1;
 }
 
@@ -159,12 +166,12 @@
 
 @media (max-width: 767px) {
   .home__shortcuts {
-    gap: var(--sp-5);
+    gap: var(--sp-4);
   }
 
-  .home__shortcut .home__arrow {
-    width: 56px;
-    transform: translateX(-100%);
+  .home__dot {
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -193,89 +200,105 @@
   }
 }
 
-// Full-screen composition: everything is pinned inside one viewport-tall
-// stage, so the page never scrolls. Guarded on height as well as width —
-// on a short window the flow layout above is the safer fallback.
-@media (min-width: 1100px) and (min-height: 660px) {
+// Full-screen composition: one viewport-tall stage laid out on a 12-column
+// grid, so the page never scrolls. Guarded on height as well as width — on a
+// short window the flow layout above is the safer fallback.
+// The design's fixed sizes — 30px labels, arrows dropping 60px, an
+// edge-to-edge wordmark — need real vertical room. 800px of viewport is where
+// it stops fitting; below that the scrolling flow layout above takes over.
+@media (min-width: 1280px) and (min-height: 800px) {
   .home__hero {
-    display: block;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 0;
     height: calc(100dvh - var(--header-h));
     padding-bottom: 0;
   }
 
   .home__wordmark {
-    position: absolute;
-    top: clamp(0.25rem, 1.5vh, 1.5rem);
-    left: 0;
-    right: 0;
     margin-top: 0;
   }
 
-  // Capped and centred so the pinned percentages stay in proportion instead
-  // of drifting apart on an ultra-wide monitor.
+  // Rows are content-sized for the three links, then a single flexible row
+  // absorbs whatever height is left so the intro always lands at the bottom.
+  // Equal fractions cramped the links on a short window.
   .home__stage {
-    position: absolute;
-    inset: 0;
-    display: block;
-    width: 100%;
-    max-width: min(1600px, 100%);
-    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+    row-gap: clamp(0.25rem, 1.6vh, 1.75rem);
+    align-items: start;
+    // Headroom for the arrows, which hang above their links. Less than their
+    // full 60px on purpose — they lift into the wordmark's own slack, which
+    // is where the design puts them.
+    padding-block: 26px 0;
     padding-inline: 0;
+    max-width: min(1600px, 100%);
   }
 
-  // Above the portrait: the middle shortcuts sit over the photo's faded
-  // outer edge, exactly as they do in the design.
+  // Laid into the stage grid directly rather than as a box of their own, so
+  // each link keeps its own cell.
   .home__shortcuts {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    display: block;
-    padding-top: 0;
+    display: contents;
   }
 
+  // Staggered down a diagonal. Each spans two columns so a long label has
+  // room without pushing its neighbours around.
   .home__shortcut {
-    position: absolute;
-    left: var(--shortcut-x);
-    top: var(--shortcut-y);
-    transform: translateX(-50%);
+    z-index: 2;
+    align-self: start;
   }
 
-  // Staggered down a diagonal, clear of the wordmark above them. The values
-  // place the arrow's top edge; the dot lands ~5% lower.
+  // Stops three columns short of the edge so its arrow, which runs 320px to
+  // the right of the link, still lands inside the viewport.
+  .home__shortcut--about {
+    grid-column: 9 / 12;
+    grid-row: 1;
+  }
+
   .home__shortcut--projects {
-    --shortcut-x: 21.5%;
-    --shortcut-y: 27%;
+    grid-column: 2 / 4;
+    grid-row: 2;
   }
 
   .home__shortcut--clients {
-    --shortcut-x: 53%;
-    --shortcut-y: 34%;
+    grid-column: 6 / 8;
+    grid-row: 3;
   }
 
-  .home__shortcut--about {
-    --shortcut-x: 88%;
-    --shortcut-y: 23%;
+  .home__shortcut-label {
+    font-size: 30px;
   }
 
+  // The design's placement: hanging above the link and sweeping off to its
+  // right. Only works where the links are far apart, as they are here.
   .home__shortcut .home__arrow {
-    width: 176px;
-    transform: translateX(-84%);
+    top: -60px;
+    left: 40px;
+    width: 280px;
+    transform: none;
   }
 
+  // Sits in the flexible row alone. Spanning the link rows instead would let
+  // the photo's height inflate them and push the intro off-screen; here the
+  // row's `minmax(0, 1fr)` floor means the photo overflows visually — bleeding
+  // past the right edge and below the fold, as in the design — without
+  // driving the layout.
   .home__portrait {
-    position: absolute;
-    left: 71%;
-    top: 65%;
+    grid-column: 7 / -1;
+    grid-row: 4;
+    justify-self: center;
+    align-self: center;
     width: min(52vw, 76vh);
-    transform: translate(-50%, -50%);
   }
 
   .home__intro {
-    position: absolute;
-    left: var(--shell-pad);
-    bottom: clamp(1.5rem, 6vh, 4.5rem);
+    grid-column: 1 / 6;
+    grid-row: 5;
     z-index: 2;
-    max-width: min(46ch, 42%);
-    padding-bottom: 0;
+    align-self: end;
+    padding-bottom: clamp(1rem, 4vh, 3.5rem);
+    padding-left: var(--shell-pad);
+    max-width: none;
   }
 }
