@@ -79,7 +79,10 @@
   --radius-md: 16px;
   --radius-sm: 10px;
 
-  --shell: 1280px;
+  /* One container width for the header, the home stage and every page, so the
+     brand, the nav and the page's own first column all start on the same
+     line. The home composition is built against this width. */
+  --shell: 1600px;
   --shell-pad: clamp(1.25rem, 4vw, 3.5rem);
   --header-h: 72px;
 

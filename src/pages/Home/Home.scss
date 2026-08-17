@@ -251,8 +251,9 @@
     // full reach on purpose — they lift into the wordmark's own slack, which
     // is where the design puts them.
     padding-block: 26px 0;
+    // The intro applies the inline padding itself, so the grid's columns can
+    // run the full width of the shell. Width comes from `.shell`.
     padding-inline: 0;
-    max-width: min(1600px, 100%);
   }
 
   // Laid into the stage grid directly rather than as a box of their own, so
