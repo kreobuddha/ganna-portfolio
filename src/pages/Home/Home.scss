@@ -86,10 +86,8 @@
   transition: transform var(--dur) var(--ease);
 }
 
-// The design's 30px applies on the full-screen layout; below that the three
-// links sit in one row and have to scale down to stay on it.
 .home__shortcut-label {
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: var(--fs-link);
   font-weight: 500;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -138,7 +136,7 @@
 }
 
 .home__intro-title {
-  font-size: var(--fs-h2);
+  font-size: var(--fs-subheading);
 }
 
 .home__highlights {
@@ -215,9 +213,9 @@
 // Full-screen composition: one viewport-tall stage laid out on a 12-column
 // grid, so the page fits without scrolling.
 //
-// The design's fixed sizes — 30px labels, arrows dropping 72px, an
-// edge-to-edge wordmark whose height grows with the viewport's width — need
-// real vertical room. 900px is the documented floor for the no-scroll rule:
+// The design's sizes — 30px links, arrows dropping 72px, an edge-to-edge
+// wordmark whose height grows with the viewport's width — need real vertical
+// room. 900px is the documented floor for the no-scroll rule:
 // below it the flow layout above takes over and the page scrolls normally.
 //
 // The height here is fixed on purpose: it gives the rows a definite size, so
@@ -284,10 +282,6 @@
   .home__shortcut--clients {
     grid-column: 6 / 8;
     grid-row: 3;
-  }
-
-  .home__shortcut-label {
-    font-size: 30px;
   }
 
   // Same aim and the same 40px gap, at the design's size — only `top` changes,

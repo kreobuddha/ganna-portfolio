@@ -6,7 +6,7 @@
 
 .project-detail__back {
   align-self: flex-start;
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -24,7 +24,7 @@
 }
 
 .project-detail__title {
-  font-size: var(--fs-display);
+  font-size: var(--fs-heading);
   text-transform: uppercase;
 }
 
@@ -45,7 +45,7 @@
 
 .project-detail__meta-item {
   dt {
-    font-size: var(--fs-micro);
+    font-size: var(--fs-meta);
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -73,7 +73,7 @@
 }
 
 .project-detail__section-title {
-  font-size: var(--fs-h2);
+  font-size: var(--fs-subheading);
   text-transform: uppercase;
 }
 
@@ -103,14 +103,14 @@
 }
 
 .project-detail__step-number {
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   font-weight: 900;
   letter-spacing: 0.1em;
   color: var(--lime);
 }
 
 .project-detail__step-title {
-  font-size: var(--fs-h3);
+  font-size: var(--fs-title-sm);
 }
 
 .project-detail__step-body {
@@ -179,7 +179,7 @@
 }
 
 .project-detail__next-title {
-  font-size: var(--fs-h2);
+  font-size: var(--fs-subheading);
   font-weight: 900;
   letter-spacing: -0.03em;
   text-transform: uppercase;

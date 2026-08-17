@@ -19,7 +19,7 @@
 }
 
 .header__brand {
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   font-weight: 900;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -40,7 +40,7 @@
 .header__link {
   position: relative;
   padding-block: var(--sp-2);
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   font-weight: 500;
   color: var(--muted);
   transition: color var(--dur) var(--ease);
@@ -134,7 +134,7 @@
 
 .header__sheet-link {
   padding-block: var(--sp-4);
-  font-size: var(--fs-h3);
+  font-size: var(--fs-title-sm);
   font-weight: 700;
   border-bottom: 1px solid var(--glass-1);
 

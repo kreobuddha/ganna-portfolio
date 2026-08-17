@@ -33,7 +33,7 @@
 }
 
 .clients__name {
-  font-size: var(--fs-h3);
+  font-size: var(--fs-title-sm);
 }
 
 .clients__role {
@@ -42,7 +42,7 @@
 }
 
 .clients__period {
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -50,6 +50,6 @@
 
 .clients__note {
   margin-top: var(--sp-2);
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   color: var(--muted);
 }

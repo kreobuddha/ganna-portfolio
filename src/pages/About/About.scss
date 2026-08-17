@@ -56,7 +56,7 @@
 }
 
 .about__title {
-  font-size: var(--fs-h1);
+  font-size: var(--fs-heading);
   text-transform: uppercase;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .about__section-title {
-  font-size: var(--fs-h2);
+  font-size: var(--fs-subheading);
   text-transform: uppercase;
 }
 
@@ -99,7 +99,7 @@
 }
 
 .about__entry-period {
-  font-size: var(--fs-micro);
+  font-size: var(--fs-meta);
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -107,7 +107,7 @@
 }
 
 .about__entry-role {
-  font-size: var(--fs-h3);
+  font-size: var(--fs-title-sm);
 }
 
 .about__entry-company {
@@ -129,7 +129,7 @@
 
 .about__chip {
   padding: 0.45rem 0.95rem;
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   border: 1px solid var(--glass-3);
   border-radius: var(--radius-pill);
 
@@ -157,12 +157,12 @@
 }
 
 .about__language-name {
-  font-size: var(--fs-h3);
+  font-size: var(--fs-title-sm);
   font-weight: 700;
 }
 
 .about__language-level {
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
