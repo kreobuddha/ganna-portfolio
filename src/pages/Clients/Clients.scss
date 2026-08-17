@@ -5,66 +5,88 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
-.clients__card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-}
-
-// Each logo sits on the ground it was drawn for: dark marks on white, and the
-// white ones on the page's own blue, where a hairline is what keeps the tile
-// readable as a tile. Getting this wrong makes a logo vanish entirely.
-// The height is set outright rather than left to an aspect ratio: a tall logo
-// counts towards the row's height and would win against `aspect-ratio`, which
-// is only a suggestion, leaving the wall with tiles of four different sizes.
+// No ground of its own: the wall is logos on the page's blue, and the tile is
+// only the box that gives each one the same room.
 .clients__tile {
   display: grid;
   place-items: stretch;
+  width: 100%;
   height: clamp(110px, 11vw, 150px);
   padding: var(--sp-5);
   border-radius: var(--radius-md);
   transition:
-    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
     transform var(--dur) var(--ease);
 
-  &--dark {
-    background: var(--white);
-    border: 1px solid var(--white);
+  &:hover {
+    transform: translateY(-4px);
   }
 
-  &--light {
-    background: var(--blue);
-    border: 1px solid var(--glass-3);
+  &--open {
+    background: var(--glass-1);
   }
 }
 
-// Stretched to the tile and fitted inside it, which centres every logo on the
-// same box whatever its proportions. `max-height: 100%` cannot do this job: a
-// percentage against a grid area does not resolve, so a tall logo would spill
-// out of its tile. The zero minimum matters for the same reason: a grid item's
-// automatic minimum size is its intrinsic height, and for a tall logo that
-// beats the 100% and pushes it out of the tile again.
+// The artwork is a stencil, not a picture: only its alpha channel is read, and
+// what shows through is a flat fill. That is what makes a wall of logos in
+// twelve different brand colours read as one set — and the same trick the
+// Framer draft uses, which is why the PNGs are enough and no SVG is needed.
+//
+// `mask-size: contain` keeps each logo inside the tile at its own proportions,
+// the way `object-fit: contain` would for an image.
 .clients__logo {
   min-width: 0;
   min-height: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  background-color: var(--white);
+  -webkit-mask-image: var(--logo);
+  mask-image: var(--logo);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transition: background-color var(--dur) var(--ease);
 }
 
-.clients__name {
-  font-size: var(--fs-body);
-  text-align: center;
+.clients__tile:hover .clients__logo,
+.clients__tile--open .clients__logo {
+  background-color: var(--lime);
+}
+
+// Always in the flow, empty until a logo is picked, so opening one does not
+// shove the footer down the page.
+.clients__panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  min-height: 8rem;
+  margin-top: var(--sp-7);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--glass-2);
+}
+
+.clients__panel-name {
+  font-size: var(--fs-subheading);
+  text-transform: uppercase;
+}
+
+.clients__panel-text {
+  max-width: 68ch;
+  font-size: var(--fs-lead);
   color: var(--muted);
-  transition: color var(--dur) var(--ease);
 }
 
-// Only the tiles that lead somewhere answer the pointer.
-.clients__card--link:hover .clients__tile {
-  border-color: var(--lime);
-  transform: translateY(-4px);
-}
-
-.clients__card--link:hover .clients__name {
+.clients__panel-link {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--lime);
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--dur) var(--ease);
+
+  &:hover {
+    border-color: var(--lime);
+  }
 }

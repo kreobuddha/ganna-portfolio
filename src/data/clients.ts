@@ -14,20 +14,23 @@ import type { IClient } from '@/types';
 
 // Hanna's own order, kept from the logo wall she built on Framer.
 //
-// `href` is missing on three of them: Leroy Merlin's Russian site is gone
-// after the Lemana PRO rebrand, and Resola and Service Telecom have no address
-// confirmed yet. Those three render as plain tiles until one is filled in.
+// `description` is what the opened panel says about the work. None of them are
+// written yet — the published Framer draft carries the logos but no copy — so
+// until Hanna supplies them the panel shows the name and the link alone.
+//
+// `href` is missing on three: Leroy Merlin's Russian site went away with the
+// Lemana PRO rebrand, and Resola and Service Telecom have no confirmed address.
 export const clients: IClient[] = [
-  { name: 'GMCS', logo: gmcs, href: 'https://www.gmcs.ru', ink: 'dark' },
-  { name: 'Resola', logo: resola, ink: 'light' },
-  { name: 'SprintSoft', logo: sprintsoft, href: 'https://sprintsoft.ru', ink: 'light' },
-  { name: 'Leroy Merlin', logo: leroyMerlin, ink: 'dark' },
-  { name: 'KFC', logo: kfc, href: 'https://www.kfc.ru', ink: 'dark' },
-  { name: 'SOCAR', logo: socar, href: 'https://www.socar.az', ink: 'dark' },
-  { name: 'Decathlon', logo: decathlon, href: 'https://www.decathlon.com', ink: 'dark' },
-  { name: 'Transneft', logo: transneft, href: 'https://www.transneft.ru', ink: 'dark' },
-  { name: 'Prisma', logo: prisma, href: 'https://www.prisma.fi', ink: 'dark' },
-  { name: 'Service Telecom', logo: serviceTelecom, ink: 'dark' },
-  { name: 'Russian Football Union', logo: rfu, href: 'https://www.rfs.ru', ink: 'dark' },
-  { name: 'Skolkovo', logo: skolkovo, href: 'https://sk.ru', ink: 'light' },
+  { name: 'GMCS', logo: gmcs, href: 'https://www.gmcs.ru' },
+  { name: 'Resola', logo: resola },
+  { name: 'SprintSoft', logo: sprintsoft, href: 'https://sprintsoft.ru' },
+  { name: 'Leroy Merlin', logo: leroyMerlin },
+  { name: 'KFC', logo: kfc, href: 'https://www.kfc.ru' },
+  { name: 'SOCAR', logo: socar, href: 'https://www.socar.az' },
+  { name: 'Decathlon', logo: decathlon, href: 'https://www.decathlon.com' },
+  { name: 'Transneft', logo: transneft, href: 'https://www.transneft.ru' },
+  { name: 'Prisma', logo: prisma, href: 'https://www.prisma.fi' },
+  { name: 'Service Telecom', logo: serviceTelecom },
+  { name: 'Russian Football Union', logo: rfu, href: 'https://www.rfs.ru' },
+  { name: 'Skolkovo', logo: skolkovo, href: 'https://sk.ru' },
 ];

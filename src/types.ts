@@ -58,11 +58,15 @@ export interface IProject {
 
 export interface IClient {
   name: string;
+  /**
+   * Artwork used as a stencil, not as a picture — only its alpha channel is
+   * read, so whatever colours it carries are thrown away.
+   */
   logo: string;
   /** The company's own site. Left out when there is nothing current to link to. */
   href?: string;
-  /** The ink the logo is drawn in, which decides the tile it needs to sit on. */
-  ink: 'dark' | 'light';
+  /** What the work was. Shown in the panel the logo opens. */
+  description?: string;
 }
 
 export interface IExperienceEntry {
