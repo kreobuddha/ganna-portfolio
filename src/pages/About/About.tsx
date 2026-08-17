@@ -32,7 +32,7 @@ const About = (): ReactElement => {
               src={profile.portrait}
               alt={profile.portraitAlt}
               width={1920}
-              height={2560}
+              height={1923}
             />
           </div>
 

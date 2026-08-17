@@ -1,40 +1,18 @@
 .footer {
   margin-top: auto;
-  padding-block: var(--sp-9) var(--sp-5);
+  padding-block: var(--sp-6) var(--sp-4);
   background: var(--blue-dark);
 }
 
+// One row: the invitation on the left, the three ways to answer it on the
+// right. Nothing here wraps until the screen is too narrow to hold both.
 .footer__inner {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: var(--sp-7);
-  padding-bottom: var(--sp-8);
-}
-
-.footer__lead {
-  display: flex;
-  flex-direction: column;
   gap: var(--sp-5);
-  max-width: 34ch;
-}
-
-.footer__title {
-  font-size: var(--fs-subheading);
-  text-transform: uppercase;
-}
-
-.footer__links {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-  font-size: var(--fs-body);
-  color: var(--muted);
-
-  a:hover {
-    color: var(--lime);
-  }
+  padding-bottom: var(--sp-5);
 }
 
 .footer__legal {
@@ -42,7 +20,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: var(--sp-3);
-  padding-top: var(--sp-5);
+  padding-top: var(--sp-4);
   font-size: var(--fs-meta);
   letter-spacing: 0.1em;
   text-transform: uppercase;

@@ -70,13 +70,12 @@
   border-radius: 50%;
 }
 
-// `contain`, so the whole 3:4 shot stays visible and the circle crops only the
-// corners it has to. Nothing is scaled or offset — swap the photo and it still
-// fits.
+// The source is square already, so `cover` fills the circle without cropping
+// anything but its corners, and needs no offset of its own.
 .about__portrait-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .about__bio {

@@ -1,4 +1,4 @@
-import aboutPortrait from '@/assets/portrait/about-portrait.jpeg';
+import aboutPortrait from '@/assets/portrait/about-portrait.jpg';
 import heroPortrait from '@/assets/portrait/hero-portrait.jpg';
 import type { IProfile } from '@/types';
 
