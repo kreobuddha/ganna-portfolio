@@ -13,13 +13,14 @@ interface HomeShortcut {
   to: string;
   label: string;
   direction: ArrowDirection;
+  /** Drives where the shortcut is pinned on the full-screen layout. */
   modifier: string;
 }
 
 const SHORTCUTS: HomeShortcut[] = [
   { to: '/projects', label: 'Projects', direction: 'right-down', modifier: 'projects' },
   { to: '/clients', label: 'Clients', direction: 'right-down', modifier: 'clients' },
-  { to: '/about', label: 'About Me', direction: 'left-down', modifier: 'about' },
+  { to: '/about', label: 'About Me', direction: 'right-down', modifier: 'about' },
 ];
 
 const Home = (): ReactElement => {

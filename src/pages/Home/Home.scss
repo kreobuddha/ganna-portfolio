@@ -54,16 +54,16 @@
   }
 }
 
-.home__arrow {
+// Scoped through the parent so it outranks the component's own `width: 100%`.
+// `max-width: none` undoes the global `svg { max-width: 100% }`, which would
+// otherwise clamp the arrow to the label's width.
+.home__shortcut .home__arrow {
   position: absolute;
   top: 0;
   left: 50%;
   width: 96px;
+  max-width: none;
   transform: translateX(-108%);
-}
-
-.home__shortcut--about .home__arrow {
-  transform: translateX(8%);
 }
 
 .home__dot {
@@ -92,11 +92,12 @@
   aspect-ratio: 1;
 }
 
-// Pushed outside the box so the ring of text orbits past the photo's edge
-// rather than crossing the face.
+// Nudged outside the box so the ring orbits along the photo's edge and over
+// its faded corners, rather than cutting across the face.
 .home__circular {
   position: absolute;
-  inset: -13%;
+  inset: -10%;
+  z-index: 1;
 }
 
 // The hero photo already carries its own blue ground, glow and grayscale
@@ -161,13 +162,9 @@
     gap: var(--sp-5);
   }
 
-  .home__arrow {
+  .home__shortcut .home__arrow {
     width: 56px;
     transform: translateX(-100%);
-  }
-
-  .home__shortcut--about .home__arrow {
-    transform: translateX(0);
   }
 }
 
@@ -187,11 +184,98 @@
 
   .home__portrait {
     justify-self: end;
-    width: min(480px, 100%);
+    width: min(520px, 100%);
   }
 
   .home__intro {
     align-self: end;
     padding-bottom: var(--sp-6);
+  }
+}
+
+// Full-screen composition: everything is pinned inside one viewport-tall
+// stage, so the page never scrolls. Guarded on height as well as width —
+// on a short window the flow layout above is the safer fallback.
+@media (min-width: 1100px) and (min-height: 660px) {
+  .home__hero {
+    display: block;
+    height: calc(100dvh - var(--header-h));
+    padding-bottom: 0;
+  }
+
+  .home__wordmark {
+    position: absolute;
+    top: clamp(0.25rem, 1.5vh, 1.5rem);
+    left: 0;
+    right: 0;
+    margin-top: 0;
+  }
+
+  // Capped and centred so the pinned percentages stay in proportion instead
+  // of drifting apart on an ultra-wide monitor.
+  .home__stage {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    max-width: min(1600px, 100%);
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+
+  // Above the portrait: the middle shortcuts sit over the photo's faded
+  // outer edge, exactly as they do in the design.
+  .home__shortcuts {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: block;
+    padding-top: 0;
+  }
+
+  .home__shortcut {
+    position: absolute;
+    left: var(--shortcut-x);
+    top: var(--shortcut-y);
+    transform: translateX(-50%);
+  }
+
+  // Staggered down a diagonal, clear of the wordmark above them. The values
+  // place the arrow's top edge; the dot lands ~5% lower.
+  .home__shortcut--projects {
+    --shortcut-x: 21.5%;
+    --shortcut-y: 27%;
+  }
+
+  .home__shortcut--clients {
+    --shortcut-x: 53%;
+    --shortcut-y: 34%;
+  }
+
+  .home__shortcut--about {
+    --shortcut-x: 88%;
+    --shortcut-y: 23%;
+  }
+
+  .home__shortcut .home__arrow {
+    width: 176px;
+    transform: translateX(-84%);
+  }
+
+  .home__portrait {
+    position: absolute;
+    left: 71%;
+    top: 65%;
+    width: min(52vw, 76vh);
+    transform: translate(-50%, -50%);
+  }
+
+  .home__intro {
+    position: absolute;
+    left: var(--shell-pad);
+    bottom: clamp(1.5rem, 6vh, 4.5rem);
+    z-index: 2;
+    max-width: min(46ch, 42%);
+    padding-bottom: 0;
   }
 }
