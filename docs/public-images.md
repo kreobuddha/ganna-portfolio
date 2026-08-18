@@ -1,4 +1,4 @@
-# Images
+# public/images
 
 Everything here is a **placeholder**. Replace each file with the real artwork, keeping the
 filename and the aspect ratio — nothing in the code needs to change.

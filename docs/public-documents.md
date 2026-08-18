@@ -1,4 +1,4 @@
-# Reference letters
+# public/documents
 
 Scanned letters of recommendation, offered as a download from the panel a
 client logo opens on `/clients`.
