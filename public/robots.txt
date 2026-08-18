@@ -1,0 +1,5 @@
+# The beta is shared by link, not published. Remove this file at launch so the
+# site can be indexed — the matching <meta name="robots"> in index.html goes
+# at the same time.
+User-agent: *
+Disallow: /

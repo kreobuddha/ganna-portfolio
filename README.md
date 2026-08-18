@@ -94,24 +94,38 @@ See [`docs/code-rules.md`](docs/code-rules.md).
 
 ## Deploying to GitHub Pages
 
-Not set up yet. When the content is final:
+The beta is live at **https://kreobuddha.github.io/ganna-portfolio**.
 
-1. GitHub Pages does not serve **private** repositories on the free plan — either make the repo
-   public or use a host that deploys private repos for free (Vercel, Netlify, Cloudflare Pages).
-2. Build with the repository name as the base path:
+Every push to `master` builds and publishes it through
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml); nothing is
+deployed by hand. The workflow can also be started manually from the Actions
+tab.
+
+Two values are set in the workflow rather than read from `.env`, so the
+deployed site does not depend on which env file is committed:
+
+- `BASE_PATH=/ganna-portfolio/` — a project site is served from `/<repo>/`,
+  not the domain root. Get this wrong and the page loads blank, because every
+  asset URL misses by one path segment.
+- `VITE_SITE_URL=https://kreobuddha.github.io/ganna-portfolio` — the site's own
+  address, origin plus subdirectory, no trailing slash. It is what makes the
+  link-preview tags in `index.html` absolute, which Open Graph requires.
+
+Deep links such as `/projects/resola` work because `postbuild` copies the app
+shell to `dist/404.html`: GitHub Pages has no server-side rewrite, so it serves
+that file and the client router takes over.
+
+To build the same thing locally:
 
 ```bash
-BASE_PATH=/ganna-portfolio/ npm run build
+BASE_PATH=/ganna-portfolio/ VITE_SITE_URL=https://kreobuddha.github.io/ganna-portfolio npm run build
 ```
 
-`VITE_SITE_URL` in `.env` has to name the same place. It is the site's own
-address — origin plus any subdirectory, no trailing slash — and it is what
-makes the link-preview tags in `index.html` absolute, which Open Graph
-requires. Edit `.env`, or override it for one build:
+### Before the real launch
 
-```bash
-VITE_SITE_URL=https://hanna.design BASE_PATH=/ npm run build
-```
+The beta is shared by link and kept out of search results. Two things come off
+when the site goes live: `public/robots.txt`, and the `<meta name="robots">`
+line in `index.html`.
 
-3. Publish `dist/`. The build already emits `dist/404.html` so deep links like
-   `/projects/resola` resolve through the client router.
+Moving to a custom domain means changing both values above — `BASE_PATH=/` and
+`VITE_SITE_URL` to the new address — and adding a `CNAME` file to `public/`.
