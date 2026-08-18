@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Design source files — heavy originals, kept on disk only.
+# Processed, web-sized versions belong in src/assets/.
+raw/
