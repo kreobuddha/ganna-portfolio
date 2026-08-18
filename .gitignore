@@ -26,3 +26,7 @@ dist-ssr
 # Design source files — heavy originals, kept on disk only.
 # Processed, web-sized versions belong in src/assets/.
 raw/
+
+# Review copies of the sliced screens — lossless PNGs plus the contact sheet.
+# The web-sized WebP versions in src/assets/projects/ are the ones that ship.
+sliced/
