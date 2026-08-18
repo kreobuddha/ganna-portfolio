@@ -26,17 +26,29 @@ const SystemExplorer = ({
 }: SystemExplorerProps): ReactElement => {
   const open = sections.find((section) => section.id === openId) ?? null;
   const panelRef = useRef<HTMLDivElement>(null);
-  const previousOpenId = useRef<string | null>(openId);
+  const isFirstRender = useRef(true);
 
-  // Bring the panel into view when the reader switches sections, but not on
-  // first paint — arriving on ?part=workspace from a shared link should land
-  // at the top of the case study, not halfway down it.
+  // Bring the panel into view whenever a section opens. The cards are tall
+  // enough that the panel starts below the fold, so without this a click looks
+  // like it did nothing at all.
+  //
+  // Skipped on first paint only: arriving on ?part=workspace from a shared
+  // link should land at the top of the case study, not halfway down it. The
+  // earlier version compared against the previous id, which also skipped the
+  // very first click of a visit — the one that most needed the scroll.
   useEffect(() => {
-    if (openId && previousOpenId.current !== null && previousOpenId.current !== openId) {
-      panelRef.current?.scrollIntoView({ block: 'start' });
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
     }
 
-    previousOpenId.current = openId;
+    if (!openId) {
+      return;
+    }
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    panelRef.current?.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' });
   }, [openId]);
 
   return (

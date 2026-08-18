@@ -5,6 +5,11 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
+// The panel runs the width of the wall wherever it lands in the order.
+.clients__cell--panel {
+  grid-column: 1 / -1;
+}
+
 // No ground of its own: the wall is logos on the page's blue, and the tile is
 // only the box that gives each one the same room.
 //
@@ -84,8 +89,8 @@
   align-items: flex-start;
   gap: var(--sp-5);
   min-height: 8rem;
-  margin-top: var(--sp-6);
-  padding-top: var(--sp-8);
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-7);
   border-top: 1px solid var(--glass-2);
 }
 
@@ -154,6 +159,28 @@
   font-size: var(--fs-body);
   border: 1px solid var(--glass-3);
   border-radius: var(--radius-pill);
+}
+
+// One logo per row here, so the wall is a dozen screens tall and a panel at the
+// bottom of it is out of sight of the tile that opened it. Ordering the cells
+// puts the answer directly under the logo that was tapped: everything before it
+// keeps its place, the panel follows, the rest come after.
+//
+// Only on phones — on a wide screen the wall is a few rows and the panel
+// belongs under all of it, which is what the DOM order already gives.
+@media (max-width: 599px) {
+  .clients__cell {
+    order: var(--order, 0);
+  }
+
+  .clients__cell--panel {
+    order: 1;
+  }
+
+  .clients__panel {
+    min-height: 0;
+    padding-top: var(--sp-5);
+  }
 }
 
 @media (max-width: 599px) {
