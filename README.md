@@ -97,5 +97,14 @@ Not set up yet. When the content is final:
 BASE_PATH=/ganna-portfolio/ npm run build
 ```
 
+`VITE_SITE_URL` in `.env` has to name the same place. It is the site's own
+address — origin plus any subdirectory, no trailing slash — and it is what
+makes the link-preview tags in `index.html` absolute, which Open Graph
+requires. Edit `.env`, or override it for one build:
+
+```bash
+VITE_SITE_URL=https://hanna.design BASE_PATH=/ npm run build
+```
+
 3. Publish `dist/`. The build already emits `dist/404.html` so deep links like
    `/projects/resola` resolve through the client router.
