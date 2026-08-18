@@ -27,10 +27,37 @@ export interface IProfile {
 }
 
 export interface IProjectImage {
-  src: string;
+  /** Path inside `src/assets/projects`, without the extension. */
+  name: string;
   alt: string;
-  /** `wide` spans the full grid row, `half` sits two per row. */
-  span?: 'wide' | 'half';
+  /** Natural size of the file, so the browser reserves the box before it loads. */
+  width: number;
+  height: number;
+  /** Shown under the screen. Left out where the screen explains itself. */
+  caption?: string;
+}
+
+export type GroupLayout = 'feature' | 'phones' | 'grid' | 'stack' | 'figure';
+
+/** One set of screens inside a section: "Log in", "Mobile UI kit". */
+export interface IShowcaseGroup {
+  id: string;
+  title: string;
+  body?: string;
+  layout: GroupLayout;
+  images: IProjectImage[];
+  /** A credit or a note on the role — what was directed rather than made. */
+  note?: string;
+}
+
+/** A major part of the product — one card under "Explore the system". */
+export interface IProjectSection {
+  /** Also the `?part=` value that opens this section. */
+  id: string;
+  title: string;
+  blurb: string;
+  cover: IProjectImage;
+  groups: IShowcaseGroup[];
 }
 
 export interface IProcessStep {
@@ -52,7 +79,13 @@ export interface IProject {
   process: IProcessStep[];
   outcome: string[];
   cover: IProjectImage;
-  gallery: IProjectImage[];
+  /**
+   * Major parts of the product, each opened from its own card. Exactly one of
+   * `sections` and `groups` is filled: a project big enough to need dividing
+   * gets sections, a smaller one puts its groups straight on the page.
+   */
+  sections: IProjectSection[];
+  groups: IShowcaseGroup[];
   logo: string;
 }
 

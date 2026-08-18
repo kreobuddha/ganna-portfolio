@@ -1,51 +1,26 @@
 # public/images
 
-Everything here is a **placeholder**. Replace each file with the real artwork, keeping the
-filename and the aspect ratio — nothing in the code needs to change.
+Almost nothing lives here any more. Project screens, project logos and portraits are all real
+artwork now, imported from [`src/assets/`](../src/assets/README.md) so Vite hashes them and the
+build fails on a wrong path.
 
-If you swap `.svg` for `.png` / `.jpg` / `.webp`, update the matching `src` in
-`src/data/projects.ts`, `src/data/clients.ts` or `src/data/profile.ts`.
+This folder is only for files that have to be reachable by a plain URL, which today means one:
 
-## Portraits
-
-Already done — both live in [`src/assets/portrait/`](../../src/assets/portrait) and are imported
-by `src/data/profile.ts`, so there is nothing to replace here.
-
-## RESOLA
-
-| File | Ratio | Suggested size | Used on |
+| File | Ratio | Size | Used by |
 | --- | --- | --- | --- |
-| `resola-cover.svg` | 16:10 | 2560×1600 | Projects list, case-study hero |
-| `resola-workspace.svg` | 16:9 | 2560×1440 | Case-study gallery (full width) |
-| `resola-app-session.svg` | 4:3 | 2048×1536 | Case-study gallery (half width) |
-| `resola-app-progress.svg` | 4:3 | 2048×1536 | Case-study gallery (half width) |
+| `og-cover.jpg` | 1.91:1 | 1200×628 | `og:image` / `twitter:image` in `index.html` |
 
-## U&CO
+It has to sit here rather than in `src/assets/`: link-preview crawlers fetch the URL written in
+the meta tag without running the app, so the path must be stable and unhashed. Social platforms
+also do not reliably render SVG — keep it a JPG or PNG.
 
-| File | Ratio | Suggested size | Used on |
-| --- | --- | --- | --- |
-| `uandco-cover.svg` | 16:10 | 2560×1600 | Projects list, case-study hero |
-| `uandco-catalogue.svg` | 16:9 | 2560×1440 | Case-study gallery (full width) |
-| `uandco-order.svg` | 4:3 | 2048×1536 | Case-study gallery (half width) |
-| `uandco-profile.svg` | 4:3 | 2048×1536 | Case-study gallery (half width) |
+To replace it, overwrite the file. `index.html` needs no change.
 
-## Logos
+## Where everything else went
 
-Square, 1:1, at least 240×240, transparent background preferred.
-
-| File | Company |
-| --- | --- |
-| `logo-resola.svg` | Resola |
-| `logo-uandco.svg` | U&CO |
-
-The client wall on `/clients` does not use this folder — those logos are real
-artwork, imported from `src/assets/logos/` through `src/data/clients.ts`.
-
-## Social preview
-
-| File | Ratio | Suggested size | Used on |
-| --- | --- | --- | --- |
-| `og-cover.jpg` | 1.91:1 | 1200×628 | Link previews (Open Graph / Twitter) |
-
-Social platforms do not reliably render SVG — replace this one with a **PNG or JPG** and update
-the `og:image` / `twitter:image` paths in `index.html`.
+| What | Where | Wired up in |
+| --- | --- | --- |
+| Project screens | `src/assets/projects/<slug>/` | `src/data/projects.ts`, resolved by `src/lib/projectImages.ts` |
+| Project and client logos | `src/assets/logos/` | `src/data/projects.ts`, `src/data/clients.ts` |
+| Portraits | `src/assets/portrait/` | `src/data/profile.ts` |
+| Reference letters | `public/documents/` | `src/data/clients.ts` |

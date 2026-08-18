@@ -1,12 +1,18 @@
 import './ProjectDetail.scss';
 import type { ReactElement } from 'react';
-import { Link, Navigate, useParams } from 'react-router-dom';
-import clsx from 'clsx';
+import { Link, Navigate, useParams, useSearchParams } from 'react-router-dom';
+import Lightbox from '@/components/Lightbox/Lightbox';
+import ShowcaseGroup from '@/components/ShowcaseGroup/ShowcaseGroup';
+import SystemExplorer from '@/components/SystemExplorer/SystemExplorer';
 import { getNextProject, getProject } from '@/data/projects';
+import { useLightbox } from '@/hooks/useLightbox';
 import { usePageMeta } from '@/hooks/usePageMeta';
+import { getProjectImage } from '@/lib/projectImages';
 
 const ProjectDetail = (): ReactElement => {
   const { slug } = useParams<{ slug: string }>();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const lightbox = useLightbox();
   const project = getProject(slug);
 
   usePageMeta(project ? project.title : 'Project', project ? project.intro : '');
@@ -16,6 +22,26 @@ const ProjectDetail = (): ReactElement => {
   }
 
   const nextProject = getNextProject(project.slug);
+
+  // The open section lives in the URL so a section can be linked to directly
+  // and the browser's back button steps out of it. An unknown value reads as
+  // nothing open rather than as an error.
+  const requested = searchParams.get('part');
+  const openId = project.sections.some((section) => section.id === requested) ? requested : null;
+
+  const handleToggle = (id: string): void => {
+    const next = new URLSearchParams(searchParams);
+
+    if (id === openId) {
+      next.delete('part');
+    } else {
+      next.set('part', id);
+    }
+
+    // Without this the router jumps to the top on every toggle, throwing the
+    // reader away from the cards they just clicked.
+    setSearchParams(next, { preventScrollReset: true });
+  };
 
   return (
     <article className="project-detail page shell">
@@ -45,10 +71,10 @@ const ProjectDetail = (): ReactElement => {
 
       <img
         className="project-detail__cover"
-        src={project.cover.src}
+        src={getProjectImage(project.cover.name)}
         alt={project.cover.alt}
-        width={1280}
-        height={800}
+        width={project.cover.width}
+        height={project.cover.height}
       />
 
       <section className="project-detail__section">
@@ -71,6 +97,33 @@ const ProjectDetail = (): ReactElement => {
         </ol>
       </section>
 
+      {project.sections.length > 0 ? (
+        <section className="project-detail__section">
+          <h2 className="project-detail__section-title">Explore the system</h2>
+          <p className="project-detail__lead">
+            {project.title} is several products working as one. Open any part to see the screens it
+            is made of.
+          </p>
+
+          <SystemExplorer
+            sections={project.sections}
+            openId={openId}
+            onToggle={handleToggle}
+            onOpenImage={lightbox.open}
+          />
+        </section>
+      ) : null}
+
+      {project.groups.length > 0 ? (
+        <section className="project-detail__section project-detail__section--groups">
+          <h2 className="project-detail__section-title">Inside the product</h2>
+
+          {project.groups.map((group) => (
+            <ShowcaseGroup key={group.id} group={group} onOpenImage={lightbox.open} />
+          ))}
+        </section>
+      ) : null}
+
       <section className="project-detail__section">
         <h2 className="project-detail__section-title">Outcome</h2>
         <ul className="project-detail__outcome">
@@ -82,25 +135,19 @@ const ProjectDetail = (): ReactElement => {
         </ul>
       </section>
 
-      <section className="project-detail__gallery">
-        {project.gallery.map((image) => (
-          <img
-            key={image.src}
-            className={clsx(
-              'project-detail__gallery-image',
-              `project-detail__gallery-image--${image.span ?? 'wide'}`
-            )}
-            src={image.src}
-            alt={image.alt}
-            loading="lazy"
-          />
-        ))}
-      </section>
-
       <Link className="project-detail__next" to={`/projects/${nextProject.slug}`}>
         <span className="eyebrow">Next project</span>
         <span className="project-detail__next-title">{nextProject.title} →</span>
       </Link>
+
+      <Lightbox
+        images={lightbox.images}
+        index={lightbox.index}
+        isOpen={lightbox.isOpen}
+        onClose={lightbox.close}
+        onNext={lightbox.next}
+        onPrevious={lightbox.previous}
+      />
     </article>
   );
 };

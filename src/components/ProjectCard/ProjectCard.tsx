@@ -1,6 +1,7 @@
 import './ProjectCard.scss';
 import type { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
+import { getProjectImage } from '@/lib/projectImages';
 import type { IProject } from '@/types';
 
 interface ProjectCardProps {
@@ -13,8 +14,10 @@ const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
       <Link className="project-card__media" to={`/projects/${project.slug}`} tabIndex={-1}>
         <img
           className="project-card__image"
-          src={project.cover.src}
+          src={getProjectImage(project.cover.name)}
           alt={project.cover.alt}
+          width={project.cover.width}
+          height={project.cover.height}
           loading="lazy"
         />
       </Link>

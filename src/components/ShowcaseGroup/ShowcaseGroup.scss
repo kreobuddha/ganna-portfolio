@@ -1,0 +1,108 @@
+.showcase-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  scroll-margin-top: calc(var(--header-h) + var(--sp-5));
+}
+
+.showcase-group__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.showcase-group__title {
+  font-size: var(--fs-title-sm);
+  font-weight: 700;
+}
+
+.showcase-group__body {
+  max-width: 68ch;
+  color: var(--muted);
+}
+
+.showcase-group__grid {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+/* Marketing screens: the headline is baked into each image, so they read as a
+   row of posters. Heights match across the set, widths do not. */
+.showcase-group__grid--feature {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+}
+
+/* Six columns rather than auto-fill: these groups come in sixes — a screen at
+   three sizes, in two states — and auto-fill lands on five, which breaks every
+   one of them into a row of five and an orphan. */
+.showcase-group__grid--phones {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: end;
+}
+
+.showcase-group__grid--grid {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  align-items: start;
+}
+
+.showcase-group__grid--stack,
+.showcase-group__grid--figure {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.showcase-group__note {
+  max-width: 68ch;
+  padding-left: var(--sp-4);
+  font-size: var(--fs-meta);
+  line-height: 1.7;
+  color: var(--muted);
+  border-left: 2px solid var(--glass-3);
+}
+
+/* Boards and diagrams are only ever legible full screen, so in the flow they
+   are capped to most of a screen's height rather than running on for thousands
+   of pixels. The cap is on the box, not on the painting inside it: letterboxing
+   a portrait diagram with `contain` would strand it against one edge of a
+   full-width frame. */
+.showcase-group__grid--figure .screen-figure__image,
+.showcase-group__grid--stack .screen-figure__image {
+  margin-inline: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 74vh;
+}
+
+@media (max-width: 899px) {
+  /* Five posters do not survive a narrow column, so the row becomes a swipe
+     instead of five slivers. */
+  .showcase-group__grid--feature {
+    grid-auto-columns: 62%;
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    margin-inline: calc(var(--shell-pad) * -1);
+    padding-inline: var(--shell-pad);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .showcase-group__grid--feature .screen-figure {
+    scroll-snap-align: center;
+  }
+
+  .showcase-group__grid--grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Three across keeps a row to one state at all three sizes. */
+  .showcase-group__grid--phones {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599px) {
+  .showcase-group__grid--phones {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

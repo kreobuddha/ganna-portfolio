@@ -59,9 +59,10 @@
 }
 
 .project-detail__cover {
+  /* The covers are composites with their own framing, so they are shown whole
+     rather than cropped to a fixed ratio. */
   width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
+  height: auto;
   background: var(--blue-dark);
   border-radius: var(--radius-lg);
 }
@@ -138,26 +139,10 @@
   }
 }
 
-.project-detail__gallery {
-  display: grid;
-  gap: var(--sp-5);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.project-detail__gallery-image {
-  width: 100%;
-  object-fit: cover;
-  background: var(--blue-dark);
-  border-radius: var(--radius-md);
-
-  &--wide {
-    grid-column: 1 / -1;
-    aspect-ratio: 16 / 9;
-  }
-
-  &--half {
-    aspect-ratio: 4 / 3;
-  }
+/* Where a project is small enough to skip the card explorer, its groups run
+   straight down the page and need the same rhythm the explorer's panel has. */
+.project-detail__section--groups {
+  gap: var(--sp-7);
 }
 
 .project-detail__next {
@@ -183,14 +168,4 @@
   font-weight: 900;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-}
-
-@media (max-width: 599px) {
-  .project-detail__gallery {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .project-detail__gallery-image--half {
-    grid-column: 1 / -1;
-  }
 }

@@ -1,0 +1,128 @@
+.system-explorer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-7);
+}
+
+.system-explorer__cards {
+  display: grid;
+  gap: var(--sp-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.system-explorer__item {
+  display: flex;
+}
+
+.system-explorer__card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 100%;
+  background: var(--glass-1);
+  border: 1px solid var(--glass-2);
+  border-radius: var(--radius-lg);
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--fs-body);
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+
+  &:hover {
+    background: var(--glass-2);
+    border-color: var(--lime);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 3px;
+  }
+
+  &--open {
+    background: var(--glass-2);
+    border-color: var(--lime);
+  }
+}
+
+.system-explorer__thumb {
+  width: 100%;
+  height: 200px;
+  /* Covers are borrowed from the screens themselves rather than drawn as
+     artwork. Cropping from the middle rather than the top: the top of these
+     files is a title bar or a marketing headline, which reads as stray text
+     once it is cut off by the card. */
+  object-fit: cover;
+  object-position: center;
+  background: var(--blue-dark);
+}
+
+.system-explorer__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-5);
+}
+
+.system-explorer__count {
+  font-size: var(--fs-meta);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+
+.system-explorer__title {
+  font-size: var(--fs-title-sm);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.system-explorer__blurb {
+  color: var(--muted);
+}
+
+.system-explorer__cta {
+  margin-top: var(--sp-2);
+  font-weight: 700;
+  color: var(--lime);
+
+  &::after {
+    content: ' →';
+  }
+}
+
+.system-explorer__card--open .system-explorer__cta::after {
+  content: ' ↑';
+}
+
+.system-explorer__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-7);
+  scroll-margin-top: calc(var(--header-h) + var(--sp-4));
+
+  &:empty {
+    display: none;
+  }
+}
+
+.system-explorer__panel-title {
+  padding-bottom: var(--sp-4);
+  font-size: var(--fs-subheading);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--glass-2);
+}
+
+@media (max-width: 599px) {
+  .system-explorer__thumb {
+    height: 160px;
+  }
+}

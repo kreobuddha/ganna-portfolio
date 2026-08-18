@@ -1,0 +1,59 @@
+.screen-figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin: 0;
+  min-width: 0;
+}
+
+.screen-figure__button {
+  display: block;
+  padding: 0;
+  width: 100%;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-md);
+  color: inherit;
+  cursor: zoom-in;
+  overflow: hidden;
+  transition:
+    transform var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgb(0 0 0 / 22%);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 3px;
+  }
+}
+
+.screen-figure__image {
+  /* The screens are cut tight to their own edges, so the white of the app runs
+     to the corner of the file. The radius has to sit on the image itself for
+     the corner to read as rounded rather than as a clipped white square. */
+  width: 100%;
+  height: auto;
+  background: var(--blue-dark);
+  border-radius: var(--radius-md);
+}
+
+.screen-figure__caption {
+  font-size: var(--fs-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-figure__button {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

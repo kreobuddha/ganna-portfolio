@@ -1,0 +1,124 @@
+.lightbox {
+  margin: auto;
+  padding: 0;
+  width: min(96vw, 1600px);
+  max-width: none;
+  height: min(94dvh, 1200px);
+  max-height: none;
+  background: var(--blue-dark);
+  border: 1px solid var(--glass-2);
+  border-radius: var(--radius-lg);
+  color: var(--white);
+  overflow: hidden;
+
+  &::backdrop {
+    background: rgb(6 14 48 / 84%);
+  }
+}
+
+.lightbox__frame {
+  display: grid;
+  height: 100%;
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
+/* The tall boards — the workflow diagram is 3000×4381 — are read by scrolling
+   inside this box at full width, not by shrinking them until the labels blur. */
+.lightbox__stage {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--sp-5);
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.lightbox__image {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+}
+
+.lightbox__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  padding: var(--sp-4) var(--sp-5);
+  background: var(--glass-1);
+  border-top: 1px solid var(--glass-2);
+}
+
+.lightbox__caption {
+  font-size: var(--fs-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lightbox__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+}
+
+.lightbox__control {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  background: var(--glass-2);
+  border: 1px solid var(--glass-2);
+  border-radius: var(--radius-pill);
+  color: var(--white);
+  font-family: inherit;
+  font-size: var(--fs-body);
+  cursor: pointer;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+
+  &:hover {
+    background: var(--glass-3);
+    border-color: var(--lime);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 2px;
+  }
+
+  &--close {
+    margin-left: var(--sp-3);
+  }
+}
+
+.lightbox__counter {
+  min-width: 4.5ch;
+  font-size: var(--fs-meta);
+  text-align: center;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 599px) {
+  .lightbox {
+    width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+  }
+
+  .lightbox__bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-3);
+  }
+
+  .lightbox__controls {
+    justify-content: center;
+  }
+}

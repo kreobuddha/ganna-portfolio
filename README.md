@@ -39,7 +39,7 @@ The dev server runs on <http://localhost:5181>.
 | ----------------- | ------------------------------------------------------------- |
 | `/`               | Home — hero, section shortcuts, portrait, highlights          |
 | `/projects`       | Projects index                                                |
-| `/projects/:slug` | Case study — problem, process, outcome, gallery               |
+| `/projects/:slug` | Case study — problem, process, screens, outcome               |
 | `/clients`        | Companies and teams                                           |
 | `/about`          | Bio, experience timeline, skills, tools, languages, education |
 
@@ -59,16 +59,23 @@ Types for all of it are in `src/types.ts`.
 Adding a project means appending one object to `projects` — the index page, the case-study route
 and the "next project" link all pick it up automatically.
 
+A case study shows its screens one of two ways, decided by the data alone. Fill `sections` and
+the page grows an "Explore the system" card grid, each card opening one part of the product;
+only the open part is mounted, so the other cards cost nothing. Fill `groups` instead and the
+screens run straight down the page. RESOLA uses the first, U&CO the second.
+
 ## Images
 
-Real artwork goes in [`src/assets/`](src/assets/README.md) (`logos/`, `projects/`, `portrait/`)
-and is pulled in with an `import` — Vite hashes the filename and fails the build if a path is
-wrong.
+All artwork lives in [`src/assets/`](src/assets/README.md) (`logos/`, `projects/`, `portrait/`),
+so Vite hashes the filenames and the build fails on a wrong path. Logos and portraits are plain
+`import`s.
 
-Everything currently rendered comes from `public/images/`, which is placeholders served by URL
-string with no build-time check. [`public/images/README.md`](public/images/README.md) lists the
-filename, aspect ratio and target size of each one, so a replacement can either keep the same
-filename in `public/` or move to `src/assets/` and be imported.
+Case-study screens live in `src/assets/projects/<slug>/`, one screen per file, and are referenced
+from `src/data/projects.ts` by name rather than by import — `src/lib/projectImages.ts` globs the
+folder and resolves the name, so a typo fails the build instead of 404ing.
+
+`public/images/` now holds only `og-cover.jpg`, which has to be reachable at a fixed URL for
+link-preview crawlers. See [`docs/public-images.md`](docs/public-images.md).
 
 ## Design tokens
 
