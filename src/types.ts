@@ -35,6 +35,11 @@ export interface IProjectImage {
   height: number;
   /** Shown under the screen. Left out where the screen explains itself. */
   caption?: string;
+  /**
+   * A sentence under the caption, where the screen is making a promise rather
+   * than showing a state and the claim needs spelling out.
+   */
+  body?: string;
 }
 
 export type GroupLayout = 'feature' | 'phones' | 'grid' | 'stack' | 'figure';
@@ -50,6 +55,16 @@ export interface IShowcaseGroup {
   note?: string;
 }
 
+/**
+ * One numbered step of a written flow, with the branches that hang off it.
+ * Kept as data rather than prose because the value of this document is that it
+ * is exhaustive — it is the thinking on show, not the wording.
+ */
+export interface IStoryStep {
+  text: string;
+  sub?: string[];
+}
+
 /** A major part of the product — one card under "Explore the system". */
 export interface IProjectSection {
   /** Also the `?part=` value that opens this section. */
@@ -58,6 +73,17 @@ export interface IProjectSection {
   blurb: string;
   cover: IProjectImage;
   groups: IShowcaseGroup[];
+  /**
+   * The flow written out step by step, shown folded away under the screens.
+   * Long enough that it would bury the section if it were open by default.
+   */
+  story?: {
+    title: string;
+    intro: string;
+    steps: IStoryStep[];
+    /** Trailing notes that are not steps — pricing rules and the like. */
+    notes?: string[];
+  };
 }
 
 export interface IProcessStep {
@@ -71,14 +97,22 @@ export interface IProject {
   role: string;
   period: string;
   tags: string[];
-  /** Short description used on the projects index. */
-  summary: string;
+  /** Short description used on the projects index, opening with the product's name. */
+  summary: IHighlight;
   /** Longer case-study intro. */
   intro: string;
   problem: string;
+  /** What the product does about the problem. Left out where the case has none written yet. */
+  solution?: string;
   process: IProcessStep[];
   outcome: string[];
+  /** The picture on the projects index. */
   cover: IProjectImage;
+  /**
+   * The wide shot opening the case study. Left out where the screens further
+   * down make a better first impression than a composite would.
+   */
+  banner?: IProjectImage;
   /**
    * Major parts of the product, each opened from its own card. Exactly one of
    * `sections` and `groups` is filled: a project big enough to need dividing

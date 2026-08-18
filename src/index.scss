@@ -78,6 +78,11 @@
   --sp-7: 3rem;
   --sp-8: 4rem;
   --sp-9: 6rem;
+
+  /* The step between two showcase groups. Deliberately much larger than the
+     --sp-5 inside a group: at 3rem the two read as one continuous run of
+     screens instead of separate ideas. */
+  --group-gap: clamp(4rem, 6vw, 7rem);
   --sp-10: 8rem;
 
   --radius-pill: 999px;

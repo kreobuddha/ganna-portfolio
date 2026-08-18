@@ -34,28 +34,24 @@
   color: var(--muted);
 }
 
-.project-detail__meta {
-  display: grid;
-  gap: var(--sp-5);
+.project-detail__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
   margin: 0;
   padding-top: var(--sp-5);
   border-top: 1px solid var(--glass-2);
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
-.project-detail__meta-item {
-  dt {
-    font-size: var(--fs-meta);
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--lime);
-  }
-
-  dd {
-    margin: var(--sp-2) 0 0;
-    font-weight: 500;
-  }
+.project-detail__tag {
+  padding: 0.3rem 0.75rem;
+  font-size: var(--fs-meta);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lime);
+  border: 1px solid var(--glass-3);
+  border-radius: var(--radius-pill);
 }
 
 .project-detail__cover {
@@ -63,7 +59,6 @@
      rather than cropped to a fixed ratio. */
   width: 100%;
   height: auto;
-  background: var(--blue-dark);
   border-radius: var(--radius-lg);
 }
 
@@ -76,6 +71,16 @@
 .project-detail__section-title {
   font-size: var(--fs-subheading);
   text-transform: uppercase;
+}
+
+/* The section reads as one problem and its answer, so "Solution" sits a step
+   below the section title rather than starting a section of its own. */
+.project-detail__subtitle {
+  font-size: var(--fs-body);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
 }
 
 .project-detail__lead {
@@ -142,7 +147,7 @@
 /* Where a project is small enough to skip the card explorer, its groups run
    straight down the page and need the same rhythm the explorer's panel has. */
 .project-detail__section--groups {
-  gap: var(--sp-7);
+  gap: var(--group-gap);
 }
 
 .project-detail__next {

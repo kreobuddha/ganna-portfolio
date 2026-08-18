@@ -45,10 +45,13 @@ const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
           ))}
         </ul>
 
-        <p className="project-card__summary">{project.summary}</p>
+        <p className="project-card__summary">
+          <strong className="project-card__summary-strong">{project.summary.strong}</strong>{' '}
+          {project.summary.rest}
+        </p>
 
         <span className="project-card__cta" aria-hidden="true">
-          View case study →
+          See details →
         </span>
       </div>
     </article>

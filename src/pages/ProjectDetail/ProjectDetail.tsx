@@ -53,33 +53,39 @@ const ProjectDetail = (): ReactElement => {
         <h1 className="project-detail__title">{project.title}</h1>
         <p className="project-detail__intro">{project.intro}</p>
 
-        <dl className="project-detail__meta">
-          <div className="project-detail__meta-item">
-            <dt>Role</dt>
-            <dd>{project.role}</dd>
-          </div>
-          <div className="project-detail__meta-item">
-            <dt>Timeline</dt>
-            <dd>{project.period}</dd>
-          </div>
-          <div className="project-detail__meta-item">
-            <dt>Focus</dt>
-            <dd>{project.tags.join(' • ')}</dd>
-          </div>
-        </dl>
+        {/* A project whose timeline is its own tag — "Product Concept" — would
+            otherwise print the same pill twice. */}
+        <ul className="project-detail__tags">
+          {[...new Set([project.period, project.role, ...project.tags])].map((tag) => (
+            <li key={tag} className="project-detail__tag">
+              {tag}
+            </li>
+          ))}
+        </ul>
       </header>
 
-      <img
-        className="project-detail__cover"
-        src={getProjectImage(project.cover.name)}
-        alt={project.cover.alt}
-        width={project.cover.width}
-        height={project.cover.height}
-      />
+      {project.banner ? (
+        <img
+          className="project-detail__cover"
+          src={getProjectImage(project.banner.name)}
+          alt={project.banner.alt}
+          width={project.banner.width}
+          height={project.banner.height}
+        />
+      ) : null}
 
       <section className="project-detail__section">
-        <h2 className="project-detail__section-title">Problem</h2>
+        <h2 className="project-detail__section-title">
+          {project.solution ? 'Problem & Solution' : 'Problem'}
+        </h2>
         <p className="project-detail__lead">{project.problem}</p>
+
+        {project.solution ? (
+          <>
+            <h3 className="project-detail__subtitle">Solution</h3>
+            <p className="project-detail__lead">{project.solution}</p>
+          </>
+        ) : null}
       </section>
 
       <section className="project-detail__section">
@@ -95,6 +101,17 @@ const ProjectDetail = (): ReactElement => {
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className="project-detail__section">
+        <h2 className="project-detail__section-title">Outcome</h2>
+        <ul className="project-detail__outcome">
+          {project.outcome.map((item) => (
+            <li key={item} className="project-detail__outcome-item">
+              {item}
+            </li>
+          ))}
+        </ul>
       </section>
 
       {project.sections.length > 0 ? (
@@ -123,17 +140,6 @@ const ProjectDetail = (): ReactElement => {
           ))}
         </section>
       ) : null}
-
-      <section className="project-detail__section">
-        <h2 className="project-detail__section-title">Outcome</h2>
-        <ul className="project-detail__outcome">
-          {project.outcome.map((item) => (
-            <li key={item} className="project-detail__outcome-item">
-              {item}
-            </li>
-          ))}
-        </ul>
-      </section>
 
       <Link className="project-detail__next" to={`/projects/${nextProject.slug}`}>
         <span className="eyebrow">Next project</span>

@@ -26,11 +26,10 @@
   gap: var(--sp-5);
 }
 
-/* Marketing screens: the headline is baked into each image, so they read as a
-   row of posters. Heights match across the set, widths do not. */
+/* Marketing screens, read as a row of posters: one promise per screen, with the
+   promise written out underneath. */
 .showcase-group__grid--feature {
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  align-items: end;
 }
 
 /* Six columns rather than auto-fill: these groups come in sixes — a screen at
@@ -38,7 +37,6 @@
    one of them into a row of five and an orphan. */
 .showcase-group__grid--phones {
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  align-items: end;
 }
 
 .showcase-group__grid--grid {
@@ -71,6 +69,42 @@
   width: auto;
   max-width: 100%;
   max-height: 74vh;
+}
+
+/* A caption is one line under some screens and three under others. As plain
+   grid items, each figure is sized by its own caption, and that difference
+   pushes the pictures themselves out of line — which is what made the row of
+   promises look like it was jumping. Subgrid puts every picture in one row and
+   every caption in the next, so the screens line up and the captions all start
+   on the same line. Below 900px the feature row is a carousel of one card at a
+   time, where there is nothing to line up against. */
+@media (min-width: 900px) {
+  .showcase-group__grid--feature,
+  .showcase-group__grid--phones {
+    grid-template-rows: auto auto;
+  }
+
+  .showcase-group__grid--feature .screen-figure,
+  .showcase-group__grid--phones .screen-figure {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+  }
+
+  /* Phones and tablets in one row are different shapes, so the pictures hang
+     from the shared baseline the captions start at. The captions themselves
+     stay pinned to the top of their own row: pushed to the bottom, a two-line
+     heading would start higher than a one-line one, which is the jumping all
+     over again. */
+  .showcase-group__grid--feature .screen-figure__button,
+  .showcase-group__grid--phones .screen-figure__button {
+    align-self: end;
+  }
+
+  .showcase-group__grid--feature .screen-figure__caption,
+  .showcase-group__grid--phones .screen-figure__caption {
+    align-self: start;
+  }
 }
 
 @media (max-width: 899px) {

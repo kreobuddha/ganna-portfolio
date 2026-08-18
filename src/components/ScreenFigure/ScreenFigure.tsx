@@ -32,8 +32,13 @@ const ScreenFigure = ({ image, onOpen }: ScreenFigureProps): ReactElement => {
         />
       </button>
 
-      {image.caption ? (
-        <figcaption className="screen-figure__caption">{image.caption}</figcaption>
+      {image.caption || image.body ? (
+        <figcaption className="screen-figure__caption">
+          {image.caption ? (
+            <span className="screen-figure__caption-title">{image.caption}</span>
+          ) : null}
+          {image.body ? <span className="screen-figure__caption-body">{image.body}</span> : null}
+        </figcaption>
       ) : null}
     </figure>
   );

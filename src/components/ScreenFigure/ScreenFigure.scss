@@ -34,17 +34,39 @@
 .screen-figure__image {
   /* The screens are cut tight to their own edges, so the white of the app runs
      to the corner of the file. The radius has to sit on the image itself for
-     the corner to read as rounded rather than as a clipped white square. */
+     the corner to read as rounded rather than as a clipped white square.
+     No background behind it: several of these exports are transparent, and any
+     colour of our own shows through the gaps as a rectangle that does not
+     match the page. */
   width: 100%;
   height: auto;
-  background: var(--blue-dark);
   border-radius: var(--radius-md);
 }
 
 .screen-figure__caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.screen-figure__caption-title {
   font-size: var(--fs-meta);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* A caption with a sentence under it is a claim the screen is making, so the
+   heading above it goes white and the sentence carries the muted weight. */
+.screen-figure__caption:has(.screen-figure__caption-body) .screen-figure__caption-title {
+  font-weight: 700;
+  color: var(--white);
+}
+
+.screen-figure__caption-body {
+  font-size: var(--fs-body);
+  letter-spacing: normal;
+  text-transform: none;
   color: var(--muted);
 }
 

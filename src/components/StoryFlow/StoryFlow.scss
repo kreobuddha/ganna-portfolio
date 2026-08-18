@@ -1,0 +1,122 @@
+.story-flow {
+  background: var(--glass-1);
+  border: 1px solid var(--glass-2);
+  border-radius: var(--radius-lg);
+
+  &[open] {
+    background: var(--glass-2);
+  }
+}
+
+.story-flow__summary {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-4);
+  padding: var(--sp-5);
+  cursor: pointer;
+
+  /* The default triangle sits on a marker box that ignores the flex layout,
+     so it is replaced by an arrow of our own on the far side. */
+  list-style: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::after {
+    content: '↓';
+    margin-left: auto;
+    font-weight: 700;
+    color: var(--lime);
+  }
+
+  &:hover {
+    color: var(--lime);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 3px;
+  }
+}
+
+.story-flow[open] .story-flow__summary::after {
+  content: '↑';
+}
+
+.story-flow__title {
+  font-weight: 700;
+}
+
+.story-flow__count {
+  font-size: var(--fs-meta);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.story-flow__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  padding: 0 var(--sp-5) var(--sp-5);
+}
+
+.story-flow__intro {
+  max-width: 72ch;
+  color: var(--muted);
+}
+
+.story-flow__steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin: 0;
+  padding-left: 1.6rem;
+  max-width: 78ch;
+}
+
+.story-flow__step {
+  /* Thirty-odd numbered steps: the count has to stay visible, so it is not
+     stripped to a bare list the way the rest of the page's lists are. */
+  list-style: decimal;
+  line-height: 1.6;
+
+  &::marker {
+    font-weight: 700;
+    color: var(--lime);
+  }
+}
+
+.story-flow__branches {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin: var(--sp-2) 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+
+.story-flow__branch {
+  position: relative;
+
+  &::before {
+    content: '—';
+    position: absolute;
+    left: -1.1rem;
+    color: var(--lime);
+  }
+}
+
+.story-flow__notes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin: 0;
+  padding-left: var(--sp-4);
+  max-width: 72ch;
+  font-size: var(--fs-meta);
+  line-height: 1.7;
+  color: var(--muted);
+  border-left: 2px solid var(--glass-3);
+}

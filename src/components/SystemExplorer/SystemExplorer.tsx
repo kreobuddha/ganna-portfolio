@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import type { ReactElement } from 'react';
 import clsx from 'clsx';
 import ShowcaseGroup from '@/components/ShowcaseGroup/ShowcaseGroup';
+import StoryFlow from '@/components/StoryFlow/StoryFlow';
 import { getProjectImage } from '@/lib/projectImages';
 import type { IProjectImage, IProjectSection } from '@/types';
 
@@ -64,7 +65,9 @@ const SystemExplorer = ({
                 />
 
                 <span className="system-explorer__body">
-                  <span className="system-explorer__count">{countScreens(section)} screens</span>
+                  <span className="system-explorer__count">
+                    {countScreens(section)} {countScreens(section) === 1 ? 'screen' : 'screens'}
+                  </span>
                   <span className="system-explorer__title">{section.title}</span>
                   <span className="system-explorer__blurb">{section.blurb}</span>
                   <span className="system-explorer__cta">
@@ -87,6 +90,15 @@ const SystemExplorer = ({
             {open.groups.map((group) => (
               <ShowcaseGroup key={group.id} group={group} onOpenImage={onOpenImage} />
             ))}
+
+            {open.story ? (
+              <StoryFlow
+                title={open.story.title}
+                intro={open.story.intro}
+                steps={open.story.steps}
+                notes={open.story.notes}
+              />
+            ) : null}
           </>
         ) : null}
       </div>
