@@ -12,25 +12,180 @@ import sprintsoft from '@/assets/logos/sprintsoft.png';
 import transneft from '@/assets/logos/transneft.png';
 import type { IClient } from '@/types';
 
-// Hanna's own order, kept from the logo wall she built on Framer.
-//
-// `description` is what the opened panel says about the work. None of them are
-// written yet — the published Framer draft carries the logos but no copy — so
-// until Hanna supplies them the panel shows the name and the link alone.
-//
-// `href` is missing on three: Leroy Merlin's Russian site went away with the
-// Lemana PRO rebrand, and Resola and Service Telecom have no confirmed address.
+// Hanna's own order, kept from the logo wall she built on Framer, and her own
+// wording for every field.
 export const clients: IClient[] = [
-  { name: 'GMCS', logo: gmcs, href: 'https://www.gmcs.ru' },
-  { name: 'Resola', logo: resola },
-  { name: 'SprintSoft', logo: sprintsoft, href: 'https://sprintsoft.ru' },
-  { name: 'Leroy Merlin', logo: leroyMerlin },
-  { name: 'KFC', logo: kfc, href: 'https://www.kfc.ru' },
-  { name: 'SOCAR', logo: socar, href: 'https://www.socar.az' },
-  { name: 'Decathlon', logo: decathlon, href: 'https://www.decathlon.com' },
-  { name: 'Transneft', logo: transneft, href: 'https://www.transneft.ru' },
-  { name: 'Prisma', logo: prisma, href: 'https://www.prisma.fi' },
-  { name: 'Service Telecom', logo: serviceTelecom },
-  { name: 'Russian Football Union', logo: rfu, href: 'https://www.rfs.ru' },
-  { name: 'Skolkovo', logo: skolkovo, href: 'https://sk.ru' },
+  {
+    name: 'GMCS',
+    logo: gmcs,
+    letter: 'documents/letter-gmcs.pdf',
+    projects: [
+      {
+        industry: 'Enterprise IT Consulting & Digital Transformation',
+        products: [
+          'Enterprise web applications',
+          'Mobile applications',
+          'Internal business systems',
+          'Custom enterprise software',
+        ],
+        role: 'Senior UX/UI Designer',
+      },
+    ],
+  },
+  {
+    name: 'Resola',
+    logo: resola,
+    letter: 'documents/letter-resola.pdf',
+    projects: [
+      {
+        industry: 'Healthcare',
+        products: [
+          'Mobile App',
+          'Therapist Workspace (Web App)',
+          'Marketing Website',
+          'Brand Identity',
+        ],
+        role: 'Lead UX/UI Designer',
+      },
+    ],
+  },
+  {
+    name: 'SprintSoft',
+    logo: sprintsoft,
+    letter: 'documents/letter-sprintsoft.pdf',
+    projects: [
+      {
+        industry: 'Information Technology & Digital Solutions',
+        products: [
+          'Enterprise web applications',
+          'Mobile applications',
+          'Internal tools',
+          'Custom enterprise software',
+        ],
+        role: 'In-house UX/UI Designer',
+      },
+    ],
+  },
+  {
+    name: 'Leroy Merlin',
+    logo: leroyMerlin,
+    projects: [
+      {
+        industry: 'Retail',
+        products: ['Price Monitoring', 'Inventory Accuracy', 'Department Management', 'HR Maps'],
+        platform: 'Responsive web applications',
+        role: 'UX/UI Design',
+      },
+    ],
+  },
+  {
+    name: 'KFC',
+    logo: kfc,
+    projects: [
+      {
+        industry: 'Quick Service Restaurant (QSR)',
+        products: ['Employee Time & Attendance Management System'],
+        platform: 'Responsive web application',
+        role: 'UX/UI Design',
+      },
+    ],
+  },
+  {
+    name: 'SOCAR Energy Resources',
+    logo: socar,
+    projects: [
+      {
+        title: 'Business Intelligence Dashboard',
+        industry: 'Oil & Gas',
+        products: ['Enterprise Business Intelligence Dashboard'],
+        platform: 'Power BI web application',
+        role: 'UX/UI Design',
+      },
+      {
+        title: 'Enterprise Management System',
+        industry: 'Oil & Gas',
+        products: ['Enterprise Management System'],
+        platform: 'Responsive web application',
+        role: 'UX/UI Design • Junior Front-end Layout (Angular)',
+      },
+    ],
+  },
+  {
+    name: 'Decathlon',
+    logo: decathlon,
+    projects: [
+      {
+        industry: 'Retail',
+        products: ['Team Scheduling & Workforce Management System'],
+        platform: 'Responsive web application',
+        role: 'UX/UI Design',
+      },
+    ],
+  },
+  {
+    name: 'Transneft',
+    logo: transneft,
+    projects: [
+      {
+        industry: 'Oil & Gas Transportation',
+        products: ['Equipment Maintenance Planning & Tracking System'],
+        platform: 'Enterprise web application',
+        role: 'UX/UI Design • Organizational Structure Design',
+      },
+    ],
+  },
+  {
+    name: 'Prisma',
+    logo: prisma,
+    projects: [
+      {
+        industry: 'Retail',
+        products: ['Internal Retail Management System'],
+        platform: 'Enterprise web application',
+        role: 'Lead UX/UI Designer',
+      },
+    ],
+  },
+  {
+    name: 'Service-Telecom Group',
+    logo: serviceTelecom,
+    projects: [
+      {
+        industry: 'Telecommunications Infrastructure',
+        products: ['Digital Tower Single Window Platform'],
+        platform: 'Enterprise web application',
+        role: 'Lead UX/UI Designer',
+      },
+    ],
+  },
+  {
+    name: 'Russian Football Union',
+    logo: rfu,
+    projects: [
+      {
+        industry: 'Sports',
+        products: [
+          'Integrated Events Calendar',
+          'Competition Management Module',
+          'Referee Management Module',
+          'Report Builder',
+          'Competition Module Administration Service',
+        ],
+        platform: 'Enterprise web applications (including responsive web applications)',
+        role: 'UX/UI Design',
+      },
+    ],
+  },
+  {
+    name: 'Skolkovo Innovation Center',
+    logo: skolkovo,
+    projects: [
+      {
+        industry: 'Innovation & Technology',
+        products: ['Sk RnD Market'],
+        platform: 'Responsive enterprise web application',
+        role: 'UX/UI Design',
+      },
+    ],
+  },
 ];

@@ -56,6 +56,17 @@ export interface IProject {
   logo: string;
 }
 
+/** One piece of work for a client. Most have exactly one. */
+export interface IClientProject {
+  /** Named only where a client has more than one, to tell them apart. */
+  title?: string;
+  industry: string;
+  products: string[];
+  /** Left out where the products speak for themselves. */
+  platform?: string;
+  role: string;
+}
+
 export interface IClient {
   name: string;
   /**
@@ -63,10 +74,12 @@ export interface IClient {
    * read, so whatever colours it carries are thrown away.
    */
   logo: string;
-  /** The company's own site. Left out when there is nothing current to link to. */
-  href?: string;
-  /** What the work was. Shown in the panel the logo opens. */
-  description?: string;
+  projects: IClientProject[];
+  /**
+   * Reference letter, as a path inside `public/documents`. Kept out of the
+   * bundle on purpose: these are documents to hand over, not build inputs.
+   */
+  letter?: string;
 }
 
 export interface IExperienceEntry {

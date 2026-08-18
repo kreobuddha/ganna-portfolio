@@ -7,6 +7,10 @@
 
 // No ground of its own: the wall is logos on the page's blue, and the tile is
 // only the box that gives each one the same room.
+//
+// On arrival every tile lights up in turn, left to right. One of them is open
+// already, and without the sweep there is nothing to say the other eleven do
+// anything at all.
 .clients__tile {
   display: grid;
   place-items: stretch;
@@ -24,6 +28,24 @@
 
   &--open {
     background: var(--glass-1);
+  }
+}
+
+// Runs on the logo, not the tile, so it lands on the same property the hover
+// and open states use and hands back to whichever of them applies afterwards.
+.clients__tile .clients__logo {
+  animation: clients-hint 0.5s var(--ease);
+  animation-delay: calc(var(--hint-order) * 70ms);
+}
+
+@keyframes clients-hint {
+  0%,
+  100% {
+    background-color: var(--white);
+  }
+
+  45% {
+    background-color: var(--lime);
   }
 }
 
@@ -60,33 +82,126 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--sp-3);
+  gap: var(--sp-5);
   min-height: 8rem;
   margin-top: var(--sp-7);
   padding-top: var(--sp-6);
   border-top: 1px solid var(--glass-2);
 }
 
+// The extra space below is on top of the panel's own gap: the name is a level
+// above what follows it, and at the shared gap it read as the first row of the
+// fact list.
 .clients__panel-name {
-  font-size: var(--fs-subheading);
+  padding-bottom: var(--sp-5);
+  font-size: var(--fs-title);
   text-transform: uppercase;
 }
 
-.clients__panel-text {
-  max-width: 68ch;
-  font-size: var(--fs-lead);
+.clients__project {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  width: 100%;
+  max-width: 76ch;
+}
+
+.clients__project-title {
+  font-size: var(--fs-title-sm);
+}
+
+// Only SOCAR has two, and without a rule between them the second one's title
+// reads as another row of the first one's fact list.
+.clients__project + .clients__project {
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--glass-1);
+}
+
+// Label and value side by side, on a column narrow enough for the longest
+// label and no wider. Below the fold of a phone they stack instead.
+.clients__facts {
+  display: grid;
+  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr);
+  gap: var(--sp-3) var(--sp-5);
+  margin: 0;
+}
+
+.clients__fact-label {
+  padding-top: 0.35rem;
+  font-size: var(--fs-meta);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--muted);
 }
 
-.clients__panel-link {
+.clients__fact-value {
+  margin: 0;
+  font-size: var(--fs-lead);
+
+  &--role {
+    font-weight: 700;
+    color: var(--lime);
+  }
+}
+
+.clients__products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin: 0;
+}
+
+.clients__product {
+  padding: 0.35rem 0.85rem;
+  font-size: var(--fs-body);
+  border: 1px solid var(--glass-3);
+  border-radius: var(--radius-pill);
+}
+
+@media (max-width: 599px) {
+  .clients__facts {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-1) 0;
+  }
+
+  .clients__fact-label {
+    padding-top: var(--sp-3);
+  }
+}
+
+// The site's primary action, same pill as the CV button: solid on the page's
+// blue, lime under the pointer.
+.clients__letter {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+  padding: 0.85rem 1.75rem;
+  font-size: var(--fs-body);
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--lime);
-  border-bottom: 2px solid transparent;
-  transition: border-color var(--dur) var(--ease);
+  white-space: nowrap;
+  background: var(--white);
+  color: var(--blue);
+  border-radius: var(--radius-pill);
+  transition:
+    background-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
 
   &:hover {
-    border-color: var(--lime);
+    background: var(--lime);
+    transform: translateY(-2px);
+  }
+}
+
+.clients__letter-icon {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+
+  svg {
+    width: 100%;
+    height: 100%;
   }
 }
