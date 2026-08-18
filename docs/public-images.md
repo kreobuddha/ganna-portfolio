@@ -45,7 +45,7 @@ artwork, imported from `src/assets/logos/` through `src/data/clients.ts`.
 
 | File | Ratio | Suggested size | Used on |
 | --- | --- | --- | --- |
-| `og-cover.svg` | 1.91:1 | 1200×630 | Link previews (Open Graph / Twitter) |
+| `og-cover.jpg` | 1.91:1 | 1200×628 | Link previews (Open Graph / Twitter) |
 
 Social platforms do not reliably render SVG — replace this one with a **PNG or JPG** and update
 the `og:image` / `twitter:image` paths in `index.html`.
