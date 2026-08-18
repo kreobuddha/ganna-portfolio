@@ -111,6 +111,47 @@
   margin: 0;
 }
 
+/* One scrollbar everywhere, in the site's own colours: a narrow lime bar on the
+   dark blue of the page, rounded to match the pills and cards.
+
+   Two declarations because they are two different mechanisms. `scrollbar-width`
+   and `scrollbar-color` are the standard ones and are all Firefox reads; the
+   ::-webkit- pseudo-elements are what Chrome and Safari style from, and they
+   allow the exact width and the rounded thumb that the standard properties
+   cannot express.
+
+   Selected with `*` so it reaches every scrolling box on the site, not just the
+   document — the lightbox and the wide-content strips scroll too. The universal
+   selector has no specificity, so anywhere a component deliberately hides its
+   scrollbar, that rule still wins. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--lime) var(--blue-dark);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--blue-dark);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--lime);
+  border-radius: var(--radius-pill);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--white);
+}
+
+/* Where two scrollbars meet, the corner is track, not the browser's grey. */
+*::-webkit-scrollbar-corner {
+  background: var(--blue-dark);
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
