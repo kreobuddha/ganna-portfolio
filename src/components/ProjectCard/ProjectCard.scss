@@ -19,11 +19,18 @@
 }
 
 /* No colour of our own behind the cover: these exports carry transparency, and
-   a dark rectangle shows through wherever the artwork is meant to be open. */
+   a dark rectangle shows through wherever the artwork is meant to be open.
+   No clipping either: the hover zoom moves this whole box rather than the
+   picture inside it, so nothing of the cover is ever cut off by its own frame. */
 .project-card__media {
   display: block;
-  overflow: hidden;
   border-radius: var(--radius-md);
+  transition: transform 0.6s var(--ease);
+  transform-origin: center;
+
+  .project-card:hover & {
+    transform: scale(1.03);
+  }
 }
 
 /* The covers are composites the designer framed herself, so they are shown
@@ -32,11 +39,6 @@
   display: block;
   width: 100%;
   height: auto;
-  transition: transform 0.6s var(--ease);
-
-  .project-card:hover & {
-    transform: scale(1.03);
-  }
 }
 
 .project-card__body {
