@@ -30,3 +30,7 @@ raw/
 # Review copies of the sliced screens — lossless PNGs plus the contact sheet.
 # The web-sized WebP versions in src/assets/projects/ are the ones that ship.
 sliced/
+
+# Figma exports waiting to be processed. Nothing here ships: the WebP versions
+# written into src/assets/projects/ are what the site loads.
+figma/
