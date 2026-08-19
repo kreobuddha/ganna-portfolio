@@ -1,5 +1,7 @@
-import resolaLogo from '@/assets/logos/resola.png';
+import loveberryLogo from '@/assets/logos/loveberry.webp';
+import resolaLogo from '@/assets/logos/resola-mark.webp';
 import uandcoLogo from '@/assets/logos/uandco.webp';
+import viewProjectLogo from '@/assets/logos/view-project.svg';
 import type { IProject } from '@/types';
 
 // Screens come from Hanna's Figma boards, sliced one screen per file. `name`
@@ -117,7 +119,7 @@ export const projects: IProject[] = [
             id: 'daily-plan',
             title: 'To Do',
             body: 'The screen a patient opens first: how much of today is done, and what is left.',
-            layout: 'phones',
+            layout: 'grid',
             images: [
               {
                 name: 'resola/app-todo-mobile',
@@ -153,7 +155,7 @@ export const projects: IProject[] = [
             id: 'training',
             title: 'Training Screen',
             body: 'Equipment, the exercises in this training, and an explanation of what a strengthening exercise is for — reachable without leaving the screen.',
-            layout: 'phones',
+            layout: 'grid',
             images: [
               {
                 name: 'resola/app-training-mobile',
@@ -203,7 +205,7 @@ export const projects: IProject[] = [
             id: 'session',
             title: 'Exercise Screen',
             body: 'A countdown, then the tracked skeleton, the target angle and the rep count — the moment the whole product exists for.',
-            layout: 'phones',
+            layout: 'grid',
             images: [
               {
                 name: 'resola/app-exercise-mobile',
@@ -253,7 +255,7 @@ export const projects: IProject[] = [
             id: 'log-in',
             title: 'Log In',
             body: 'States are part of the design, not an afterthought — the failed attempt was drawn at every size alongside the successful one.',
-            layout: 'phones',
+            layout: 'grid',
             images: [
               {
                 name: 'resola/app-login-mobile',
@@ -1113,6 +1115,237 @@ export const projects: IProject[] = [
     ],
     groups: [],
     logo: uandcoLogo,
+  },
+  {
+    slug: 'loveberry',
+    title: 'LoveBerry',
+    role: 'UX/UI Designer',
+    period: '2021',
+    tags: ['Freelance', 'B2C', 'Dating', 'iOS & Android'],
+    summary: {
+      strong: 'LoveBerry',
+      rest: 'is a dating app built around what is happening tonight rather than around a deck of cards. People nearby appear on a map with what they are up to written next to them — a film, a party, an evening with nothing planned — so a conversation starts from a plan both sides already have. Designed end to end for iOS and Android as a freelance commission.',
+    },
+    intro:
+      'A dating app where people are found by what they are doing tonight: a live map of events nearby, profiles, chat and gifts — designed end to end for iOS and Android as a freelance commission.',
+    problem:
+      'Dating apps sort people into a deck of faces and leave the rest to the two strangers who matched. Most conversations open with nothing to talk about, and the ones that go anywhere still have to invent a reason to meet.',
+    solution:
+      'Every user carries what they are doing right now, and it is that — not the photo — that fills the map and the list of people nearby. “Watching a film at the cinema” is an invitation you can answer, so the first message already has somewhere to go, and coins, VIP status and gifts give the app a way to earn from people who want to be seen sooner.',
+    process: [
+      {
+        title: 'Framing the product',
+        body: 'Took the client’s brief and settled what the app is actually organised around: not a swipe deck, but what people nearby are doing tonight — which decides the map, the tabs and everything on a profile.',
+      },
+      {
+        title: 'Structure',
+        body: 'Laid the app out as four tabs — Events, People, Talk, Profile — with the events shown either on the map or as a list, so the same set of people can be read by distance or by what they are up to.',
+      },
+      {
+        title: 'Interface',
+        body: 'Designed the screens for both platforms: profile, map, people, chat and the gift store, on one coral-and-white system where coral means an action and green means someone is live right now.',
+      },
+      {
+        title: 'Monetisation',
+        body: 'Worked the paid parts into the flow rather than bolting them on: coins, VIP status, a place in the list that can be raised, and gifts priced in three tiers.',
+      },
+    ],
+    outcome: [
+      'A dating app designed around live activity instead of a swipe deck.',
+      'All six core screens drawn for iOS and Android as one visual system.',
+      'Coins, VIP status and gifts built into the product rather than added over it.',
+    ],
+    cover: {
+      name: 'loveberry/hero-phones',
+      alt: 'Three LoveBerry screens: the map of people nearby, a profile and a chat',
+      width: 2400,
+      height: 1906,
+    },
+    sections: [],
+    groups: [
+      {
+        id: 'screens',
+        title: 'The app, screen by screen',
+        body: 'Six screens carry the product: who you are, what is happening around you, who is up for it, and the two ways of saying so — a message and a gift.',
+        layout: 'grid',
+        images: [
+          {
+            name: 'loveberry/app-profile',
+            alt: 'A profile: cover photo, coin balance, place in the list of users, general information and interests',
+            width: 799,
+            height: 1600,
+            caption: 'Your personal profile',
+            body: 'Coins, VIP status and a place in the list of users that can be raised — the paid parts of the app live on the profile itself.',
+          },
+          {
+            name: 'loveberry/app-events-map',
+            alt: 'A map with people nearby, one card open showing distance, address and what the person is doing',
+            width: 799,
+            height: 1600,
+            caption: 'Find parties nearby',
+            body: 'A card gives the distance, the walk in minutes and the plan in the person’s own words, with the chat one tap away.',
+          },
+          {
+            name: 'loveberry/app-people',
+            alt: 'The People tab: a grid of round portraits, the ones online ringed in green',
+            width: 799,
+            height: 1600,
+            caption: 'Find new friends to hang out together',
+            body: 'Portraits laid out as a loose grid rather than a table, with a green ring marking whoever is out right now.',
+          },
+          {
+            name: 'loveberry/app-events-list',
+            alt: 'The same events as a list: portrait, name, address, distance and the plan written underneath',
+            width: 799,
+            height: 1600,
+            caption: 'Find new friends around you',
+            body: 'The same people as the map, read by distance instead of by place — one toggle switches between the two.',
+          },
+          {
+            name: 'loveberry/app-chat',
+            alt: 'A conversation with photos and messages, coral for your own',
+            width: 799,
+            height: 1600,
+            caption: 'Talk to your friends and make dates',
+            body: 'A plain conversation, photos included: the plan was already on the map, so the first message has somewhere to start.',
+          },
+          {
+            name: 'loveberry/app-gifts',
+            alt: 'The gift store: simple, medium and premium rows priced at 20, 40 and 100 coins',
+            width: 799,
+            height: 1600,
+            caption: 'Give presents',
+            body: 'Three tiers at 20, 40 and 100 coins — a way to be noticed without writing, and the app’s clearest reason to buy coins.',
+          },
+        ],
+      },
+    ],
+    logo: loveberryLogo,
+  },
+  {
+    slug: 'view-project',
+    title: 'VIEW Project',
+    role: 'Co-founder & Design Lead',
+    period: '2025—Now',
+    tags: ['Media', 'Events', 'Brand identity'],
+    summary: {
+      strong: 'VIEW Project',
+      rest: 'is an independent audio-visual media co-founded with Nikusha Ten and based in Tbilisi: club nights filmed and streamed, full sets published afterwards, and artists introduced properly. I run the design side of it — the identity, the landing page, everything published on Instagram, YouTube and SoundCloud, the print for the nights themselves — and direct the designers brought in around it.',
+    },
+    intro:
+      'An independent audio-visual media co-founded in Tbilisi: nights that are filmed, streamed and published. I run the design — identity, site, social, print — and direct the designers working around it.',
+    problem:
+      'A club night lasts one evening and is gone. The people who were not in the room never see it, the artists who played have nothing to show for it, and a scene that produces a great deal ends up leaving almost no trace.',
+    solution:
+      'Every night is filmed and streamed, the full sets are published afterwards, and each artist is introduced with a card written about their work rather than a line-up listing. One visual system — red, black and a heavy display face — carries the whole thing across the site, the posters and every platform, so a poster, a video and a post all read as the same thing.',
+    process: [
+      {
+        title: 'Founding it',
+        body: 'Co-founded VIEW Project with Nikusha Ten and set out what it is: not a promoter, but a media — the night is the material, and what is published from it is the product.',
+      },
+      {
+        title: 'Identity',
+        body: 'Built the brand: the eclipse mark and the VIEW wordmark, a palette of one red on black, and a display face heavy enough to hold a poster on its own. Everything else is drawn from that set.',
+      },
+      {
+        title: 'The channels',
+        body: 'Designed how the media shows up wherever it is read — the Instagram grid and its highlight covers, YouTube thumbnails and set titles, SoundCloud, and the print for the nights: line-up posters and artist cards.',
+      },
+      {
+        title: 'The site',
+        body: 'Designed the landing page as the place the whole thing resolves: the next night with its running order, upcoming sessions, the full sets on YouTube, and a registration form — every night is capacity-limited, so the door list is the product, not a formality.',
+      },
+      {
+        title: 'Directing the work',
+        body: 'Curate the designers brought in for individual nights and the offline side — events and concerts — so what other people make still lands inside the same system.',
+      },
+    ],
+    outcome: [
+      'An independent media running as one visual system across site, print, Instagram, YouTube and SoundCloud.',
+      'A season of nights filmed, streamed and published as full sets rather than lost the morning after.',
+      'Artists introduced with written cards, which is what makes it a media instead of a poster feed.',
+    ],
+    cover: {
+      name: 'view-project/hero-site',
+      alt: 'The VIEW Project landing page: “A new perspective on events” over a red-lit crowd, with the next night’s running order beside it',
+      width: 1944,
+      height: 1104,
+    },
+    sections: [],
+    groups: [
+      {
+        id: 'site',
+        title: 'The landing page',
+        body: 'One page carrying the whole media: the next night with its running order, the sessions coming up, the full sets already published, and the registration that gets a name on the door list. Registration is the point of the page — every night is capacity-limited, and the address goes out by Telegram 24 hours before.',
+        layout: 'figure',
+        images: [
+          {
+            name: 'view-project/site-full',
+            alt: 'The full landing page: hero, upcoming events, YouTube sets, photo strip, registration form and footer',
+            width: 1097,
+            height: 2400,
+            caption: 'Open it full screen to read the page end to end',
+          },
+        ],
+      },
+      {
+        id: 'instagram',
+        title: 'Instagram',
+        body: 'Where most of the audience meets the media, so it is designed as one surface rather than as a run of separate posts: the profile with its highlight covers, and a grid where red blocks, portraits and session announcements alternate deliberately.',
+        layout: 'grid',
+        images: [
+          {
+            name: 'view-project/instagram-profile',
+            alt: 'The VIEW Project Instagram profile: the eclipse avatar, the bio, and highlight covers for SoundCloud, YouTube and each season',
+            width: 739,
+            height: 1600,
+            caption: 'Profile',
+            body: 'The highlight covers carry the same mark as everything else — each season and each platform gets its own, so the row under the bio reads as a contents page.',
+          },
+          {
+            name: 'view-project/instagram-grid',
+            alt: 'The VIEW Project Instagram grid: red covers, session announcements and artist portraits',
+            width: 739,
+            height: 1600,
+            caption: 'Feed',
+            body: 'Laid out as a grid rather than post by post, so the account holds together when it is scrolled past at speed.',
+          },
+        ],
+      },
+      {
+        id: 'channels',
+        title: 'Video and print',
+        body: 'The same system on the surfaces around the feed: a video thumbnail, a poster on a wall and a card introducing an artist.',
+        layout: 'grid',
+        images: [
+          {
+            name: 'view-project/youtube-thumbnail',
+            alt: 'A YouTube thumbnail: a DJ under red light, with the artist and the visual artist named over it',
+            width: 2400,
+            height: 1350,
+            caption: 'YouTube',
+            body: 'Every set is credited to both the artist and the visual artist — the audio and the visual are the same product here.',
+          },
+          {
+            name: 'view-project/poster-october',
+            alt: 'A line-up poster: the date in heavy display type, the venue, the stream and afterparty times, and the artists by hour',
+            width: 1277,
+            height: 1600,
+            caption: 'Line-up poster',
+            body: 'Date, venue and running order on flat red — legible as a phone-sized square and as a print.',
+          },
+          {
+            name: 'view-project/artist-card',
+            alt: 'An artist card: a black-and-white portrait of Kasutamu over a short written introduction to their work',
+            width: 1277,
+            height: 1600,
+            caption: 'Artist card',
+            body: 'Each artist gets a portrait and a paragraph about what they actually do, which is what separates a media from a line-up listing.',
+          },
+        ],
+      },
+    ],
+    logo: viewProjectLogo,
   },
 ];
 

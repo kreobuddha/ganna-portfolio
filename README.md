@@ -62,7 +62,7 @@ and the "next project" link all pick it up automatically.
 A case study shows its screens one of two ways, decided by the data alone. Fill `sections` and
 the page grows an "Explore the system" card grid, each card opening one part of the product;
 only the open part is mounted, so the other cards cost nothing. Fill `groups` instead and the
-screens run straight down the page. RESOLA uses the first, U&CO the second.
+screens run straight down the page. RESOLA and U&CO use the first, LoveBerry the second.
 
 ## Images
 

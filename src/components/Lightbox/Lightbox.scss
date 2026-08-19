@@ -38,7 +38,10 @@
   width: auto;
   max-width: 100%;
   height: auto;
-  background: var(--white);
+  /* Transparent: these exports carry their own ground — a phone mockup, a
+     poster on flat red — and a white plate behind them showed as a border
+     around artwork that was never meant to have one. */
+  background: transparent;
   border-radius: var(--radius-sm);
 }
 
