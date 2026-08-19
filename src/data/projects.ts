@@ -1117,112 +1117,6 @@ export const projects: IProject[] = [
     logo: uandcoLogo,
   },
   {
-    slug: 'loveberry',
-    title: 'LoveBerry',
-    role: 'UX/UI Designer',
-    period: '2021',
-    tags: ['Freelance', 'B2C', 'Dating', 'iOS & Android'],
-    summary: {
-      strong: 'LoveBerry',
-      rest: 'is a dating app built around what is happening tonight rather than around a deck of cards. People nearby appear on a map with what they are up to written next to them — a film, a party, an evening with nothing planned — so a conversation starts from a plan both sides already have. Designed end to end for iOS and Android as a freelance commission.',
-    },
-    intro:
-      'A dating app where people are found by what they are doing tonight: a live map of events nearby, profiles, chat and gifts — designed end to end for iOS and Android as a freelance commission.',
-    problem:
-      'Dating apps sort people into a deck of faces and leave the rest to the two strangers who matched. Most conversations open with nothing to talk about, and the ones that go anywhere still have to invent a reason to meet.',
-    solution:
-      'Every user carries what they are doing right now, and it is that — not the photo — that fills the map and the list of people nearby. “Watching a film at the cinema” is an invitation you can answer, so the first message already has somewhere to go, and coins, VIP status and gifts give the app a way to earn from people who want to be seen sooner.',
-    process: [
-      {
-        title: 'Framing the product',
-        body: 'Took the client’s brief and settled what the app is actually organised around: not a swipe deck, but what people nearby are doing tonight — which decides the map, the tabs and everything on a profile.',
-      },
-      {
-        title: 'Structure',
-        body: 'Laid the app out as four tabs — Events, People, Talk, Profile — with the events shown either on the map or as a list, so the same set of people can be read by distance or by what they are up to.',
-      },
-      {
-        title: 'Interface',
-        body: 'Designed the screens for both platforms: profile, map, people, chat and the gift store, on one coral-and-white system where coral means an action and green means someone is live right now.',
-      },
-      {
-        title: 'Monetisation',
-        body: 'Worked the paid parts into the flow rather than bolting them on: coins, VIP status, a place in the list that can be raised, and gifts priced in three tiers.',
-      },
-    ],
-    outcome: [
-      'A dating app designed around live activity instead of a swipe deck.',
-      'All six core screens drawn for iOS and Android as one visual system.',
-      'Coins, VIP status and gifts built into the product rather than added over it.',
-    ],
-    cover: {
-      name: 'loveberry/hero-phones',
-      alt: 'Three LoveBerry screens: the map of people nearby, a profile and a chat',
-      width: 2400,
-      height: 1906,
-    },
-    sections: [],
-    groups: [
-      {
-        id: 'screens',
-        title: 'The app, screen by screen',
-        body: 'Six screens carry the product: who you are, what is happening around you, who is up for it, and the two ways of saying so — a message and a gift.',
-        layout: 'grid',
-        images: [
-          {
-            name: 'loveberry/app-profile',
-            alt: 'A profile: cover photo, coin balance, place in the list of users, general information and interests',
-            width: 799,
-            height: 1600,
-            caption: 'Your personal profile',
-            body: 'Coins, VIP status and a place in the list of users that can be raised — the paid parts of the app live on the profile itself.',
-          },
-          {
-            name: 'loveberry/app-events-map',
-            alt: 'A map with people nearby, one card open showing distance, address and what the person is doing',
-            width: 799,
-            height: 1600,
-            caption: 'Find parties nearby',
-            body: 'A card gives the distance, the walk in minutes and the plan in the person’s own words, with the chat one tap away.',
-          },
-          {
-            name: 'loveberry/app-people',
-            alt: 'The People tab: a grid of round portraits, the ones online ringed in green',
-            width: 799,
-            height: 1600,
-            caption: 'Find new friends to hang out together',
-            body: 'Portraits laid out as a loose grid rather than a table, with a green ring marking whoever is out right now.',
-          },
-          {
-            name: 'loveberry/app-events-list',
-            alt: 'The same events as a list: portrait, name, address, distance and the plan written underneath',
-            width: 799,
-            height: 1600,
-            caption: 'Find new friends around you',
-            body: 'The same people as the map, read by distance instead of by place — one toggle switches between the two.',
-          },
-          {
-            name: 'loveberry/app-chat',
-            alt: 'A conversation with photos and messages, coral for your own',
-            width: 799,
-            height: 1600,
-            caption: 'Talk to your friends and make dates',
-            body: 'A plain conversation, photos included: the plan was already on the map, so the first message has somewhere to start.',
-          },
-          {
-            name: 'loveberry/app-gifts',
-            alt: 'The gift store: simple, medium and premium rows priced at 20, 40 and 100 coins',
-            width: 799,
-            height: 1600,
-            caption: 'Give presents',
-            body: 'Three tiers at 20, 40 and 100 coins — a way to be noticed without writing, and the app’s clearest reason to buy coins.',
-          },
-        ],
-      },
-    ],
-    logo: loveberryLogo,
-  },
-  {
     slug: 'view-project',
     title: 'VIEW Project',
     role: 'Co-founder & Design Lead',
@@ -1346,6 +1240,112 @@ export const projects: IProject[] = [
       },
     ],
     logo: viewProjectLogo,
+  },
+  {
+    slug: 'loveberry',
+    title: 'LoveBerry',
+    role: 'UX/UI Designer',
+    period: '2021',
+    tags: ['Freelance', 'B2C', 'Dating', 'iOS & Android'],
+    summary: {
+      strong: 'LoveBerry',
+      rest: 'is a dating app built around what is happening tonight rather than around a deck of cards. People nearby appear on a map with what they are up to written next to them — a film, a party, an evening with nothing planned — so a conversation starts from a plan both sides already have. Designed end to end for iOS and Android as a freelance commission.',
+    },
+    intro:
+      'A dating app where people are found by what they are doing tonight: a live map of events nearby, profiles, chat and gifts — designed end to end for iOS and Android as a freelance commission.',
+    problem:
+      'Dating apps sort people into a deck of faces and leave the rest to the two strangers who matched. Most conversations open with nothing to talk about, and the ones that go anywhere still have to invent a reason to meet.',
+    solution:
+      'Every user carries what they are doing right now, and it is that — not the photo — that fills the map and the list of people nearby. “Watching a film at the cinema” is an invitation you can answer, so the first message already has somewhere to go, and coins, VIP status and gifts give the app a way to earn from people who want to be seen sooner.',
+    process: [
+      {
+        title: 'Framing the product',
+        body: 'Took the client’s brief and settled what the app is actually organised around: not a swipe deck, but what people nearby are doing tonight — which decides the map, the tabs and everything on a profile.',
+      },
+      {
+        title: 'Structure',
+        body: 'Laid the app out as four tabs — Events, People, Talk, Profile — with the events shown either on the map or as a list, so the same set of people can be read by distance or by what they are up to.',
+      },
+      {
+        title: 'Interface',
+        body: 'Designed the screens for both platforms: profile, map, people, chat and the gift store, on one coral-and-white system where coral means an action and green means someone is live right now.',
+      },
+      {
+        title: 'Monetisation',
+        body: 'Worked the paid parts into the flow rather than bolting them on: coins, VIP status, a place in the list that can be raised, and gifts priced in three tiers.',
+      },
+    ],
+    outcome: [
+      'A dating app designed around live activity instead of a swipe deck.',
+      'All six core screens drawn for iOS and Android as one visual system.',
+      'Coins, VIP status and gifts built into the product rather than added over it.',
+    ],
+    cover: {
+      name: 'loveberry/hero-phones',
+      alt: 'Three LoveBerry screens: the map of people nearby, a profile and a chat',
+      width: 2400,
+      height: 1906,
+    },
+    sections: [],
+    groups: [
+      {
+        id: 'screens',
+        title: 'The app, screen by screen',
+        body: 'Six screens carry the product: who you are, what is happening around you, who is up for it, and the two ways of saying so — a message and a gift.',
+        layout: 'grid',
+        images: [
+          {
+            name: 'loveberry/app-profile',
+            alt: 'A profile: cover photo, coin balance, place in the list of users, general information and interests',
+            width: 799,
+            height: 1600,
+            caption: 'Your personal profile',
+            body: 'Coins, VIP status and a place in the list of users that can be raised — the paid parts of the app live on the profile itself.',
+          },
+          {
+            name: 'loveberry/app-events-map',
+            alt: 'A map with people nearby, one card open showing distance, address and what the person is doing',
+            width: 799,
+            height: 1600,
+            caption: 'Find parties nearby',
+            body: 'A card gives the distance, the walk in minutes and the plan in the person’s own words, with the chat one tap away.',
+          },
+          {
+            name: 'loveberry/app-people',
+            alt: 'The People tab: a grid of round portraits, the ones online ringed in green',
+            width: 799,
+            height: 1600,
+            caption: 'Find new friends to hang out together',
+            body: 'Portraits laid out as a loose grid rather than a table, with a green ring marking whoever is out right now.',
+          },
+          {
+            name: 'loveberry/app-events-list',
+            alt: 'The same events as a list: portrait, name, address, distance and the plan written underneath',
+            width: 799,
+            height: 1600,
+            caption: 'Find new friends around you',
+            body: 'The same people as the map, read by distance instead of by place — one toggle switches between the two.',
+          },
+          {
+            name: 'loveberry/app-chat',
+            alt: 'A conversation with photos and messages, coral for your own',
+            width: 799,
+            height: 1600,
+            caption: 'Talk to your friends and make dates',
+            body: 'A plain conversation, photos included: the plan was already on the map, so the first message has somewhere to start.',
+          },
+          {
+            name: 'loveberry/app-gifts',
+            alt: 'The gift store: simple, medium and premium rows priced at 20, 40 and 100 coins',
+            width: 799,
+            height: 1600,
+            caption: 'Give presents',
+            body: 'Three tiers at 20, 40 and 100 coins — a way to be noticed without writing, and the app’s clearest reason to buy coins.',
+          },
+        ],
+      },
+    ],
+    logo: loveberryLogo,
   },
 ];
 
