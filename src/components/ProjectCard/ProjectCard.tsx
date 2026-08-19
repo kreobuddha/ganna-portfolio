@@ -24,7 +24,9 @@ const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
 
       <div className="project-card__body">
         <div className="project-card__heading">
-          <img className="project-card__logo" src={project.logo} alt="" loading="lazy" />
+          {project.logo ? (
+            <img className="project-card__logo" src={project.logo} alt="" loading="lazy" />
+          ) : null}
           <div>
             <h2 className="project-card__title">
               <Link className="project-card__link" to={`/projects/${project.slug}`}>

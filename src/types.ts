@@ -120,7 +120,14 @@ export interface IProject {
    */
   sections: IProjectSection[];
   groups: IShowcaseGroup[];
-  logo: string;
+  /**
+   * Heading over the groups. Left out on the products, where the default
+   * reads right; set on the work that is not a product — a set of covers,
+   * a series of drawings — where "the product" would be the wrong word.
+   */
+  groupsHeading?: string;
+  /** Left out where the work has no mark of its own — a series, a set of covers. */
+  logo?: string;
 }
 
 /** One piece of work for a client. Most have exactly one. */
