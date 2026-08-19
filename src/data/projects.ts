@@ -1347,6 +1347,202 @@ export const projects: IProject[] = [
     ],
     logo: loveberryLogo,
   },
+  {
+    slug: 'music-covers',
+    title: 'Music Covers',
+    role: 'Cover Artist & Designer',
+    period: '2017—2025',
+    tags: ['Music', 'Illustration', 'Art direction'],
+    summary: {
+      strong: 'Music covers',
+      rest: 'made over eight years for EPs and albums — among them a release for a Berlin techno label and a run of independent artists. Every one is drawn or art-directed to the record it belongs to rather than to a house style: hand illustration, flat vector, acrylic on canvas and photography all appear, because what the music needs decides the medium.',
+    },
+    intro:
+      'Eight years of cover artwork for EPs and albums — a Berlin techno label and a run of independent artists — where each record picks its own medium.',
+    problem:
+      'A cover is the only picture most listeners will ever see of a record, and it has to work at every size it is met at: a wall-sized poster, a sleeve in a shop, and a thumbnail on a phone the size of a fingernail.',
+    solution:
+      'Each cover starts from the record rather than from a signature style, so the series holds illustration, flat vector, acrylic painting and photography side by side. What they share is a structure that survives being shrunk: one subject, one idea, and type that reads at thumbnail size.',
+    process: [
+      {
+        title: 'Listening first',
+        body: 'Start from the record and the artist rather than from a look — the medium is chosen after, which is why a techno EP and a bedroom-pop album from the same year look nothing alike.',
+      },
+      {
+        title: 'Drawing it',
+        body: 'Work in whatever the cover asks for: illustration on tablet, flat vector, acrylic paint photographed and treated, or a photograph art-directed and finished.',
+      },
+      {
+        title: 'Making it survive the thumbnail',
+        body: 'Test every cover at the size it is actually met at. Detail that dies at 100 pixels either gets simplified or is worth keeping only for the vinyl.',
+      },
+    ],
+    outcome: [
+      'Covers released for EPs and albums between 2017 and 2025.',
+      'A release for a Berlin techno label alongside a run of independent artists.',
+      'Illustration, vector, painting and photography — each picked by what the record needed.',
+    ],
+    cover: {
+      name: 'music-covers/hero-covers',
+      alt: 'Six music covers laid out in a grid: illustration, painting, flat vector and photography',
+      width: 2000,
+      height: 1324,
+    },
+    sections: [],
+    groupsHeading: 'Selected work',
+    groups: [
+      {
+        id: 'covers',
+        title: 'Six releases',
+        body: 'Six releases, and six different answers to the same brief.',
+        layout: 'grid',
+        images: [
+          {
+            name: 'music-covers/boon-and-sin',
+            alt: 'BOON & SIN: two illustrated faces split down the middle of the sleeve, one in warm ochre, one in green with a snake',
+            width: 1600,
+            height: 1600,
+            caption: 'BOON & SIN',
+            body: 'Two halves of one portrait, torn down the middle — the split is the record’s title doing the work rather than a line of type explaining it.',
+          },
+          {
+            name: 'music-covers/all-dogs-go-to-heaven',
+            alt: 'All Dogs Go to Heaven: a painted night sky in black and red with a pink road running through it',
+            width: 1600,
+            height: 1600,
+            caption: 'All Dogs Go to Heaven',
+            body: 'Painted in acrylic, then photographed and finished — the brush marks are the point, so nothing was smoothed out afterwards.',
+          },
+          {
+            name: 'music-covers/double-bubble',
+            alt: 'Double Bubble by Cassandra Clark: a flat vector portrait blowing a bubble, pink on pink',
+            width: 1600,
+            height: 1600,
+            caption: 'Double Bubble — Cassandra Clark',
+            body: 'Flat vector and two colours. The title is set as a puzzle of stacked letters, which is the only detail on the sleeve that rewards looking twice.',
+          },
+          {
+            name: 'music-covers/ragantras-grasp',
+            alt: 'Ragantras — Grasp: black marbled ink across a grey woven texture, with the label mark and catalogue number FS07',
+            width: 1200,
+            height: 1200,
+            caption: 'Ragantras — Grasp',
+            body: 'The release for a Berlin techno label: marbled ink on a woven ground, the label’s mark and the catalogue number FS07 left as the only type.',
+          },
+          {
+            name: 'music-covers/london-roads',
+            alt: 'London Roads: a photographic portrait finished in black with gold jewellery, and the title set in gold',
+            width: 1600,
+            height: 1600,
+            caption: 'London Roads — Cassandra Clark',
+            body: 'A cover version of a Lil Wayne track, so the artwork is a cover of a photograph: everything pulled to black except the gold.',
+          },
+          {
+            name: 'music-covers/dreamland',
+            alt: 'Dreamland: an illustrated attic bedroom at night, a girl asleep with her phone, a black cat on the printer',
+            width: 1600,
+            height: 1600,
+            caption: 'Dreamland — Arsia Line',
+            body: 'A whole room drawn as one scene. It is the cover in the set that is meant to be looked at rather than read at a glance.',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'holistic',
+    title: 'Holistic',
+    role: 'Author & Illustrator',
+    period: '2022',
+    tags: ['Personal work', 'Digital illustration', 'Series'],
+    summary: {
+      strong: 'Holistic',
+      rest: 'is a series of digital illustrations of my own, made in 2022. Six works, all of the same body, each one a fragment of it — a face, hands, legs, a torso, two people lying together — drawn on one grey ground in outlines that never quite register, so the whole thing reads as one body seen in pieces rather than as six separate drawings.',
+    },
+    intro:
+      'A personal series of digital illustrations from 2022: one body in six fragments, drawn on a single grey ground in outlines that refuse to line up.',
+    problem:
+      'A body is looked at in parts — a face, a pair of hands, a back — and rarely as one thing. The series is about what happens when those parts are separated out and hung together anyway.',
+    process: [
+      {
+        title: 'One palette',
+        body: 'Fixed the palette before drawing anything: greys for the volumes, one red and one cyan for the outlines. Nothing in the series is allowed a seventh colour.',
+      },
+      {
+        title: 'Fragments',
+        body: 'Drew the body in pieces rather than as figures — hands, legs, a face, a torso, a pair lying down — each cropped so that what is left out is as deliberate as what is shown.',
+      },
+      {
+        title: 'The offset',
+        body: 'Every outline is doubled and pushed out of register, the way a misprinted colour separation slips. It is what gives the flat drawings their movement, and what makes six pictures read as one series.',
+      },
+    ],
+    outcome: [
+      'Six finished works, released as one series in 2022.',
+      'A single palette and one drawing rule holding the set together.',
+      'Drawn at gallery proportions and mocked up hung, which is how the series is meant to be met.',
+    ],
+    cover: {
+      name: 'holistic/hero-gallery',
+      alt: 'The Holistic series hung on a dark gallery wall: six grey line-drawn works of a body in fragments',
+      width: 1532,
+      height: 1123,
+    },
+    sections: [],
+    groupsHeading: 'Selected work',
+    groups: [
+      {
+        id: 'works',
+        title: 'The series',
+        body: 'Six works, one body. Greys for the volumes, a red and a cyan outline that never quite lands on the edge it belongs to.',
+        layout: 'grid',
+        images: [
+          {
+            name: 'holistic/face',
+            alt: 'A face drawn front on in flat greys, the outlines doubled in red and cyan',
+            width: 1600,
+            height: 1600,
+            caption: 'Face',
+          },
+          {
+            name: 'holistic/hands',
+            alt: 'Two hands reaching down onto a surface, fingers spread, drawn in grey with red outlines',
+            width: 1600,
+            height: 1600,
+            caption: 'Hands',
+          },
+          {
+            name: 'holistic/body',
+            alt: 'A torso turning away, drawn in flat greys with red contour lines',
+            width: 1600,
+            height: 1600,
+            caption: 'Body',
+          },
+          {
+            name: 'holistic/legs',
+            alt: 'Crossed legs and bare feet raised, drawn in overlapping greys',
+            width: 1600,
+            height: 1600,
+            caption: 'Legs',
+          },
+          {
+            name: 'holistic/torso',
+            alt: 'The same back mirrored on both sides of the frame, arms raised, leaving an empty centre',
+            width: 1600,
+            height: 1600,
+            caption: 'Mirror',
+          },
+          {
+            name: 'holistic/us',
+            alt: 'Two people lying together seen from above, drawn almost entirely in outline',
+            width: 1600,
+            height: 1600,
+            caption: 'Us',
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export const getProject = (slug: string | undefined): IProject | undefined =>

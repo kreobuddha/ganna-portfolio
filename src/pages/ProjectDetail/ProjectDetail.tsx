@@ -133,7 +133,9 @@ const ProjectDetail = (): ReactElement => {
 
       {project.groups.length > 0 ? (
         <section className="project-detail__section project-detail__section--groups">
-          <h2 className="project-detail__section-title">Inside the product</h2>
+          <h2 className="project-detail__section-title">
+            {project.groupsHeading ?? 'Inside the product'}
+          </h2>
 
           {project.groups.map((group) => (
             <ShowcaseGroup key={group.id} group={group} onOpenImage={lightbox.open} />
