@@ -36,6 +36,23 @@
   }
 }
 
+// On the wall the logo is the whole tile: the name is clipped rather than
+// removed, since it is what names the button to a screen reader, and the count
+// and the chevron belong to the row layout alone.
+.clients__name {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.clients__count,
+.clients__chevron {
+  display: none;
+}
+
 // Runs on the logo, not the tile, so it lands on the same property the hover
 // and open states use and hands back to whichever of them applies afterwards.
 .clients__tile .clients__logo {
@@ -167,29 +184,19 @@
   border-radius: var(--radius-pill);
 }
 
-// One logo per row here, so the wall is a dozen screens tall and a panel at the
-// bottom of it is out of sight of the tile that opened it. Ordering the cells
-// puts the answer directly under the logo that was tapped: everything before it
-// keeps its place, the panel follows, the rest come after.
-//
-// Only on phones — on a wide screen the wall is a few rows and the panel
-// belongs under all of it, which is what the DOM order already gives.
-@media (max-width: 599px) {
-  .clients__cell {
-    order: var(--order, 0);
-  }
-
-  .clients__cell--panel {
-    order: 1;
-  }
-
+// The panel's own trimmings, wherever the row layout puts it: it opens inside
+// the row that was tapped, so it neither reserves height while closed nor needs
+// the wall's full run-up above it.
+@media (max-width: 899px) {
   .clients__panel {
     min-height: 0;
     padding-top: var(--sp-5);
   }
 }
 
-@media (max-width: 599px) {
+// Label over value rather than beside it: in a row the panel has a column the
+// width of a tablet at most, and the 9rem label column takes a third of it.
+@media (max-width: 899px) {
   .clients__facts {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--sp-1) 0;
@@ -233,5 +240,113 @@
   svg {
     width: 100%;
     height: 100%;
+  }
+}
+
+// Under 900px: the wall becomes a stack of closed rows.
+//
+// A dozen logos one per row is a page and a half of scrolling, and the panel a
+// tap opened landed below whichever tile was tapped — the same problem the
+// RESOLA sections had, and the same answer. A row states who it is and how much
+// there is, and opens in place under itself.
+.clients--rows {
+  .clients__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-3);
+  }
+
+  // Mark, then the name over its count, then the arrow. The count sits under
+  // the name rather than beside it so the name gets the whole middle column —
+  // beside it, Skolkovo Innovation Center had about two words' worth of room
+  // and ran to three lines.
+  .clients__tile {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) 24px;
+    grid-template-areas:
+      'logo name chevron'
+      'logo count chevron';
+    align-items: center;
+    column-gap: var(--sp-4);
+    height: auto;
+    padding: var(--sp-3) var(--sp-4);
+    background: var(--glass-1);
+    border: 1px solid var(--glass-2);
+    text-align: left;
+
+    // The lift belongs to a wall of tiles; a row in a list has nowhere to go.
+    &:hover {
+      transform: none;
+    }
+  }
+
+  // A fixed box for the mark, so twelve logos of twelve different proportions
+  // still line their names up on one left edge.
+  .clients__logo {
+    grid-area: logo;
+    width: 64px;
+    height: 36px;
+    -webkit-mask-position: left center;
+    mask-position: left center;
+  }
+
+  .clients__name {
+    grid-area: name;
+    position: static;
+    width: auto;
+    height: auto;
+    min-width: 0;
+    overflow: visible;
+    clip: auto;
+    // The clipped version needs `nowrap` to keep its one line off the layout;
+    // here the long names — Skolkovo Innovation Center, SOCAR Energy Resources
+    // — have to be allowed to wrap or they run straight through the count.
+    white-space: normal;
+    font-size: var(--fs-title-sm);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .clients__count {
+    grid-area: count;
+    display: block;
+    font-size: var(--fs-meta);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+
+  .clients__chevron {
+    grid-area: chevron;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    color: var(--lime);
+    transition: transform var(--dur) var(--ease);
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .clients__tile--open .clients__chevron {
+    transform: rotate(180deg);
+  }
+
+  // No rule above it and no minimum height: it opens directly under the row
+  // that owns it, and the row's own border is the line between them.
+  .clients__panel--inline {
+    min-height: 0;
+    margin-top: 0;
+    padding: var(--sp-5) var(--sp-4) var(--sp-4);
+    border-top: 0;
+  }
+
+  // The name is already on the row that opened it.
+  .clients__panel--inline .clients__panel-name {
+    display: none;
   }
 }
