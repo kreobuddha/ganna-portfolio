@@ -11,9 +11,9 @@ export const projects: IProject[] = [
   {
     slug: 'resola',
     title: 'RESOLA',
-    role: 'Lead product & UX/UI Designer',
-    period: '2021—Now',
-    tags: ['B2C', 'Healthcare'],
+    roles: ['Lead UX/UI Designer', 'Cross-team design leadership'],
+    period: '2021—2026',
+    tags: ['Startup', 'B2C', 'Healthcare', 'Multi-product ecosystem'],
     link: {
       label: 'Download on the App Store',
       href: 'https://apps.apple.com/us/app/resola/id6445923545',
@@ -837,9 +837,9 @@ export const projects: IProject[] = [
   {
     slug: 'uandco',
     title: 'U&CO',
-    role: 'Product Creator & UX/UI Designer',
-    period: 'Startup concept',
-    tags: ['Startup', 'Music Services Marketplace'],
+    roles: ['Founder', 'Lead UX/UI Designer'],
+    period: '2023—2024',
+    tags: ['Startup', 'B2C', 'Music services marketplace'],
     summary: {
       strong: 'U&CO',
       rest: 'is a startup I built from the idea outward: a marketplace where musicians find the people missing from a record — mixing, mastering, session players, cover art — and where the platform vouches for them. My work here was the business logic and the architecture of the process, then the prototype that made it concrete.',
@@ -1123,9 +1123,9 @@ export const projects: IProject[] = [
   {
     slug: 'view-project',
     title: 'VIEW Project',
-    role: 'Co-founder & Design Lead',
+    roles: ['Founder', 'Brand identity', 'Design Lead', 'Lead UX/UI Designer'],
     period: '2025—Now',
-    tags: ['Media', 'Events', 'Brand identity'],
+    tags: ['Independent audio-visual media'],
     // The handle only — the ?igsh= on the shared link is a tracking token for
     // the session it was copied from, and it does not belong in the source.
     link: { label: 'Follow on Instagram', href: 'https://www.instagram.com/view_project_media' },
@@ -1136,7 +1136,7 @@ export const projects: IProject[] = [
     intro:
       'An independent audio-visual media co-founded in Tbilisi: nights that are filmed, streamed and published. I run the design — identity, site, social, print — and direct the designers working around it.',
     problem:
-      'A club night lasts one evening and is gone. The people who were not in the room never see it, the artists who played have nothing to show for it, and a scene that produces a great deal ends up leaving almost no trace.',
+      'A typical club night is a DJ and nothing else. Ours is an audio-visual event — music paired with visual art, light, TouchDesigner work, sometimes even scenography — but like any club night, it lasts one evening and then it’s gone. The people who weren’t in the room never see it, the musicians and visual artists who shaped it have nothing to show for it, and a scene that produces something genuinely multidisciplinary ends up leaving almost no trace.',
     solution:
       'Every night is filmed and streamed, the full sets are published on YouTube afterwards, and each collaborator — DJs, visual artists, lighting designers, florists — is introduced with a card written about their work rather than a line-up listing. Sound and visuals are treated as one act, not music with decoration on top. One visual system — red, black and a heavy display face — carries the whole thing across the site, the posters and every platform, so a poster, a video and a post all read as the same thing.',
     process: [
@@ -1251,9 +1251,9 @@ export const projects: IProject[] = [
   {
     slug: 'loveberry',
     title: 'LoveBerry',
-    role: 'UX/UI Designer',
+    roles: ['UX/UI Designer'],
     period: '2021',
-    tags: ['Freelance', 'B2C', 'Dating', 'iOS & Android'],
+    tags: ['Startup', 'B2C', 'Dating mobile app', 'iOS & Android'],
     summary: {
       strong: 'LoveBerry',
       rest: 'is a dating app built around what is happening tonight rather than around a deck of cards. People nearby appear on a map with what they are up to written next to them — a film, a party, an evening with nothing planned — so a conversation starts from a plan both sides already have. Designed end to end for iOS and Android as a freelance commission.',
@@ -1357,9 +1357,10 @@ export const projects: IProject[] = [
   {
     slug: 'music-covers',
     title: 'Music Covers',
-    role: 'Cover Artist & Designer',
-    period: '2017—2025',
-    tags: ['Music', 'Illustration', 'Art direction'],
+    roles: ['Art direction', 'Digital illustration', 'Analog illustration'],
+    period: '2017—Now',
+    // Nothing to classify: a run of covers is not a product with a market.
+    tags: [],
     summary: {
       strong: 'Music covers',
       rest: 'made over nine years for EPs and albums — among them a release for a Berlin techno label and a run of independent artists. Every one is drawn or art-directed to the record it belongs to rather than to a house style: hand illustration, flat vector, acrylic on canvas and photography all appear, because what the music needs decides the medium.',
@@ -1385,7 +1386,7 @@ export const projects: IProject[] = [
       },
     ],
     outcome: [
-      'Covers released for EPs and albums between 2017 and 2025.',
+      'Covers released for EPs and albums from 2017 onwards.',
       'A release for a Berlin techno label alongside a run of independent artists.',
       'Illustration, vector, painting and photography — each picked by what the record needed.',
     ],
@@ -1458,9 +1459,9 @@ export const projects: IProject[] = [
   {
     slug: 'holistic',
     title: 'Holistic',
-    role: 'Author & Illustrator',
+    roles: ['Author & Illustrator'],
     period: '2022',
-    tags: ['Personal work', 'Digital illustration', 'Series'],
+    tags: [],
     summary: {
       strong: 'Holistic',
       rest: 'is a series of digital illustrations of my own, made in 2022. Six works, all of the same body, each one a fragment of it — a face, hands, legs, a torso, two people lying together — drawn on one grey ground in outlines that never quite register, so the whole thing reads as one body seen in pieces rather than as six separate drawings.',

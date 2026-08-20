@@ -33,16 +33,18 @@ const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
                 {project.title}
               </Link>
             </h2>
-            <p className="project-card__role">
-              {project.role} • {project.period}
-            </p>
+            {/* What the project is, then when — one line about the work.
+                Music Covers and Holistic classify as nothing, so they print
+                the period alone. */}
+            <p className="project-card__meta">{[...project.tags, project.period].join(' • ')}</p>
           </div>
         </div>
 
-        <ul className="project-card__tags">
-          {project.tags.map((tag) => (
-            <li key={tag} className="project-card__tag">
-              {tag}
+        {/* The hats, as pills: what she was on it. */}
+        <ul className="project-card__roles">
+          {project.roles.map((role) => (
+            <li key={role} className="project-card__role">
+              {role}
             </li>
           ))}
         </ul>

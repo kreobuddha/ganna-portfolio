@@ -99,8 +99,19 @@ export interface IProcessStep {
 export interface IProject {
   slug: string;
   title: string;
-  role: string;
+  /**
+   * What Hanna was on the project — the hats, not the job title. Several,
+   * because on most of these she held more than one: founder and lead
+   * designer, art direction and illustration.
+   */
+  roles: string[];
   period: string;
+  /**
+   * What the work is: the kind of company, the market, the product. Printed
+   * beside the period as the card's subtitle, so it reads as one line about
+   * the project before anything about her. Empty where the work is not a
+   * product and there is nothing to classify — a set of covers, a series.
+   */
   tags: string[];
   /** Short description used on the projects index, opening with the product's name. */
   summary: IHighlight;

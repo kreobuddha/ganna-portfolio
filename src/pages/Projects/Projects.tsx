@@ -13,10 +13,10 @@ const Projects = (): ReactElement => {
 
   return (
     <div className="projects page shell">
-      <PageHeading eyebrow="Selected work" title="Latest Projects">
+      <PageHeading title="Selected Projects">
         <p>
-          Product work across healthcare and marketplace platforms — from information architecture
-          and user flows to design systems handed over to engineering.
+          Product work across in-house and outsourced roles as a designer and lead designer — from
+          information architecture and user flows to design systems handed over to engineering.
         </p>
       </PageHeading>
 
