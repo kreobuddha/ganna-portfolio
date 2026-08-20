@@ -126,7 +126,10 @@
   --arrow-gap: 40px;
 
   position: absolute;
-  top: calc(var(--hit-pad) - 20px);
+  // The tip sits 28.3% down the arrow's own box, so lifting it onto the dot is
+  // a function of the width: at 96px this is the -20px it used to be spelled
+  // as, and at 280px the -72px the composition below used to repeat by hand.
+  top: calc(var(--hit-pad) + 7.2px - var(--arrow-w) * 0.283);
   left: 50%;
   width: var(--arrow-w);
   max-width: none;
@@ -274,7 +277,7 @@
 // contact links from being clipped by that fixed height is the vh ceiling on
 // --fs-hero, which caps how much of the screen the wordmark can eat on a
 // wide-but-short window.
-@media (min-width: 1280px) and (min-height: 900px) {
+@media (min-width: 900px) and (min-height: 900px) {
   .home__hero {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
@@ -315,10 +318,21 @@
   // contact links off the bottom of the screen. A translate shifts them over
   // the photo, which is where the design puts them, and costs no height.
   .home__shortcut {
+    // The design's arrow, ramped so it still fits the narrow end of this
+    // range. The arrow hangs four fifths of its own width to the left of the
+    // link it points at, and the diagonal pulls every link another 5.5vw left
+    // on top of that, so at a flat 280px the leftmost one ran off the page
+    // anywhere under about 1100. The ramp is set by its two ends: 280px — the
+    // design's size — at 1440 and wider, and 160px at 900, which is what
+    // clears the left edge once the diagonal has had its share. `top` follows
+    // from the width on its own; see the base rule for the arrow.
+    --arrow-w: clamp(160px, 22.22vw - 40px, 280px);
+
     z-index: 2;
     align-self: start;
-    // Down the full 10%, but only 5.5% left: the arrow reaches ~250px to the
-    // left of its link, so past this the leftmost one leaves the screen.
+    // Down the full 10%, but only 5.5% left: the arrow reaches most of its own
+    // width to the left of its link, so past this the leftmost one leaves the
+    // screen.
     translate: -5.5vw 10vh;
   }
 
@@ -339,13 +353,6 @@
     grid-row: 3;
   }
 
-  // Same aim and the same 40px gap, at the design's size — only `top` changes,
-  // since it tracks 28.3% of the arrow's width.
-  .home__shortcut .home__arrow {
-    top: calc(var(--hit-pad) - 72px);
-    width: 280px;
-  }
-
   // Sits in the flexible row alone. Spanning the link rows instead would let
   // the photo's height inflate them and push the intro off-screen; here the
   // row's `minmax(0, 1fr)` floor means the photo overflows visually — bleeding
@@ -359,9 +366,32 @@
     width: min(52vw, 76vh);
   }
 
+  // Even a column wider, the intro is ~420px at the narrow end and the three
+  // pills need 434 at their full padding — so the row broke, and a row that
+  // breaks is the one thing this row is not supposed to do. Tightening them
+  // here rather than everywhere: the About page and the footer give the same
+  // three pills a full page width and have no reason to shrink.
+  @media (max-width: 1279px) {
+    .home__contacts {
+      gap: var(--sp-3);
+    }
+
+    .home__contacts .contact-pills__pill {
+      padding-inline: 1.25rem;
+    }
+  }
+
   .home__intro {
     grid-column: 1 / 6;
     grid-row: 5;
+    // One column wider at the narrow end of the composition, where five of
+    // twelve is under 400px and the highlights wrap awkwardly. Column 7 is
+    // where the portrait's cell starts, so this is as wide as the text can go
+    // before it is reading over the photo.
+    @media (max-width: 1279px) {
+      grid-column: 1 / 7;
+    }
+
     z-index: 2;
     align-self: end;
     padding-bottom: clamp(1rem, 4vh, 3.5rem);
