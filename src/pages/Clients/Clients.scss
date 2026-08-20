@@ -184,29 +184,19 @@
   border-radius: var(--radius-pill);
 }
 
-// One logo per row here, so the wall is a dozen screens tall and a panel at the
-// bottom of it is out of sight of the tile that opened it. Ordering the cells
-// puts the answer directly under the logo that was tapped: everything before it
-// keeps its place, the panel follows, the rest come after.
-//
-// Only on phones — on a wide screen the wall is a few rows and the panel
-// belongs under all of it, which is what the DOM order already gives.
-@media (max-width: 599px) {
-  .clients__cell {
-    order: var(--order, 0);
-  }
-
-  .clients__cell--panel {
-    order: 1;
-  }
-
+// The panel's own trimmings, wherever the row layout puts it: it opens inside
+// the row that was tapped, so it neither reserves height while closed nor needs
+// the wall's full run-up above it.
+@media (max-width: 899px) {
   .clients__panel {
     min-height: 0;
     padding-top: var(--sp-5);
   }
 }
 
-@media (max-width: 599px) {
+// Label over value rather than beside it: in a row the panel has a column the
+// width of a tablet at most, and the 9rem label column takes a third of it.
+@media (max-width: 899px) {
   .clients__facts {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--sp-1) 0;
@@ -253,7 +243,7 @@
   }
 }
 
-// Phones: the wall becomes a stack of closed rows.
+// Under 900px: the wall becomes a stack of closed rows.
 //
 // A dozen logos one per row is a page and a half of scrolling, and the panel a
 // tap opened landed below whichever tile was tapped — the same problem the
@@ -263,12 +253,6 @@
   .clients__grid {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--sp-3);
-  }
-
-  // The panel is inside its own row now, so the ordering that used to move it
-  // under the tapped tile has nothing left to do.
-  .clients__cell {
-    order: 0;
   }
 
   // Mark, then the name over its count, then the arrow. The count sits under

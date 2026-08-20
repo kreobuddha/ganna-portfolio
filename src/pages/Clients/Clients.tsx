@@ -33,11 +33,13 @@ const Clients = (): ReactElement => {
   // is not the same as "nothing is open" — see `openName` below.
   const [picked, setPicked] = useState<string | null>(null);
 
-  // On a phone the wall is a column of a dozen logos, and the panel one opens
-  // lands a screen or two below whichever was tapped. There the wall becomes a
-  // list of closed rows instead — logo, name, how many projects — each opening
-  // in place under itself, the same shape RESOLA's sections take.
-  const isNarrow = useMediaQuery('(max-width: 599px)');
+  // On a narrow screen the wall is a column of a dozen logos, and the panel one
+  // opens lands a screen or two below whichever was tapped. There the wall
+  // becomes a list of closed rows instead — logo, name, how many projects —
+  // each opening in place under itself. Same shape and same 900px as RESOLA's
+  // sections take on a project page, so a tablet reads one way across the site
+  // rather than rows on one page and a wall on the next.
+  const isNarrow = useMediaQuery('(max-width: 899px)');
 
   // Wide, the panel sits under the whole wall and is never empty: the first
   // client stands in until one is picked, so the panel's purpose is obvious on
@@ -116,11 +118,7 @@ const Clients = (): ReactElement => {
           const rowPanelId = `clients-panel-${index}`;
 
           return (
-            <li
-              key={client.name}
-              className="clients__cell"
-              style={{ '--order': openIndex === -1 || index <= openIndex ? 0 : 2 } as CSSProperties}
-            >
+            <li key={client.name} className="clients__cell">
               <button
                 type="button"
                 className={clsx('clients__tile', isOpen && 'clients__tile--open')}
