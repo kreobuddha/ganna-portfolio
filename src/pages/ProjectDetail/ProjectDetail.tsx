@@ -62,6 +62,21 @@ const ProjectDetail = (): ReactElement => {
             </li>
           ))}
         </ul>
+
+        {/* High in the page on purpose: someone who wants the product itself
+            rather than the write-up should not have to read to the bottom to
+            find it. */}
+        {project.link ? (
+          <a
+            className="project-detail__link"
+            href={project.link.href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {project.link.label}
+            <span aria-hidden="true"> ↗</span>
+          </a>
+        ) : null}
       </header>
 
       {project.banner ? (

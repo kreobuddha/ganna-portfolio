@@ -14,6 +14,10 @@ export const projects: IProject[] = [
     role: 'Lead product & UX/UI Designer',
     period: '2021—Now',
     tags: ['B2C', 'Healthcare'],
+    link: {
+      label: 'Download on the App Store',
+      href: 'https://apps.apple.com/us/app/resola/id6445923545',
+    },
     summary: {
       strong: 'Resola',
       rest: 'is a digital rehabilitation platform designed for physical and occupational therapy. The ecosystem combines a patient-facing mobile app, a web workspace for therapists, and a marketing website. The platform enables clinicians to create personalized rehabilitation programs, remotely monitor patient progress through motion tracking and biomechanical data, and adjust treatment plans based on real-time insights, helping patients recover more effectively at home.',
@@ -1122,6 +1126,9 @@ export const projects: IProject[] = [
     role: 'Co-founder & Design Lead',
     period: '2025—Now',
     tags: ['Media', 'Events', 'Brand identity'],
+    // The handle only — the ?igsh= on the shared link is a tracking token for
+    // the session it was copied from, and it does not belong in the source.
+    link: { label: 'Follow on Instagram', href: 'https://www.instagram.com/view_project_media' },
     summary: {
       strong: 'VIEW Project',
       rest: 'is an independent audio-visual media co-founded with Nikusha Ten and based in Tbilisi: club nights filmed and streamed, full sets published afterwards, and artists introduced properly. I run the design side of it — the identity, the landing page, everything published on Instagram, YouTube and SoundCloud, the print for the nights themselves — and direct the designers brought in around it.',
@@ -1176,8 +1183,8 @@ export const projects: IProject[] = [
           {
             name: 'view-project/site-full',
             alt: 'The full landing page: hero, upcoming events, YouTube sets, photo strip, registration form and footer',
-            width: 1097,
-            height: 2400,
+            width: 1920,
+            height: 4199,
             caption: 'Open it full screen to read the page end to end',
           },
         ],

@@ -19,6 +19,7 @@
 
 .system-explorer__item {
   display: flex;
+  flex-direction: column;
 }
 
 .system-explorer__card {
@@ -53,6 +54,10 @@
     background: var(--glass-2);
     border-color: var(--lime);
   }
+}
+
+.system-explorer__chevron {
+  display: none;
 }
 
 .system-explorer__thumb {
@@ -126,4 +131,85 @@
   font-size: var(--fs-subheading);
   text-transform: uppercase;
   border-bottom: 1px solid var(--glass-2);
+}
+
+// Narrow screens: the cards become a stack of closed rows.
+//
+// As posters they were a single column of tall images, and opening one put its
+// screens a scroll or two below the row that was tapped — Hanna's note was that
+// the sections were awkward to get into at all. A row states what is inside —
+// a thumbnail, the name, how many screens — and opens in place under itself.
+// Everything starts closed, so the page arrives as a readable list of parts.
+.system-explorer--rows {
+  gap: var(--sp-5);
+}
+
+.system-explorer--rows .system-explorer__cards {
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp-3);
+}
+
+.system-explorer--rows .system-explorer__card {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-3);
+  border-radius: var(--radius-md);
+}
+
+.system-explorer--rows .system-explorer__thumb {
+  flex: none;
+  width: 88px;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-sm);
+}
+
+.system-explorer--rows .system-explorer__body {
+  flex: 1;
+  gap: var(--sp-1);
+  padding: 0;
+  min-width: 0;
+}
+
+// The name leads and the count follows it, the other way round from the card —
+// on one line the count is the smaller fact and reads better underneath.
+.system-explorer--rows .system-explorer__title {
+  order: 1;
+}
+
+.system-explorer--rows .system-explorer__count {
+  order: 2;
+}
+
+// Both say what the row already says: the blurb is the card's job, and the
+// chevron replaces the words.
+.system-explorer--rows .system-explorer__blurb,
+.system-explorer--rows .system-explorer__cta {
+  display: none;
+}
+
+.system-explorer--rows .system-explorer__chevron {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  color: var(--lime);
+  transition: transform var(--dur) var(--ease);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.system-explorer--rows .system-explorer__card--open .system-explorer__chevron {
+  transform: rotate(180deg);
+}
+
+.system-explorer__inline-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--group-gap);
+  padding: var(--sp-6) 0 var(--sp-4);
 }

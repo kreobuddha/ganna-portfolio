@@ -121,15 +121,21 @@
 
 // Label and value side by side, on a column narrow enough for the longest
 // label and no wider. Below the fold of a phone they stack instead.
+//
+// The label sits centred against its value rather than at the top of the row:
+// it is a 12px cap-height line against a 22px one, and hung from the top it
+// read as floating above the fact it names. This is what replaced the 0.35rem
+// of padding that used to nudge it by eye — that number only ever looked right
+// on a one-line value.
 .clients__facts {
   display: grid;
   grid-template-columns: minmax(0, 9rem) minmax(0, 1fr);
+  align-items: baseline;
   gap: var(--sp-3) var(--sp-5);
   margin: 0;
 }
 
 .clients__fact-label {
-  padding-top: 0.35rem;
   font-size: var(--fs-meta);
   font-weight: 700;
   letter-spacing: 0.14em;

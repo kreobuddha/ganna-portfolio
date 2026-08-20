@@ -1,6 +1,10 @@
 // The query container --fs-hero measures itself against, so the wordmark
 // spans the content width rather than the viewport's.
 .home__hero {
+  // One arrow size for the whole hero: the arrow is drawn at it, and the room
+  // the stacked links reserve to their left is derived from it.
+  --arrow-w: clamp(96px, 13vw, 200px);
+
   position: relative;
   display: flex;
   flex-direction: column;
@@ -15,7 +19,12 @@
 // than the text box. Both constants are measured from Satoshi Black at this
 // letter-spacing — re-measure if either changes.
 .home__wordmark {
-  margin-top: clamp(0.5rem, 2vw, 1.5rem);
+  // Butted against the header, not spaced off it: the caps are meant to start
+  // where the bar ends. `margin-top` is negative because the line box still
+  // carries room above the cap line — measured at 0.0417em for Satoshi Black at
+  // this line-height — which reads as a gap nobody asked for. Re-measure it if
+  // the face or the line-height changes.
+  margin-top: -0.042em;
   margin-left: -0.077em;
   font-size: var(--fs-hero);
   line-height: 0.82;
@@ -38,27 +47,55 @@
     'intro';
 }
 
+// Stacked, not in a row. In a row the leftmost arrow reaches past the shell's
+// padding and off the side of the screen, and all three heads land on one
+// straight line — which is not what the design draws. One under another, each
+// arrow gets its own approach and none of them leaves the page.
+//
+// The padding is what holds that room open: the arrow hangs to the left of the
+// link it points at, roughly 0.8 of its own width, so the reserve is tied to
+// the arrow's size rather than being a number that has to be re-guessed.
 .home__shortcuts {
   grid-area: shortcuts;
   display: flex;
-  flex-wrap: wrap;
-  gap: clamp(1.5rem, 5vw, 4rem);
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(2.75rem, 7vw, 4rem);
+  padding-left: calc(var(--arrow-w) * 0.85);
 }
 
 .home__shortcut {
+  // Room around the dot and the label so the target is a block rather than a
+  // 15px circle. The arrow's own `top` subtracts this back out, so padding here
+  // does not drift the arrow off the dot it aims at.
+  --hit-pad: var(--sp-3);
+
   position: relative;
+  // Above the portrait. Where the two meet — the stacked layout puts the links
+  // under the photo — the arrows are allowed to cross it rather than being
+  // pushed clear of it.
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--sp-2);
+  padding: var(--hit-pad) var(--sp-4);
+  // `scale` rather than a transform, so it composes with the `translate` the
+  // full-screen layout sets on the same element instead of overwriting it.
+  transition: scale var(--dur) var(--ease);
+
+  // The whole link answers: the arrow, the dot and the label all light and grow
+  // together, from a pointer anywhere over any of them.
+  &:hover {
+    scale: 1.08;
+  }
 
   &:hover .home__shortcut-label {
     color: var(--lime);
   }
 
   &:hover .home__dot {
-    transform: scale(1.4);
+    background: var(--lime);
   }
 
   // Plays once per session, staggered left to right by the link's own order.
@@ -89,9 +126,9 @@
   --arrow-gap: 40px;
 
   position: absolute;
-  top: -20px;
+  top: calc(var(--hit-pad) - 20px);
   left: 50%;
-  width: 96px;
+  width: var(--arrow-w);
   max-width: none;
   transform: translate(calc(-80% - var(--arrow-gap) * 0.55), calc(var(--arrow-gap) * -0.83));
 }
@@ -101,7 +138,7 @@
   height: 15px;
   background: var(--white);
   border-radius: 50%;
-  transition: transform var(--dur) var(--ease);
+  transition: background-color var(--dur) var(--ease);
 }
 
 .home__shortcut-label {
@@ -188,10 +225,6 @@
 }
 
 @media (max-width: 767px) {
-  .home__shortcuts {
-    gap: var(--sp-4);
-  }
-
   .home__dot {
     width: 10px;
     height: 10px;
@@ -214,7 +247,6 @@
   }
 
   .home__shortcuts {
-    justify-content: flex-start;
     padding-top: var(--sp-6);
   }
 
@@ -249,10 +281,6 @@
     gap: 0;
     height: calc(100dvh - var(--header-h));
     padding-bottom: 0;
-  }
-
-  .home__wordmark {
-    margin-top: 0;
   }
 
   // Rows are content-sized for the three links, then a single flexible row
@@ -314,7 +342,7 @@
   // Same aim and the same 40px gap, at the design's size — only `top` changes,
   // since it tracks 28.3% of the arrow's width.
   .home__shortcut .home__arrow {
-    top: -72px;
+    top: calc(var(--hit-pad) - 72px);
     width: 280px;
   }
 
