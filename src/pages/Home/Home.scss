@@ -146,6 +146,10 @@
 
 .home__shortcut-label {
   font-size: var(--fs-link);
+  // One uppercase word: the body's 1.55 was adding half a line of air under
+  // every link for nothing, which is height the composition needs on a short
+  // window.
+  line-height: 1.1;
   font-weight: 500;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -227,23 +231,6 @@
   margin-top: var(--sp-3);
 }
 
-// One screen, no scrolling — but only where there is the height for it. This is
-// a separate rule from the arrangement above on purpose: the diagonal is what
-// the page should look like from 900px of width up, and it holds whatever the
-// height is. Pinning the hero to the viewport is the extra the design gets when
-// the window is tall enough to take it; below that the same layout simply runs
-// past the fold and the page scrolls, which is better than clipping the CV
-// button off the bottom of a fixed box.
-@media (min-width: 900px) and (min-height: 900px) {
-  .home__hero {
-    display: grid;
-    grid-template-rows: auto minmax(0, 1fr);
-    gap: 0;
-    height: calc(100dvh - var(--header-h));
-    padding-bottom: 0;
-  }
-}
-
 // Under the diagonal's floor the photo stops being a block above the links and
 // becomes the ground they stand on: the links move into the portrait's own
 // cell, and the portrait drops back in opacity so a lime arrow over it still
@@ -297,6 +284,28 @@
   // a stray mark rather than as an arrow aimed at the dot.
   .home__shortcut .home__arrow {
     --arrow-gap: 24px;
+  }
+}
+
+// One screen, no scrolling. Kept as its own rule because it is a separate
+// promise from the arrangement below: the diagonal holds from 900px of width up
+// whatever the height, and this is the extra the design gets when the window is
+// tall enough to take it.
+//
+// The height is definite on purpose — that is what gives the stage's rows a
+// size to divide, so the photo overflows its row instead of inflating it. The
+// floor is 600px, measured: with the type and spacing capped against the height
+// (see the composition), everything down to about 565 still lands inside the
+// box, and 600 leaves a margin over that. Below it the same layout runs past
+// the fold and the page scrolls, which beats clipping the CV button off the
+// bottom of a box that cannot grow.
+@media (min-width: 900px) and (min-height: 600px) {
+  .home__hero {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 0;
+    height: calc(100dvh - var(--header-h));
+    padding-bottom: 0;
   }
 }
 
@@ -407,13 +416,78 @@
     }
   }
 
+  // A short window has to find room for the same six things — the wordmark, the
+  // three links, the intro and the contact row — out of a lot less height. So on
+  // one, the type and the spacing are capped against the height as well as the
+  // width. Every value here is a `min()` whose vh term only bites once the
+  // height runs out, so a tall window is untouched by all of it.
+  @media (max-height: 899px) {
+    .home__hero {
+      --fs-hero: min(14.19cqw, 23vh);
+      --fs-link: min(clamp(1.25rem, 2.083vw, 30px), 3.8vh);
+      --fs-subheading: min(clamp(2rem, 4.167vw, 60px), 6vh);
+      --fs-lead: min(clamp(1.125rem, 1.528vw, 22px), 3vh);
+
+      gap: clamp(0.5rem, 1.5vh, 2.5rem);
+    }
+
+    .home__shortcut {
+      --hit-pad: clamp(0.25rem, 1vh, 0.75rem);
+
+      gap: var(--sp-1);
+      // The diagonal drops the links a tenth of the viewport. On a tall window
+      // that lands them over the middle of the photo; on a short one the whole
+      // stage is compressed underneath them and the same tenth pushes the
+      // lowest two down onto the intro's own heading. Less of a smaller screen.
+      translate: -5.5vw 1.5vh;
+    }
+
+    // The row gap between the three links and the intro. At 1.6vh it was the
+    // single largest piece of slack in the stage — four gaps of it.
+    .home__stage {
+      row-gap: clamp(0.25rem, 0.55vh, 1.75rem);
+    }
+
+    .home__dot {
+      width: 11px;
+      height: 11px;
+    }
+
+    // A one-line bullet does not need the body's 1.55 either, and there are
+    // four of them.
+    .home__highlight {
+      line-height: 1.3;
+    }
+
+    .home__stage {
+      padding-block: clamp(8px, 1.9vh, 26px) 0;
+    }
+
+    .home__highlights {
+      gap: clamp(0.125rem, 0.6vh, 0.5rem);
+    }
+
+    .home__intro {
+      gap: clamp(0.25rem, 1.4vh, 1rem);
+      padding-bottom: clamp(0.5rem, 1.5vh, 3.5rem);
+    }
+
+    .home__contacts {
+      margin-top: clamp(0.25rem, 1vh, 0.75rem);
+    }
+
+    .home__contacts .contact-pills__pill {
+      padding-block: clamp(0.4rem, 1.1vh, 0.85rem);
+    }
+  }
+
   // On a window too short to pin, the flexible row has no fixed height left to
   // overflow, so the photo inflates it instead — and lands under the links as a
   // block of its own rather than behind them, which is not the composition.
   // Spanning it back across the link rows puts it where it belongs and stops it
   // adding its own height to the page: the rows grow to the photo instead of
   // stacking after it. The links keep their z-index and stay on top.
-  @media (max-height: 899px) {
+  @media (max-height: 599px) {
     .home__portrait {
       grid-row: 1 / 5;
       width: min(52vw, 46vh);
