@@ -408,14 +408,23 @@
   }
 
   // The middle link takes a nudge off the diagonal that Hanna placed by eye:
-  // 80px up and 60px right of where the grid and the drop leave it. The whole
+  // 40px up and 60px right of where the grid and the drop leave it. The whole
   // link moves, so the arrow keeps its aim at the dot.
+  //
+  // It was placed at 100% zoom and belongs to that window alone — at 150% the
+  // composition is the one this file's short-window block already compresses,
+  // and the nudge is not part of it. CSS cannot read the zoom level, so the
+  // height stands in for it, the same way it does throughout this file: Hanna's
+  // window is about 1200px tall at 100% and about 800 at 150%, so the 900px
+  // line that already separates the two layouts separates these two too.
   .home__shortcut--clients {
     grid-column: 6 / 8;
     grid-row: 3;
 
-    --nudge-x: 60px;
-    --nudge-y: -80px;
+    @media (min-height: 900px) {
+      --nudge-x: 60px;
+      --nudge-y: -40px;
+    }
   }
 
   // Sits in the flexible row alone. Spanning the link rows instead would let
