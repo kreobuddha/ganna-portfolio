@@ -1,0 +1,175 @@
+<!doctype html>
+<!--
+  The source of public/images/og-cover.jpg — the card link previews show in
+  Telegram, Slack, LinkedIn and the rest.
+
+  It is the About page's own composition, re-laid for the 1.91:1 box a preview
+  card actually gets: the page centres its title over the portrait, which at
+  1200x630 crops the portrait in half and leaves the sides empty. Here the type
+  takes the left and the portrait the right, at sizes that survive the ~500px
+  wide card most clients draw.
+
+  Rendered at 2x and downscaled, which is what keeps the type crisp on a retina
+  screen:
+
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+      --headless=new --disable-gpu --hide-scrollbars \
+      --force-device-scale-factor=2 --window-size=1200,630 \
+      --screenshot=og.png scripts/og-cover.html
+    sips -s format jpeg -s formatOptions 82 -z 630 1200 og.png \
+      --out public/images/og-cover.jpg
+
+  Re-run both if the portrait, the palette or the wording changes; og:image's
+  declared width and height in index.html are 1200x630 and must match.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>og-cover</title>
+    <style>
+      @font-face {
+        font-family: 'Satoshi';
+        src: url('../public/fonts/Satoshi-700.woff2') format('woff2');
+        font-weight: 700;
+      }
+
+      @font-face {
+        font-family: 'Satoshi';
+        src: url('../public/fonts/Satoshi-900.woff2') format('woff2');
+        font-weight: 900;
+      }
+
+      @font-face {
+        font-family: 'Satoshi';
+        src: url('../public/fonts/Satoshi-500.woff2') format('woff2');
+        font-weight: 500;
+      }
+
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        font-family: 'Satoshi', sans-serif;
+        color: #ffffff;
+        background: #1c4aed;
+      }
+
+      .card {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 470px;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 64px 72px;
+      }
+
+      .wordmark {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #e0ff54;
+      }
+
+      .title {
+        margin-top: 28px;
+        font-size: 96px;
+        font-weight: 900;
+        line-height: 0.88;
+        letter-spacing: -0.035em;
+        text-transform: uppercase;
+      }
+
+      .lead {
+        max-width: 470px;
+        margin-top: 28px;
+        font-size: 21px;
+        font-weight: 500;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .lead strong {
+        font-weight: 700;
+        color: #ffffff;
+      }
+
+      /* The portrait sits in its own glow, the way it does on the site, so the
+         circle has an edge against the blue instead of being cut out of it. */
+      .portrait {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 470px;
+        height: 470px;
+        justify-self: end;
+      }
+
+      .portrait::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.22) 0%,
+          rgba(255, 255, 255, 0.08) 52%,
+          rgba(255, 255, 255, 0) 70%
+        );
+      }
+
+      .portrait img {
+        position: relative;
+        width: 366px;
+        height: 366px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center 28%;
+      }
+
+      /* The loop the site spins around the portrait, held still. */
+      .ring {
+        position: absolute;
+        inset: 0;
+        fill: rgba(255, 255, 255, 0.24);
+        font-size: 21px;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div>
+        <p class="wordmark">Hanna Shyliaieva</p>
+        <h1 class="title">UX/UI<br />Designer</h1>
+        <p class="lead">
+          <strong>10+ years</strong> designing web and mobile applications, enterprise software and
+          digital products.
+        </p>
+      </div>
+
+      <div class="portrait">
+        <svg class="ring" viewBox="0 0 470 470">
+          <defs>
+            <path id="loop" d="M 235,235 m -217,0 a 217,217 0 1,1 434,0 a 217,217 0 1,1 -434,0" />
+          </defs>
+          <text>
+            <textPath href="#loop" startOffset="0">
+              Hanna Shyliaieva •• UX/UI Designer •• Hanna Shyliaieva •• UX/UI Designer ••
+            </textPath>
+          </text>
+        </svg>
+
+        <img src="../src/assets/portrait/about-portrait.jpg" alt="" />
+      </div>
+    </div>
+  </body>
+</html>

@@ -380,12 +380,19 @@
     // change it without restating the horizontal offset.
     --drop: 10vh;
 
+    // A per-link nudge off the diagonal, in flat pixels because that is how it
+    // was asked for and read off a screen: the same shift at every window,
+    // rather than one that grows with the viewport. Zero for a link that sits
+    // where the diagonal puts it.
+    --nudge-x: 0px;
+    --nudge-y: 0px;
+
     z-index: 2;
     align-self: start;
     // Down the full 10%, but only 5.5% left: the arrow reaches most of its own
     // width to the left of its link, so past this the leftmost one leaves the
     // screen.
-    translate: -5.5vw var(--drop);
+    translate: calc(-5.5vw + var(--nudge-x)) calc(var(--drop) + var(--nudge-y));
   }
 
   .home__shortcut--about {
@@ -400,9 +407,24 @@
     grid-row: 2;
   }
 
+  // The middle link takes a nudge off the diagonal that Hanna placed by eye:
+  // 40px up and 60px right of where the grid and the drop leave it. The whole
+  // link moves, so the arrow keeps its aim at the dot.
+  //
+  // It was placed at 100% zoom and belongs to that window alone — at 150% the
+  // composition is the one this file's short-window block already compresses,
+  // and the nudge is not part of it. CSS cannot read the zoom level, so the
+  // height stands in for it, the same way it does throughout this file: Hanna's
+  // window is about 1200px tall at 100% and about 800 at 150%, so the 900px
+  // line that already separates the two layouts separates these two too.
   .home__shortcut--clients {
     grid-column: 6 / 8;
     grid-row: 3;
+
+    @media (min-height: 900px) {
+      --nudge-x: 60px;
+      --nudge-y: -40px;
+    }
   }
 
   // Sits in the flexible row alone. Spanning the link rows instead would let
