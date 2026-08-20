@@ -51,11 +51,10 @@
      .home__wordmark, which cancels the leading side bearing to match. Measured
      in cqw, not vw, so the reserved scrollbar gutter is excluded: in vw the
      wordmark would run a gutter's width past the content and lose its last
-     letter. The vh ceiling only bites on a wide-but-short window, where the
-     wordmark would otherwise be tall enough to push the home page's contact
-     links off the bottom of the screen. There it stops short of the edges
-     instead. */
-  --fs-hero: min(14.19cqw, 30vh);
+     letter. Width alone, with no height term: the wordmark reaches both edges
+     at every window and every zoom level, and a short window finds its room
+     elsewhere. */
+  --fs-hero: 14.19cqw;
   /* One scale, named by role. Each vw ramp is set so the size lands exactly on
      its design value at a 1440px viewport and holds there on anything wider;
      below that it scales down, since 90px would not fit a phone. */

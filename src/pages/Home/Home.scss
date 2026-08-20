@@ -299,12 +299,24 @@
 // box, and 600 leaves a margin over that. Below it the same layout runs past
 // the fold and the page scrolls, which beats clipping the CV button off the
 // bottom of a box that cannot grow.
+//
+// The `max()` is the same argument one step further in. The wordmark's size is
+// set by the width alone — that is what makes it span the page — so on a wide,
+// short window it is tall enough that the rest of the composition no longer
+// fits a screen: at 1920x600 the contact row landed 80px past the bottom of a
+// box that clips. So the box takes whichever is larger, the screen or what the
+// composition actually needs, and the page scrolls in the cases where those
+// differ. The second term is the wordmark's own height (0.82 line-height on
+// 14.19cqw) plus 400px, measured as what the links, the intro and the contacts
+// take underneath it; cqw rather than vw so it tracks the same width the
+// wordmark is sized from. On any ordinary window the screen wins and nothing
+// about this changes.
 @media (min-width: 900px) and (min-height: 600px) {
   .home__hero {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
     gap: 0;
-    height: calc(100dvh - var(--header-h));
+    height: max(calc(100dvh - var(--header-h)), calc(11.64cqw + 400px));
     padding-bottom: 0;
   }
 }
@@ -426,9 +438,14 @@
   // one, the type and the spacing are capped against the height as well as the
   // width. Every value here is a `min()` whose vh term only bites once the
   // height runs out, so a tall window is untouched by all of it.
+  //
+  // The wordmark is not among them. It is the one piece of the page whose size
+  // is fixed by a rule that outranks fitting: its glyphs span the content edge
+  // to edge, at every window and every zoom level. Capping it against the
+  // height pulled it in from the edges at 150% zoom, where the viewport is
+  // short. The room comes out of everything else instead.
   @media (max-height: 899px) {
     .home__hero {
-      --fs-hero: min(14.19cqw, 23vh);
       --fs-link: min(clamp(1.25rem, 2.083vw, 30px), 3.8vh);
       --fs-subheading: min(clamp(2rem, 4.167vw, 60px), 6vh);
       --fs-lead: min(clamp(1.125rem, 1.528vw, 22px), 3vh);
@@ -447,16 +464,16 @@
       --drop: 1.5vh;
     }
 
-    // Except the top one. Its arrow is meant to lift into the wordmark's own
-    // slack, and on a short window there is none: the wordmark is capped at
-    // 23vh, so the arrow crossed the letters instead of passing under them.
-    // Dropping this link alone puts the arrow back under the type — and costs
-    // no height, since the offset is a transform and not layout.
+    // Except the top one. Its arrow is meant to pass under the wordmark, and it
+    // is the hero's own gap that gives it the room to — a gap this block cuts to
+    // 1.5vh. So the arrow crossed the letters. Dropping this link alone puts it
+    // back under the type, and costs no height: the offset is a transform, not
+    // layout.
     //
-    // Part of the drop is the arrow's own size, because that is what sets how
-    // far it reaches above its link: a flat number cleared the letters at 1000
-    // and still crossed them at 1920, where the arrow is 280px against the
-    // same 23vh of type.
+    // Part of the drop is the arrow's own size, because that width is what sets
+    // how far the arrow reaches above the link it belongs to: a flat number
+    // cleared the letters at 1000px wide and still crossed them at 1920, where
+    // the arrow is 280px.
     .home__shortcut--about {
       --drop: calc(1.5vh + var(--arrow-w) * 0.19);
     }
