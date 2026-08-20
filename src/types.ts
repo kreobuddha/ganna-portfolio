@@ -128,6 +128,15 @@ export interface IProject {
   groupsHeading?: string;
   /** Left out where the work has no mark of its own — a series, a set of covers. */
   logo?: string;
+  /**
+   * Where the work actually lives — the product's own site, its store listing,
+   * the account it is published to. Left out where there is nothing public to
+   * point at: an internal tool, a series that exists only here.
+   */
+  link?: {
+    label: string;
+    href: string;
+  };
 }
 
 /** One piece of work for a client. Most have exactly one. */

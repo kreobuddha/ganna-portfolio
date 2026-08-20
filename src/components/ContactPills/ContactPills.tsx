@@ -45,14 +45,15 @@ const ContactPills = ({ className }: ContactPillsProps): ReactElement => {
           <a
             className={clsx(
               'contact-pills__pill',
-              `contact-pills__pill--${VARIANTS[contact.kind]}`
+              `contact-pills__pill--${VARIANTS[contact.kind]}`,
+              `contact-pills__pill--${contact.kind}`
             )}
             href={contact.href}
             target={contact.kind === 'email' ? undefined : '_blank'}
             rel={contact.kind === 'email' ? undefined : 'noreferrer'}
           >
             <span className="contact-pills__icon">{ICONS[contact.kind]}</span>
-            {contact.label}
+            <span className="contact-pills__label">{contact.label}</span>
           </a>
         </li>
       ))}

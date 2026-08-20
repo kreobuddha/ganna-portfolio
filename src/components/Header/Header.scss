@@ -107,11 +107,20 @@
   }
 }
 
+// Hung off the bottom of the header rather than laid out under it: in flow it
+// pushed the whole page down as it opened, so the content jumped every time the
+// menu was tapped. Absolute, it draws over the page and the page does not move.
+// The header itself is the containing block — it is sticky, so it is positioned.
 .header__sheet {
   display: none;
 
   @media (max-width: 767px) {
     display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
     background: var(--blue-dark);
     border-top: 1px solid var(--glass-1);
     animation: header-sheet-in var(--dur) var(--ease);

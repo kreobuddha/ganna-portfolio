@@ -234,8 +234,11 @@ ul {
   padding-inline: var(--shell-pad);
 }
 
+/* Half the run-up the page used to take: Hanna read the old gap as the title
+   drifting away from the header rather than as breathing room. The bottom keeps
+   its full measure — that one separates the page from the footer. */
 .page {
-  padding-block: clamp(3rem, 8vw, 6rem) var(--sp-9);
+  padding-block: clamp(1.5rem, 4vw, 3rem) var(--sp-9);
 }
 
 .eyebrow {

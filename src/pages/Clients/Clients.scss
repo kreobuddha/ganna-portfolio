@@ -83,11 +83,14 @@
 
 // Always in the flow, empty until a logo is picked, so opening one does not
 // shove the footer down the page.
+// Centred throughout, per Hanna: the wall above it is a symmetrical grid of
+// marks, and a left-ragged column of facts under it read as a different page.
 .clients__panel {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--sp-5);
+  text-align: center;
   min-height: 8rem;
   margin-top: var(--sp-3);
   padding-top: var(--sp-7);
@@ -103,6 +106,7 @@
 .clients__project {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--sp-4);
   width: 100%;
   max-width: 76ch;
@@ -119,17 +123,19 @@
   border-top: 1px solid var(--glass-1);
 }
 
-// Label and value side by side, on a column narrow enough for the longest
-// label and no wider. Below the fold of a phone they stack instead.
+// Label over value down the middle. The old two-column form put the labels in
+// a right-ragged rail against left-ragged values, which cannot be centred —
+// stacking them is what lets the whole panel sit on one axis.
 .clients__facts {
   display: grid;
-  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr);
-  gap: var(--sp-3) var(--sp-5);
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp-1) 0;
   margin: 0;
+  width: 100%;
 }
 
 .clients__fact-label {
-  padding-top: 0.35rem;
+  padding-top: var(--sp-3);
   font-size: var(--fs-meta);
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -150,6 +156,7 @@
 .clients__products {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--sp-2);
   margin: 0;
 }
@@ -183,16 +190,6 @@
   }
 }
 
-@media (max-width: 599px) {
-  .clients__facts {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--sp-1) 0;
-  }
-
-  .clients__fact-label {
-    padding-top: var(--sp-3);
-  }
-}
 
 // The site's primary action, same pill as the CV button: solid on the page's
 // blue, lime under the pointer.

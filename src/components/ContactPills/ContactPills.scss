@@ -53,3 +53,39 @@
     height: 100%;
   }
 }
+
+// Narrow screens: the two ways to get in touch shed their words and become
+// round icon buttons, so the row still fits on one line beside the CV — which
+// keeps its label, being the one action worth naming.
+//
+// The label is clipped rather than removed: a button with no accessible name
+// is a button nobody using a screen reader can identify.
+@media (max-width: 599px) {
+  .contact-pills__pill--telegram,
+  .contact-pills__pill--email {
+    justify-content: center;
+    gap: 0;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+  }
+
+  .contact-pills__pill--telegram .contact-pills__label,
+  .contact-pills__pill--email .contact-pills__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .contact-pills {
+    flex-wrap: nowrap;
+    gap: var(--sp-3);
+  }
+
+  .contact-pills__pill--solid {
+    padding-inline: 1.25rem;
+  }
+}

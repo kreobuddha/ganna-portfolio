@@ -15,7 +15,7 @@ export const about: IAbout = {
   experience: [
     {
       company: 'Laboratory 24 LLC',
-      role: '2D Designer → Head of 2D Design Department',
+      role: 'Head of 2D Design',
       period: 'October 2015 — February 2016',
     },
     { company: 'R-Soft LLC', role: 'Designer', period: 'October 2016 — February 2017' },
@@ -25,7 +25,7 @@ export const about: IAbout = {
       role: 'Lead UI/UX Designer',
       period: 'February 2017 — February 2021',
     },
-    { company: 'Freelance', role: 'UX/UI Designer', period: 'February 2021 — Present' },
+    { company: 'Freelance', role: 'Lead UI/UX Designer', period: 'February 2021 — Present' },
   ],
   skills: [
     'Complex enterprise product design',
