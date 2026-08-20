@@ -56,7 +56,7 @@ const ProjectDetail = (): ReactElement => {
         {/* A project whose timeline is its own tag — "Product Concept" — would
             otherwise print the same pill twice. */}
         <ul className="project-detail__tags">
-          {[...new Set([project.period, project.role, ...project.tags])].map((tag) => (
+          {[...new Set([project.period, ...project.roles, ...project.tags])].map((tag) => (
             <li key={tag} className="project-detail__tag">
               {tag}
             </li>

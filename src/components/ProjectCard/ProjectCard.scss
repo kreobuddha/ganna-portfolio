@@ -78,19 +78,19 @@
   }
 }
 
-.project-card__role {
+.project-card__meta {
   font-size: var(--fs-body);
   color: var(--muted);
 }
 
-.project-card__tags {
+.project-card__roles {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
   margin: 0;
 }
 
-.project-card__tag {
+.project-card__role {
   padding: 0.3rem 0.75rem;
   font-size: var(--fs-meta);
   font-weight: 700;
