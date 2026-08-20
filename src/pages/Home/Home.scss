@@ -363,12 +363,17 @@
     // from the width on its own; see the base rule for the arrow.
     --arrow-w: clamp(160px, 22.22vw - 40px, 280px);
 
+    // How far down the diagonal drops this link. A property rather than a
+    // number in the transform, so a short window and the top link can each
+    // change it without restating the horizontal offset.
+    --drop: 10vh;
+
     z-index: 2;
     align-self: start;
     // Down the full 10%, but only 5.5% left: the arrow reaches most of its own
     // width to the left of its link, so past this the leftmost one leaves the
     // screen.
-    translate: -5.5vw 10vh;
+    translate: -5.5vw var(--drop);
   }
 
   .home__shortcut--about {
@@ -439,7 +444,21 @@
       // that lands them over the middle of the photo; on a short one the whole
       // stage is compressed underneath them and the same tenth pushes the
       // lowest two down onto the intro's own heading. Less of a smaller screen.
-      translate: -5.5vw 1.5vh;
+      --drop: 1.5vh;
+    }
+
+    // Except the top one. Its arrow is meant to lift into the wordmark's own
+    // slack, and on a short window there is none: the wordmark is capped at
+    // 23vh, so the arrow crossed the letters instead of passing under them.
+    // Dropping this link alone puts the arrow back under the type — and costs
+    // no height, since the offset is a transform and not layout.
+    //
+    // Part of the drop is the arrow's own size, because that is what sets how
+    // far it reaches above its link: a flat number cleared the letters at 1000
+    // and still crossed them at 1920, where the arrow is 280px against the
+    // same 23vh of type.
+    .home__shortcut--about {
+      --drop: calc(1.5vh + var(--arrow-w) * 0.19);
     }
 
     // The row gap between the three links and the intro. At 1.6vh it was the
