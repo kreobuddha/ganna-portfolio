@@ -227,12 +227,36 @@
   margin-top: var(--sp-3);
 }
 
+// One screen, no scrolling — but only where there is the height for it. This is
+// a separate rule from the arrangement above on purpose: the diagonal is what
+// the page should look like from 900px of width up, and it holds whatever the
+// height is. Pinning the hero to the viewport is the extra the design gets when
+// the window is tall enough to take it; below that the same layout simply runs
+// past the fold and the page scrolls, which is better than clipping the CV
+// button off the bottom of a fixed box.
+@media (min-width: 900px) and (min-height: 900px) {
+  .home__hero {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 0;
+    height: calc(100dvh - var(--header-h));
+    padding-bottom: 0;
+  }
+}
+
 // Under the diagonal's floor the photo stops being a block above the links and
 // becomes the ground they stand on: the links move into the portrait's own
 // cell, and the portrait drops back in opacity so a lime arrow over it still
 // reads. Same two elements, same order in the document — only the layer
 // changes, which is why nothing here touches the stack above 900.
 @media (max-width: 899px) {
+  // The first arrow now hangs high enough above its link to reach the wordmark
+  // above it. The gap is tied to the arrow's size for that reason rather than
+  // being a fixed step.
+  .home__hero {
+    gap: calc(var(--arrow-w) * 0.4);
+  }
+
   .home__stage {
     grid-template-areas:
       'portrait'
@@ -254,65 +278,40 @@
   }
 }
 
+// On a phone the three links are the whole navigation — there is no header bar
+// to fall back on, only a burger — so they are sized as the page's main
+// controls rather than as a scaled-down copy of the desktop set. Everything
+// grows together: the arrow, the type and the gap between the two, since the
+// arrow's reach and the room reserved for it are both derived from --arrow-w.
 @media (max-width: 767px) {
-  .home__dot {
-    width: 10px;
-    height: 10px;
-  }
-
-  // At this scale the design's 40px reads as a stray mark rather than an
-  // arrow aimed at the dot.
-  .home__shortcut .home__arrow {
-    --arrow-gap: 16px;
-  }
-}
-
-@media (min-width: 900px) {
-  .home__stage {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 46%);
-    grid-template-areas:
-      'shortcuts portrait'
-      'intro     portrait';
-    align-items: start;
+  .home__hero {
+    --arrow-w: clamp(120px, 32vw, 180px);
+    --fs-link: clamp(1.5rem, 6.4vw, 1.75rem);
   }
 
   .home__shortcuts {
-    padding-top: var(--sp-6);
+    gap: clamp(2.5rem, 9vw, 3.5rem);
   }
 
-  .home__portrait {
-    justify-self: end;
-    width: min(520px, 100%);
-  }
-
-  .home__intro {
-    align-self: end;
-    padding-bottom: var(--sp-6);
+  // Still short of the design's 40px: at this arrow size that much air reads as
+  // a stray mark rather than as an arrow aimed at the dot.
+  .home__shortcut .home__arrow {
+    --arrow-gap: 24px;
   }
 }
 
-// Full-screen composition: one viewport-tall stage laid out on a 12-column
-// grid, so the page fits without scrolling.
+// The composition: from 900px of width up, the three links run down a diagonal
+// across a twelve-column stage with the photo behind them, which is the design.
+// Only the width decides it. It used to want 1280px and 900px of height as
+// well, and the height was the trap — a 13-inch laptop, or any screen at 150%
+// zoom, has the width and not the height, and got the stacked column meant for
+// phones. Whether the whole thing fits one screen is settled separately, below.
 //
-// The design's sizes — 30px links, arrows dropping 72px, an edge-to-edge
-// wordmark whose height grows with the viewport's width — need real vertical
-// room. 900px is the documented floor for the no-scroll rule:
-// below it the flow layout above takes over and the page scrolls normally.
-//
-// The height here is fixed on purpose: it gives the rows a definite size, so
-// the portrait can overflow its row instead of inflating it. What keeps the
-// contact links from being clipped by that fixed height is the vh ceiling on
-// --fs-hero, which caps how much of the screen the wordmark can eat on a
-// wide-but-short window.
-@media (min-width: 900px) and (min-height: 900px) {
-  .home__hero {
-    display: grid;
-    grid-template-rows: auto minmax(0, 1fr);
-    gap: 0;
-    height: calc(100dvh - var(--header-h));
-    padding-bottom: 0;
-  }
-
+// There is no two-column intermediate layout any more. There used to be one
+// between 900 and 1280, and every bug Hanna reported on this page came from it:
+// the arrows running off the left edge, the three heads landing in a row, the
+// set dropping under the photo.
+@media (min-width: 900px) {
   // Rows are content-sized for the three links, then a single flexible row
   // absorbs whatever height is left so the intro always lands at the bottom.
   // Equal fractions cramped the links on a short window.
@@ -405,6 +404,19 @@
 
     .home__contacts .contact-pills__pill {
       padding-inline: 1.25rem;
+    }
+  }
+
+  // On a window too short to pin, the flexible row has no fixed height left to
+  // overflow, so the photo inflates it instead — and lands under the links as a
+  // block of its own rather than behind them, which is not the composition.
+  // Spanning it back across the link rows puts it where it belongs and stops it
+  // adding its own height to the page: the rows grow to the photo instead of
+  // stacking after it. The links keep their z-index and stay on top.
+  @media (max-height: 899px) {
+    .home__portrait {
+      grid-row: 1 / 5;
+      width: min(52vw, 46vh);
     }
   }
 

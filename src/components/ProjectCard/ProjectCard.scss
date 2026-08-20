@@ -49,19 +49,27 @@
 
 .project-card__heading {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--sp-4);
 }
 
 .project-card__logo {
+  /* Never taller than the line it is aligned to, so the mark reads as part of
+     the title rather than as a block beside it. */
+  --logo-h: min(48px, var(--fs-subheading));
+
   /* Most of these logos are wordmarks, not square icons: fixing both sides
      squashed them. Height is the constant, width follows the artwork. */
   width: auto;
-  height: 48px;
+  height: var(--logo-h);
   max-width: 160px;
   flex-shrink: 0;
   object-fit: contain;
   border-radius: var(--radius-sm);
+  /* Centred on the title's own line, not on the title-and-subtitle block: two
+     lines tall, that centre falls in the gap between them and the mark sits
+     against nothing. 1.02 is the line-height every heading on the site carries. */
+  margin-top: calc((var(--fs-subheading) * 1.02 - var(--logo-h)) / 2);
 }
 
 .project-card__title {
