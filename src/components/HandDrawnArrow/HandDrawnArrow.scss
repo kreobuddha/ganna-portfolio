@@ -1,8 +1,13 @@
+// The arrow is drawn inside the link it points at, so it answers the pointer
+// the way the rest of that link does — see the hit rect in the component.
 .hand-drawn-arrow {
   width: 100%;
   height: auto;
   overflow: visible;
-  pointer-events: none;
+}
+
+.hand-drawn-arrow__hit {
+  fill: transparent;
 }
 
 .hand-drawn-arrow__stroke {

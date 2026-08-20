@@ -42,6 +42,11 @@ const HandDrawnArrow = ({
       aria-hidden="true"
       focusable="false"
     >
+      {/* An invisible fill over the whole viewBox. Without it only the 2.8px
+          stroke answers the pointer — `visiblePainted` hit-testing ignores
+          everything the paint does not cover — so the arrow drew as part of
+          the link it sits in but did not behave as part of it. */}
+      <rect className="hand-drawn-arrow__hit" width="120" height="48" />
       <path className="hand-drawn-arrow__stroke" d={curve} />
       <path className="hand-drawn-arrow__stroke" d={head} />
     </svg>

@@ -65,6 +65,11 @@
 }
 
 .home__shortcut {
+  // Room around the dot and the label so the target is a block rather than a
+  // 15px circle. The arrow's own `top` subtracts this back out, so padding here
+  // does not drift the arrow off the dot it aims at.
+  --hit-pad: var(--sp-3);
+
   position: relative;
   // Above the portrait. Where the two meet — the stacked layout puts the links
   // under the photo — the arrows are allowed to cross it rather than being
@@ -74,16 +79,23 @@
   flex-direction: column;
   align-items: center;
   gap: var(--sp-2);
+  padding: var(--hit-pad) var(--sp-4);
   // `scale` rather than a transform, so it composes with the `translate` the
   // full-screen layout sets on the same element instead of overwriting it.
   transition: scale var(--dur) var(--ease);
 
+  // The whole link answers: the arrow, the dot and the label all light and grow
+  // together, from a pointer anywhere over any of them.
   &:hover {
     scale: 1.08;
   }
 
   &:hover .home__shortcut-label {
     color: var(--lime);
+  }
+
+  &:hover .home__dot {
+    background: var(--lime);
   }
 
   // Plays once per session, staggered left to right by the link's own order.
@@ -114,7 +126,7 @@
   --arrow-gap: 40px;
 
   position: absolute;
-  top: -20px;
+  top: calc(var(--hit-pad) - 20px);
   left: 50%;
   width: var(--arrow-w);
   max-width: none;
@@ -126,6 +138,7 @@
   height: 15px;
   background: var(--white);
   border-radius: 50%;
+  transition: background-color var(--dur) var(--ease);
 }
 
 .home__shortcut-label {
@@ -329,7 +342,7 @@
   // Same aim and the same 40px gap, at the design's size — only `top` changes,
   // since it tracks 28.3% of the arrow's width.
   .home__shortcut .home__arrow {
-    top: -72px;
+    top: calc(var(--hit-pad) - 72px);
     width: 280px;
   }
 
