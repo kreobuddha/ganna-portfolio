@@ -14,7 +14,7 @@ export const projects: IProject[] = [
     role: 'Lead product & UX/UI Designer',
     period: '2021—Now',
     tags: ['B2C', 'Healthcare'],
-    link: { label: 'Visit resola.care', href: 'https://www.resola.care/index.html' },
+    link: { label: 'Visit resola.care', href: 'https://www.resola.care' },
     summary: {
       strong: 'Resola',
       rest: 'is a digital rehabilitation platform designed for physical and occupational therapy. The ecosystem combines a patient-facing mobile app, a web workspace for therapists, and a marketing website. The platform enables clinicians to create personalized rehabilitation programs, remotely monitor patient progress through motion tracking and biomechanical data, and adjust treatment plans based on real-time insights, helping patients recover more effectively at home.',
