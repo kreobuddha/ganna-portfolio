@@ -1138,7 +1138,7 @@ export const projects: IProject[] = [
     problem:
       'A club night lasts one evening and is gone. The people who were not in the room never see it, the artists who played have nothing to show for it, and a scene that produces a great deal ends up leaving almost no trace.',
     solution:
-      'Every night is filmed and streamed, the full sets are published afterwards, and each artist is introduced with a card written about their work rather than a line-up listing. One visual system — red, black and a heavy display face — carries the whole thing across the site, the posters and every platform, so a poster, a video and a post all read as the same thing.',
+      'Every night is filmed and streamed, the full sets are published on YouTube afterwards, and each collaborator — DJs, visual artists, lighting designers, florists — is introduced with a card written about their work rather than a line-up listing. Sound and visuals are treated as one act, not music with decoration on top. One visual system — red, black and a heavy display face — carries the whole thing across the site, the posters and every platform, so a poster, a video and a post all read as the same thing.',
     process: [
       {
         title: 'Founding it',
@@ -1164,7 +1164,7 @@ export const projects: IProject[] = [
     outcome: [
       'An independent media running as one visual system across site, print, Instagram, YouTube and SoundCloud.',
       'A season of nights filmed, streamed and published as full sets rather than lost the morning after.',
-      'Artists introduced with written cards, which is what makes it a media instead of a poster feed.',
+      'Collaborators introduced with written cards, which is what makes it a media instead of a poster feed.',
     ],
     cover: {
       name: 'view-project/hero-site',
@@ -1362,10 +1362,10 @@ export const projects: IProject[] = [
     tags: ['Music', 'Illustration', 'Art direction'],
     summary: {
       strong: 'Music covers',
-      rest: 'made over eight years for EPs and albums — among them a release for a Berlin techno label and a run of independent artists. Every one is drawn or art-directed to the record it belongs to rather than to a house style: hand illustration, flat vector, acrylic on canvas and photography all appear, because what the music needs decides the medium.',
+      rest: 'made over nine years for EPs and albums — among them a release for a Berlin techno label and a run of independent artists. Every one is drawn or art-directed to the record it belongs to rather than to a house style: hand illustration, flat vector, acrylic on canvas and photography all appear, because what the music needs decides the medium.',
     },
     intro:
-      'Eight years of cover artwork for EPs and albums — a Berlin techno label and a run of independent artists — where each record picks its own medium.',
+      'More than 9 years of cover artwork for EPs and albums — a Berlin techno label and a run of independent artists — where each record picks its own medium.',
     problem:
       'A cover is the only picture most listeners will ever see of a record, and it has to work at every size it is met at: a wall-sized poster, a sleeve in a shop, and a thumbnail on a phone the size of a fingernail.',
     solution:
@@ -1400,7 +1400,6 @@ export const projects: IProject[] = [
     groups: [
       {
         id: 'covers',
-        title: 'Six releases',
         body: 'Six releases, and six different answers to the same brief.',
         layout: 'grid',
         images: [
@@ -1496,11 +1495,10 @@ export const projects: IProject[] = [
       height: 1123,
     },
     sections: [],
-    groupsHeading: 'Selected work',
+    groupsHeading: 'The series',
     groups: [
       {
         id: 'works',
-        title: 'The series',
         body: 'Six works, one body. Greys for the volumes, a red and a cyan outline that never quite lands on the edge it belongs to.',
         layout: 'grid',
         images: [
@@ -1509,42 +1507,36 @@ export const projects: IProject[] = [
             alt: 'A face drawn front on in flat greys, the outlines doubled in red and cyan',
             width: 1600,
             height: 1600,
-            caption: 'Face',
           },
           {
             name: 'holistic/hands',
             alt: 'Two hands reaching down onto a surface, fingers spread, drawn in grey with red outlines',
             width: 1600,
             height: 1600,
-            caption: 'Hands',
           },
           {
             name: 'holistic/body',
             alt: 'A torso turning away, drawn in flat greys with red contour lines',
             width: 1600,
             height: 1600,
-            caption: 'Body',
           },
           {
             name: 'holistic/legs',
             alt: 'Crossed legs and bare feet raised, drawn in overlapping greys',
             width: 1600,
             height: 1600,
-            caption: 'Legs',
           },
           {
             name: 'holistic/torso',
             alt: 'The same back mirrored on both sides of the frame, arms raised, leaving an empty centre',
             width: 1600,
             height: 1600,
-            caption: 'Mirror',
           },
           {
             name: 'holistic/us',
             alt: 'Two people lying together seen from above, drawn almost entirely in outline',
             width: 1600,
             height: 1600,
-            caption: 'Us',
           },
         ],
       },

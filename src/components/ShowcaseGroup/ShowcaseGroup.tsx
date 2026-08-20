@@ -12,10 +12,12 @@ interface ShowcaseGroupProps {
 const ShowcaseGroup = ({ group, onOpenImage }: ShowcaseGroupProps): ReactElement => {
   return (
     <section className="showcase-group" id={group.id}>
-      <header className="showcase-group__header">
-        <h4 className="showcase-group__title">{group.title}</h4>
-        {group.body ? <p className="showcase-group__body">{group.body}</p> : null}
-      </header>
+      {group.title || group.body ? (
+        <header className="showcase-group__header">
+          {group.title ? <h4 className="showcase-group__title">{group.title}</h4> : null}
+          {group.body ? <p className="showcase-group__body">{group.body}</p> : null}
+        </header>
+      ) : null}
 
       <div className={clsx('showcase-group__grid', `showcase-group__grid--${group.layout}`)}>
         {group.images.map((image, index) => (

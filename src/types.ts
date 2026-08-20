@@ -47,7 +47,12 @@ export type GroupLayout = 'feature' | 'phones' | 'grid' | 'stack' | 'figure';
 /** One set of screens inside a section: "Log in", "Mobile UI kit". */
 export interface IShowcaseGroup {
   id: string;
-  title: string;
+  /**
+   * Left out where the group is the whole of what the page is showing and the
+   * heading above it already names it — a set of covers, a series of drawings.
+   * A product's case study has several groups and needs every one named.
+   */
+  title?: string;
   body?: string;
   layout: GroupLayout;
   images: IProjectImage[];
