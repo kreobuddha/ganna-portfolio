@@ -18,7 +18,7 @@ export const profile: IProfile = {
     { label: 'Email', href: 'mailto:gannashilyaevacassandra@gmail.com', kind: 'email' },
     {
       label: 'CV',
-      href: 'https://drive.google.com/file/d/1DjEG-0KxBrTtjdOKNgSu_C8PPdHMTnGS/view?usp=sharing',
+      href: 'https://drive.google.com/file/d/1Yt1LFZXHz5-C6dopcKKRAqLZ2dcfmpbZ/view?usp=sharing',
       kind: 'resume',
     },
   ],
