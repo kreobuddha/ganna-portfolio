@@ -5,6 +5,11 @@ import { NavLink, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { profile } from '@/data/profile';
 
+interface HeaderProps {
+  /** Home drops the bar once the composition owns the screen — see Header.scss. */
+  isHome?: boolean;
+}
+
 interface NavItem {
   to: string;
   label: string;
@@ -18,7 +23,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: '/about', label: 'About Me', end: false },
 ];
 
-const Header = (): ReactElement => {
+const Header = ({ isHome = false }: HeaderProps): ReactElement => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { pathname } = useLocation();
 
@@ -39,7 +44,7 @@ const Header = (): ReactElement => {
   };
 
   return (
-    <header className="header">
+    <header className={clsx('header', isHome && 'header--home')}>
       <div className="header__bar shell">
         <NavLink to="/" className="header__brand">
           {profile.fullName}

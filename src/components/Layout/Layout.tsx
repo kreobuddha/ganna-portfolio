@@ -8,7 +8,8 @@ import Footer from '@/components/Footer/Footer';
 const Layout = (): ReactElement => {
   const { pathname } = useLocation();
   // Home is a single full-screen composition and carries its own contact
-  // links, so the footer would only add a scrollbar to it.
+  // links and section links, so the footer would only add a scrollbar to it
+  // and the header bar has nothing of its own to offer — see Header.scss.
   const isHome = pathname === '/';
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const Layout = (): ReactElement => {
       <a className="layout__skip" href="#main">
         Skip to content
       </a>
-      <Header />
+      <Header isHome={isHome} />
       <main id="main" className="layout__main">
         <Outlet />
       </main>
