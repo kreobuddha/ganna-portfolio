@@ -33,16 +33,18 @@
         font-style: normal;
       }
 
-      /* The site's blue, used on rules and links only. Nothing is ever set in
-         a pale grey or laid over a filled background: this page is read by
-         applicant-tracking software and printed in black and white as often
-         as it is opened on a screen. */
+      /* The palette is the one Hanna set in the Pages version of this CV,
+         sampled out of that file: a deeper blue than the site's #1C4AED, text
+         very close to black, and a grey that carries the section labels.
+         Her grey measured #848484; it is darker here, because this page is
+         printed in black and white as often as it is read on a screen.
+         Nothing is ever laid over a filled background. */
       :root {
-        --ink: #14161a;
-        --ink-soft: #3d4350;
-        --blue: #1c4aed;
-        --rule: #c9cfdd;
-        --rule-soft: #e2e6ef;
+        --blue: #2f56c0;
+        --ink: #101010;
+        --body: #1a1a1a;
+        --label: #6b6b6b;
+        --rule-soft: #d8dce6;
       }
 
       @page {
@@ -62,15 +64,16 @@
       body {
         margin: 0;
         font-family: 'Satoshi', 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
-        font-size: 10pt;
+        font-size: 9.1pt;
         line-height: 1.34;
-        color: var(--ink);
+        color: var(--body);
         font-variant-ligatures: none;
       }
 
       a {
         color: var(--blue);
-        text-decoration: none;
+        text-decoration: underline;
+        text-underline-offset: 1.5pt;
       }
 
       p {
@@ -89,158 +92,223 @@
          every line of the list to the end of the page when the text is copied
          out or read by an applicant-tracking system. */
       li {
-        padding-left: 3.6mm;
+        padding-left: 2.9mm;
       }
 
       li::before {
-        content: '\2022';
+        content: '\00b7';
         display: inline-block;
-        width: 3.6mm;
-        margin-left: -3.6mm;
-        color: var(--blue);
+        width: 2.9mm;
+        margin-left: -2.9mm;
+        font-weight: 700;
       }
 
       /* ---- header ---------------------------------------------------- */
 
+      /* Two lines, as she set it. It is the one piece of the old CV that was
+         allowed to be loud, and with the photograph gone it has the width. */
       .name {
         margin: 0;
-        font-size: 25pt;
+        font-size: 31pt;
         font-weight: 900;
-        letter-spacing: -0.015em;
-        line-height: 1.05;
+        /* Not tighter than this: below ~1.05 some PDF text extractors stop
+           seeing two lines and read the name as "HannaShyliaieva", and the
+           name is the one field every applicant-tracking system reads. */
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: var(--blue);
+      }
+
+      /* Ширина ставит перенос после имени; текст при этом остаётся одной
+         строкой с настоящим пробелом, поэтому из PDF он копируется как
+         «Hanna Shyliaieva», а не слипшимся в одно слово. */
+      .name {
+        max-width: 70mm;
       }
 
       .role {
-        margin-top: 1.5mm;
-        font-size: 12pt;
+        margin-top: 2.4mm;
+        font-size: 11.5pt;
         font-weight: 500;
-        letter-spacing: 0.01em;
-        color: var(--blue);
-      }
-
-      .where {
-        margin-top: 2.6mm;
-        font-weight: 700;
-      }
-
-      .availability {
-        margin-top: 0.8mm;
-        max-width: 165mm;
-        color: var(--ink-soft);
+        color: var(--ink);
       }
 
       .contacts {
-        margin-top: 2.6mm;
-        padding-top: 2.4mm;
-        border-top: 0.7pt solid var(--rule);
+        margin-top: 3.4mm;
       }
 
-      /* Padding on the left only. The separator is bound to the word before
-         it so it can never start a line; the space that follows it is both the
-         break opportunity and the gap on its right. */
-      .contacts .sep {
-        color: var(--rule);
-        padding-left: 1.2mm;
+      .contacts p {
+        margin-top: 0.5mm;
       }
 
-      /* ---- sections -------------------------------------------------- */
+      /* Grey word, blue link — her pairing. */
+      .contacts .key {
+        color: var(--label);
+      }
 
-      section {
+      /* ---- summary and the two facts under it ------------------------ */
+
+      /* The blue rule down the left of the summary, carried over as-is. */
+      .summary {
+        margin-top: 5mm;
+        padding-left: 4.5mm;
+        border-left: 1.6pt solid var(--blue);
+      }
+
+      .summary strong {
+        color: var(--blue);
+        font-weight: 700;
+      }
+
+      .facts {
         margin-top: 4mm;
       }
 
-      h2 {
-        margin: 0 0 2.2mm;
-        padding-bottom: 1mm;
-        border-bottom: 1pt solid var(--blue);
-        font-size: 9pt;
-        font-weight: 700;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--blue);
+      .facts p {
+        margin-top: 0.6mm;
       }
 
+      /* "Location:", "Work setup:", "Note:" — blue, bold, inline. */
+      .lede {
+        color: var(--blue);
+        font-weight: 700;
+      }
+
+      /* ---- the label column ------------------------------------------ */
+
+      /* Her structure: the section is named in grey in a narrow column on the
+         left, and everything it holds sits in the column beside it. Two
+         columns of layout, not of text — nothing flows from one into the
+         other, and the label is written before its content, so the PDF still
+         copies out in the order it is read. */
+      /* 5.4mm is not a loose choice. Below it, pdfminer — the extractor most
+         applicant-tracking systems are built on — groups two adjacent labels
+         in the left column into one block and emits "Education" and "Selected
+         clients" together, ahead of the content belonging to the first. Above
+         about 6mm the page count goes to three. Re-check both if this moves. */
+      .row {
+        display: flex;
+        gap: 6mm;
+        margin-top: 5.4mm;
+      }
+
+      .row-label {
+        flex: 0 0 34mm;
+        color: var(--label);
+        line-height: 1.3;
+      }
+
+      .row-body {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      /* A full-width blue rule opens the major parts, the way it does in the
+         Pages file. */
+      .row--band {
+        margin-top: 5.4mm;
+        padding-top: 5mm;
+        border-top: 1.4pt solid var(--blue);
+      }
+
+      /* ---- entries --------------------------------------------------- */
+
       .entry {
-        margin-top: 2.9mm;
+        margin-top: 3.4mm;
         break-inside: avoid;
       }
 
-      .entry:first-of-type {
+      .entry:first-child {
         margin-top: 0;
       }
 
-      /* Company and dates share one line. One line, not two columns: the text
-         comes out of the PDF in the order it is written. */
-      .entry-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 6mm;
-      }
-
-      .entry-head strong {
-        font-weight: 700;
-      }
-
+      /* Dates above the job, both bold — her order. */
       .entry-dates {
-        flex: none;
-        font-weight: 500;
-        color: var(--ink-soft);
-        white-space: nowrap;
+        font-weight: 700;
+        color: var(--ink);
+      }
+
+      .entry-role {
+        font-weight: 700;
+        color: var(--ink);
       }
 
       .bullets {
-        margin-top: 1.1mm;
+        margin-top: 1.2mm;
       }
 
       .bullets li {
-        margin-top: 0.7mm;
-        color: var(--ink-soft);
+        margin-top: 0.6mm;
+      }
+
+      /* ---- projects -------------------------------------------------- */
+
+      .project {
+        margin-top: 3.8mm;
+        break-inside: avoid;
+      }
+
+      .project:first-child {
+        margin-top: 0;
+      }
+
+      .project-name {
+        font-size: 11pt;
+        font-weight: 700;
+        color: var(--blue);
+        line-height: 1.2;
+      }
+
+      .project-meta {
+        font-weight: 700;
+        color: var(--ink);
       }
 
       .desc {
-        margin-top: 1.1mm;
-        color: var(--ink-soft);
+        margin-top: 1.4mm;
       }
 
       /* Whose books the work was done through. Part of the sentence, not a
          footnote: without it the client names read as direct engagements. */
       .via {
+        font-weight: 700;
         color: var(--ink);
-        font-weight: 500;
       }
 
       .list li {
-        margin-top: 0.7mm;
+        margin-top: 0.6mm;
       }
 
       .list li:first-child {
         margin-top: 0;
       }
 
-      .plain {
-        color: var(--ink-soft);
+      .sep {
+        color: var(--label);
+        padding-left: 0.9mm;
       }
 
-      .plain .sep {
-        color: var(--rule);
-        padding-left: 1mm;
-      }
-
+      /* Her client wall: blue, bold, set larger than the body. */
       .clients {
-        color: var(--ink-soft);
+        font-size: 10.5pt;
+        font-weight: 700;
+        color: var(--blue);
+        line-height: 1.35;
       }
 
-      .clients strong {
-        color: var(--ink);
-        font-weight: 500;
+      .clients .sep {
+        padding-left: 0.9mm;
+      }
+
+      .clients-note {
+        margin-top: 1.4mm;
+        color: var(--label);
       }
 
       .note {
         margin-top: 5mm;
-        padding-top: 2.4mm;
+        padding-top: 2.6mm;
         border-top: 0.7pt solid var(--rule-soft);
-        color: var(--ink-soft);
         break-inside: avoid;
       }
     </style>
@@ -251,240 +319,236 @@
       <h1 class="name">Hanna Shyliaieva</h1>
       <p class="role">Senior UX/UI Designer</p>
 
-      <p class="where">Tbilisi, Georgia (UTC+4) · Ukrainian citizen</p>
-      <p class="availability">
-        Available worldwide as an independent contractor — registered sole proprietorship in
-        Georgia, able to invoice international clients directly, or via an EOR. No employer
-        sponsorship required.
+      <div class="contacts">
+        <p>
+          <span class="key">Email:</span>
+          <a href="mailto:gannashilyaevacassandra@gmail.com">gannashilyaevacassandra@gmail.com</a>
+        </p>
+        <p>
+          <span class="key">Telegram:</span>
+          <a href="https://t.me/Ganna_designer">t.me/Ganna_designer</a>
+        </p>
+        <p>
+          <span class="key">LinkedIn:</span>
+          <a href="https://www.linkedin.com/in/hannashyliaieva">linkedin.com/in/hannashyliaieva</a>
+        </p>
+        <p>
+          <span class="key">Portfolio:</span>
+          <a href="https://kreobuddha.github.io/ganna-portfolio">kreobuddha.github.io/ganna-portfolio</a>
+        </p>
+      </div>
+
+      <p class="summary">
+        <strong>UX/UI designer with 10+ years of experience</strong> in enterprise software,
+        internal tools and digital products. Strongest in complex interfaces — data-dense tables,
+        filters, access control, admin panels and dashboards — and in the information architecture
+        behind them. Built design systems from the ground up, led designers on multi-product
+        projects, and worked directly with development teams through handoff and review.
       </p>
 
-      <p class="contacts">
-        <a href="mailto:gannashilyaevacassandra@gmail.com">gannashilyaevacassandra@gmail.com</a><span class="sep">·</span>
-        <a href="https://t.me/Ganna_designer">t.me/Ganna_designer</a><span class="sep">·</span>
-        <a href="https://www.linkedin.com/in/hannashyliaieva">linkedin.com/in/hannashyliaieva</a><span class="sep">·</span>
-        <a href="https://kreobuddha.github.io/ganna-portfolio">kreobuddha.github.io/ganna-portfolio</a>
-      </p>
+      <div class="facts">
+        <p><span class="lede">Location:</span> Tbilisi, Georgia (UTC+4) · Ukrainian citizen</p>
+        <p>
+          <span class="lede">Work setup:</span> Available worldwide as an independent contractor —
+          registered sole proprietorship in Georgia, able to invoice international clients directly,
+          or via an EOR. No employer sponsorship required.
+        </p>
+      </div>
     </header>
 
-    <section>
-      <h2>Summary</h2>
-      <p class="desc">
-        UX/UI designer with 10+ years of experience in enterprise software, internal tools and
-        digital products. Strongest in complex interfaces — data-dense tables, filters, access
-        control, admin panels and dashboards — and in the information architecture behind them.
-        Built design systems from the ground up, led designers on multi-product projects, and worked
-        directly with development teams through handoff and review.
-      </p>
+    <section class="row row--band">
+      <p class="row-label">Professional experience</p>
+      <div class="row-body">
+        <div class="entry">
+          <p class="entry-dates">February 2026 — Present · Tbilisi</p>
+          <p class="entry-role">Freelance — Senior UX/UI Designer</p>
+          <ul class="bullets">
+            <li>Sole designer on an e-commerce product for a Netherlands-based children's toy
+              marketplace: UX, UI and the interface system, working directly with the development
+              team.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <p class="entry-dates">August 2022 — January 2026</p>
+          <p class="entry-role">Consolware GmbH, Berlin — Lead UX/UI Designer (contract)</p>
+          <ul class="bullets">
+            <li>Led design for international clients across web applications, mobile products and
+              digital platforms: research, information architecture, interface design, prototyping
+              and branding.</li>
+            <li>Ran the design side of Resola, a US healthcare startup, from concept to a funded
+              product.</li>
+            <li>Delivered the redesign of Digital Tower, an enterprise operations platform in daily
+              use at Service-Telecom Group.</li>
+            <li>Directed other designers on project work and reviewed their delivery.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <p class="entry-dates">June 2019 — August 2022</p>
+          <p class="entry-role">GMCS Verex LLC, Moscow — Lead UI/UX Designer</p>
+          <ul class="bullets">
+            <li>Designed enterprise web applications and internal systems for large corporate
+              clients, working in teams of three to five.</li>
+            <li>Delivered five internal applications for Leroy Merlin — price monitoring, inventory
+              accuracy, department management and HR floor maps — embedded on site with their
+              in-house team.</li>
+            <li>Created corporate websites, brand guidelines and supporting materials.</li>
+            <li>Won repeat business: several major clients chose the company on the strength of the
+              design work.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <p class="entry-dates">February 2017 — June 2019</p>
+          <p class="entry-role">SprintSoft LLC, Tula — UI/UX Designer → Senior UI/UX Designer</p>
+          <ul class="bullets">
+            <li>Designed web applications and websites; promoted to Senior within the first two
+              years.</li>
+            <li>Created visual identities and brand guidelines.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <p class="entry-dates">October 2016 — February 2017</p>
+          <p class="entry-role">R-Soft LLC — Designer</p>
+          <ul class="bullets">
+            <li>Designed web applications and websites; developed branding and visual identity
+              systems.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <p class="entry-dates">October 2015 — February 2016</p>
+          <p class="entry-role">Laboratory 24 LLC — 2D Designer → Head of 2D Design</p>
+          <ul class="bullets">
+            <li>Designed interfaces for 3D applications; managed the 2D design team after
+              promotion.</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Experience</h2>
+    <section class="row row--band">
+      <p class="row-label">Selected projects</p>
+      <div class="row-body">
+        <div class="project">
+          <p class="project-name">Resola</p>
+          <p class="project-meta">
+            Healthcare, US market · Lead Product &amp; UX/UI Designer · 2021—2026
+          </p>
+          <p class="desc">
+            <span class="via">(via GMCS Verex, then Consolware)</span> Home rehabilitation platform
+            for stroke survivors: patients do sensor-guided exercises at home while clinicians
+            monitor progress remotely. Designed the entire product — 20+ screens in the patient app,
+            a clinician workspace of comparable scale, the marketing site and the brand. Directed
+            the designers on the project, ran sensor integration end to end with the hardware
+            vendor, and tested with real post-stroke patients. Taken from concept to secured
+            funding, a clinic-network partnership and a second release.
+          </p>
+        </div>
 
-      <div class="entry">
-        <p class="entry-head">
-          <span><strong>Freelance</strong> — Senior UX/UI Designer</span>
-          <span class="entry-dates">February 2026 — Present · Tbilisi</span>
-        </p>
-        <ul class="bullets">
-          <li>Sole designer on an e-commerce product for a Netherlands-based children's toy
-            marketplace: UX, UI and the interface system, working directly with the development
-            team.</li>
+        <div class="project">
+          <p class="project-name">Digital Tower</p>
+          <p class="project-meta">Service-Telecom Group · UX/UI Designer · 2025—2026</p>
+          <p class="desc">
+            <span class="via">(via Consolware)</span> Redesign of the enterprise platform the
+            company runs its infrastructure operations on. Rebuilt six product areas and 20+
+            screens, simplified overloaded forms and removed redundant steps, and created the new
+            visual language — without disrupting the workflows staff rely on.
+          </p>
+        </div>
+
+        <div class="project">
+          <p class="project-name">Leroy Merlin</p>
+          <p class="project-meta">Retail · UX/UI Designer · 2019—2021</p>
+          <p class="desc">
+            <span class="via">(via GMCS Verex)</span> Five internal web applications used daily by
+            store teams across the chain. Worked on site, embedded with their in-house design and
+            marketing teams. Engagement renewed across several years and successive projects.
+          </p>
+        </div>
+
+        <div class="project">
+          <p class="project-name">U&amp;CO</p>
+          <p class="project-meta">
+            Music services marketplace · Founder &amp; Lead UX/UI Designer · 2023—2024
+          </p>
+          <p class="desc">
+            Defined the business model and the full process architecture before any screens: five
+            roles and every path an order can take between them, including the failure paths.
+            Designed the vetting, escrow and dispute flows. Prototype delivered; paused pending
+            funding.
+          </p>
+        </div>
+
+        <div class="project">
+          <p class="project-name">LoveBerry</p>
+          <p class="project-meta">Dating app, iOS &amp; Android · UX/UI Designer · 2021</p>
+          <p class="desc">
+            B2C app built around what people are doing tonight rather than a swipe deck. Designed
+            end to end for both platforms, with monetisation built into the flow.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="row row--band">
+      <p class="row-label">Skills</p>
+      <div class="row-body">
+        <ul class="list">
+          <li>Complex enterprise interfaces — tables, filters, access control, admin panels,
+            dashboards</li>
+          <li>Information architecture and user flows</li>
+          <li>Design systems: built from scratch, documented and maintained</li>
+          <li>Research: user interviews, usability testing, surveys, analytics review</li>
+          <li>Accessibility: contrast, sizing, keyboard navigation</li>
+          <li>Working directly with developers — handoff with states documented, front-end
+            review</li>
+          <li>Leading designers on multi-product projects</li>
+          <li>Branding and visual identity</li>
         </ul>
       </div>
-
-      <div class="entry">
-        <p class="entry-head">
-          <span><strong>Consolware GmbH, Berlin</strong> — Lead UX/UI Designer (contract)</span>
-          <span class="entry-dates">August 2022 — January 2026</span>
-        </p>
-        <ul class="bullets">
-          <li>Led design for international clients across web applications, mobile products and
-            digital platforms: research, information architecture, interface design, prototyping and
-            branding.</li>
-          <li>Ran the design side of Resola, a US healthcare startup, from concept to a funded product.</li>
-          <li>Delivered the redesign of Digital Tower, an enterprise operations platform in daily use
-            at Service-Telecom Group.</li>
-          <li>Directed other designers on project work and reviewed their delivery.</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <p class="entry-head">
-          <span><strong>GMCS Verex LLC, Moscow</strong> — Lead UI/UX Designer</span>
-          <span class="entry-dates">June 2019 — August 2022</span>
-        </p>
-        <ul class="bullets">
-          <li>Designed enterprise web applications and internal systems for large corporate clients,
-            working in teams of three to five.</li>
-          <li>Delivered five internal applications for Leroy Merlin — price monitoring, inventory
-            accuracy, department management and HR floor maps — embedded on site with their in-house
-            team.</li>
-          <li>Created corporate websites, brand guidelines and supporting materials.</li>
-          <li>Won repeat business: several major clients chose the company on the strength of the
-            design work.</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <p class="entry-head">
-          <span
-            ><strong>SprintSoft LLC, Tula</strong> — UI/UX Designer → Senior UI/UX Designer</span
-          >
-          <span class="entry-dates">February 2017 — June 2019</span>
-        </p>
-        <ul class="bullets">
-          <li>Designed web applications and websites; promoted to Senior within the first two years.</li>
-          <li>Created visual identities and brand guidelines.</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <p class="entry-head">
-          <span><strong>R-Soft LLC</strong> — Designer</span>
-          <span class="entry-dates">October 2016 — February 2017</span>
-        </p>
-        <ul class="bullets">
-          <li>Designed web applications and websites; developed branding and visual identity systems.</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <p class="entry-head">
-          <span><strong>Laboratory 24 LLC</strong> — 2D Designer → Head of 2D Design</span>
-          <span class="entry-dates">October 2015 — February 2016</span>
-        </p>
-        <ul class="bullets">
-          <li>Designed interfaces for 3D applications; managed the 2D design team after promotion.</li>
-        </ul>
-      </div>
     </section>
 
-    <section>
-      <h2>Selected projects</h2>
-
-      <div class="entry">
-        <p class="entry-head">
-          <span
-            ><strong>Resola</strong> — healthcare, US market · Lead Product &amp; UX/UI Designer</span
-          >
-          <span class="entry-dates">2021—2026</span>
-        </p>
-        <p class="desc">
-          <span class="via">(via GMCS Verex, then Consolware)</span> Home rehabilitation platform
-          for stroke survivors: patients do sensor-guided exercises at home while clinicians monitor
-          progress remotely. Designed the entire product — 20+ screens in the patient app, a
-          clinician workspace of comparable scale, the marketing site and the brand. Directed the
-          designers on the project, ran sensor integration end to end with the hardware vendor, and
-          tested with real post-stroke patients. Taken from concept to secured funding, a
-          clinic-network partnership and a second release.
-        </p>
-      </div>
-
-      <div class="entry">
-        <p class="entry-head">
-          <span
-            ><strong>Digital Tower</strong> — Service-Telecom Group · UX/UI Designer</span
-          >
-          <span class="entry-dates">2025—2026</span>
-        </p>
-        <p class="desc">
-          <span class="via">(via Consolware)</span> Redesign of the enterprise platform the company
-          runs its infrastructure operations on. Rebuilt six product areas and 20+ screens,
-          simplified overloaded forms and removed redundant steps, and created the new visual
-          language — without disrupting the workflows staff rely on.
-        </p>
-      </div>
-
-      <div class="entry">
-        <p class="entry-head">
-          <span><strong>Leroy Merlin</strong> — retail · UX/UI Designer</span>
-          <span class="entry-dates">2019—2021</span>
-        </p>
-        <p class="desc">
-          <span class="via">(via GMCS Verex)</span> Five internal web applications used daily by
-          store teams across the chain. Worked on site, embedded with their in-house design and
-          marketing teams. Engagement renewed across several years and successive projects.
-        </p>
-      </div>
-
-      <div class="entry">
-        <p class="entry-head">
-          <span
-            ><strong>U&amp;CO</strong> — music services marketplace · Founder &amp; Lead UX/UI
-            Designer</span
-          >
-          <span class="entry-dates">2023—2024</span>
-        </p>
-        <p class="desc">
-          Defined the business model and the full process architecture before any screens: five
-          roles and every path an order can take between them, including the failure paths. Designed
-          the vetting, escrow and dispute flows. Prototype delivered; paused pending funding.
-        </p>
-      </div>
-
-      <div class="entry">
-        <p class="entry-head">
-          <span><strong>LoveBerry</strong> — dating app, iOS &amp; Android · UX/UI Designer</span>
-          <span class="entry-dates">2021</span>
-        </p>
-        <p class="desc">
-          B2C app built around what people are doing tonight rather than a swipe deck. Designed end
-          to end for both platforms, with monetisation built into the flow.
+    <section class="row">
+      <p class="row-label">Tools</p>
+      <div class="row-body">
+        <p class="plain">
+          Figma<span class="sep">·</span> FigJam<span class="sep">·</span> Adobe Photoshop<span class="sep">·</span> Adobe Illustrator<span class="sep">·</span> Miro<span class="sep">·</span> Zeplin<span class="sep">·</span> Framer<span class="sep">·</span> Tumult Hype<span class="sep">·</span> Claude<span class="sep">·</span> ChatGPT<span class="sep">·</span> Figma AI
         </p>
       </div>
     </section>
 
-    <section>
-      <h2>Skills</h2>
-      <ul class="list">
-        <li>Complex enterprise interfaces — tables, filters, access control, admin panels, dashboards</li>
-        <li>Information architecture and user flows</li>
-        <li>Design systems: built from scratch, documented and maintained</li>
-        <li>Research: user interviews, usability testing, surveys, analytics review</li>
-        <li>Accessibility: contrast, sizing, keyboard navigation</li>
-        <li>Working directly with developers — handoff with states documented, front-end review</li>
-        <li>Leading designers on multi-product projects</li>
-        <li>Branding and visual identity</li>
-      </ul>
+    <section class="row">
+      <p class="row-label">Languages</p>
+      <div class="row-body">
+        <p class="plain">Ukrainian — Native<span class="sep">·</span> Russian — Native<span class="sep">·</span> English — B2</p>
+      </div>
     </section>
 
-    <section>
-      <h2>Tools</h2>
-      <p class="plain">
-        Figma<span class="sep">·</span> FigJam<span class="sep">·</span> Adobe Photoshop<span class="sep">·</span> Adobe Illustrator<span class="sep">·</span> Miro<span class="sep">·</span> Zeplin<span class="sep">·</span> Framer<span class="sep">·</span> Tumult Hype<span class="sep">·</span> Claude<span class="sep">·</span> ChatGPT<span class="sep">·</span> Figma AI
-      </p>
+    <section class="row">
+      <p class="row-label">Education</p>
+      <div class="row-body">
+        <p class="entry-dates">September 2011 — June 2015</p>
+        <p class="entry-role">Tula State University — Degree in Design</p>
+      </div>
     </section>
 
-    <section>
-      <h2>Languages</h2>
-      <p class="plain">
-        Ukrainian — Native<span class="sep">·</span> Russian — Native<span class="sep">·</span> English — B2
-      </p>
-    </section>
-
-    <section>
-      <h2>Education</h2>
-      <p class="entry-head">
-        <span><strong>Tula State University</strong> — Degree in Design</span>
-        <span class="entry-dates">September 2011 — June 2015</span>
-      </p>
-    </section>
-
-    <section>
-      <h2>Selected clients</h2>
-      <p class="clients">
-        <strong
-          >Decathlon · Leroy Merlin · KFC · SOCAR Energy · Skolkovo Innovation Center · Russian
-          Football Union · Transneft · Prisma · Resola · Service-Telecom Group</strong
-        >
-        — all delivered through employers, 2018—2026.
-      </p>
+    <section class="row">
+      <p class="row-label">Selected clients</p>
+      <div class="row-body">
+        <p class="clients">
+          Decathlon<span class="sep">·</span> Leroy Merlin<span class="sep">·</span> KFC<span class="sep">·</span> SOCAR Energy<span class="sep">·</span> Skolkovo Innovation Center<span class="sep">·</span> Russian Football Union<span class="sep">·</span> Transneft<span class="sep">·</span> Prisma<span class="sep">·</span> Resola<span class="sep">·</span> Service-Telecom Group
+        </p>
+        <p class="clients-note">All delivered through employers, 2018—2026.</p>
+      </div>
     </section>
 
     <p class="note">
-      Many of the products I designed are internal enterprise tools under confidentiality agreements
-      and cannot be shown publicly. The portfolio holds what can be shared; further work can be
-      walked through during the interview process.
+      <span class="lede">Note:</span> Many of the products I designed are internal enterprise tools
+      under confidentiality agreements and cannot be shown publicly. The portfolio holds what can be
+      shared; further work can be walked through during the interview process.
     </p>
   </body>
 </html>
