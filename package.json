@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{ts,tsx,scss}\" \"*.{ts,json,md}\"",
     "type-check": "tsc -b --noEmit",
-    "postbuild": "node scripts/spa-fallback.mjs"
+    "postbuild": "node scripts/spa-fallback.mjs",
+    "cv": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf=cv/Hanna_Shyliaieva_Senior_UX_UI_Designer.pdf \"file://$PWD/cv/cv.html\""
   },
   "dependencies": {
     "clsx": "^2.1.1",
