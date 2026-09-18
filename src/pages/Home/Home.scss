@@ -316,7 +316,11 @@
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
     gap: 0;
-    height: max(calc(100dvh - var(--header-h)), calc(11.64cqw + 400px));
+    // The whole screen, with nothing subtracted: this is exactly the query
+    // that hides the header on Home, so there is no bar above to make room
+    // for. Keep the two in step — a header here and a screen measured without
+    // it is a composition pushed a bar's height past the bottom.
+    height: max(100dvh, calc(11.64cqw + 400px));
     padding-bottom: 0;
   }
 }

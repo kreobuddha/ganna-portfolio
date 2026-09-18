@@ -6,6 +6,23 @@
   backdrop-filter: blur(14px);
 }
 
+// Gone on Home, once the composition below owns the screen. Nothing is lost
+// with it: the three links in the bar are the same three the page draws across
+// its own diagonal, and the wordmark on the left points at the page you are
+// already on. `display: none` rather than a visually-hidden bar on purpose —
+// the links are real links, and hiding them while leaving them focusable puts
+// a keyboard user in three tab stops they cannot see.
+//
+// The query is the one Home sizes its hero with, not a plain desktop width. It
+// has to be both: below 900px the page is the stacked layout meant for phones,
+// and under 600px of height the composition runs past the fold and the page
+// scrolls — and a page that scrolls wants its bar back.
+.header--home {
+  @media (min-width: 900px) and (min-height: 600px) {
+    display: none;
+  }
+}
+
 .header__bar {
   display: flex;
   align-items: center;
