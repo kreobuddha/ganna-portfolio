@@ -12,20 +12,30 @@ export const about: IAbout = {
     { rest: 'Passionate about creating intuitive, scalable, and user-centered experiences.' },
   ],
   // Oldest first, so the timeline reads left to right the way it is written.
+  // Dates are the ones from Hanna's CV, confirmed by her on 17.09.2026.
   experience: [
     {
       company: 'Laboratory 24 LLC',
-      role: 'Head of 2D Design',
+      role: '2D Designer → Head of 2D Design',
       period: 'October 2015 — February 2016',
     },
     { company: 'R-Soft LLC', role: 'Designer', period: 'October 2016 — February 2017' },
-    { company: 'SprintSoft LLC', role: 'UI/UX Designer', period: 'October 2016 — February 2017' },
+    {
+      company: 'SprintSoft LLC',
+      role: 'UI/UX Designer → Senior UI/UX Designer',
+      period: 'February 2017 — June 2019',
+    },
     {
       company: 'GMCS Verex LLC',
       role: 'Lead UI/UX Designer',
-      period: 'February 2017 — February 2021',
+      period: 'June 2019 — August 2022',
     },
-    { company: 'Freelance', role: 'Lead UI/UX Designer', period: 'February 2021 — Present' },
+    {
+      company: 'Consolware GmbH, Berlin',
+      role: 'Lead UX/UI Designer (contract)',
+      period: 'August 2022 — January 2026',
+    },
+    { company: 'Freelance', role: 'Senior UX/UI Designer', period: 'February 2026 — Present' },
   ],
   skills: [
     'Complex enterprise product design',

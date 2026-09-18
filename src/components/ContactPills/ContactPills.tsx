@@ -37,6 +37,12 @@ const VARIANTS: Record<ContactKind, 'solid' | 'outline'> = {
   resume: 'solid',
 };
 
+// A contact is either an address somewhere else or a file this site serves.
+// The second kind is written relative, and has to carry the base path — the
+// site lives under /ganna-portfolio/ once it is deployed.
+const resolveHref = (href: string): string =>
+  /^[a-z][a-z0-9+.-]*:/i.test(href) ? href : `${import.meta.env.BASE_URL}${href}`;
+
 const ContactPills = ({ className }: ContactPillsProps): ReactElement => {
   return (
     <ul className={clsx('contact-pills', className)}>
@@ -48,7 +54,7 @@ const ContactPills = ({ className }: ContactPillsProps): ReactElement => {
               `contact-pills__pill--${VARIANTS[contact.kind]}`,
               `contact-pills__pill--${contact.kind}`
             )}
-            href={contact.href}
+            href={resolveHref(contact.href)}
             target={contact.kind === 'email' ? undefined : '_blank'}
             rel={contact.kind === 'email' ? undefined : 'noreferrer'}
           >

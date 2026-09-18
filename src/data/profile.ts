@@ -16,11 +16,9 @@ export const profile: IProfile = {
   contacts: [
     { label: 'Telegram', href: 'https://t.me/Ganna_designer', kind: 'telegram' },
     { label: 'Email', href: 'mailto:gannashilyaevacassandra@gmail.com', kind: 'email' },
-    {
-      label: 'CV',
-      href: 'https://drive.google.com/file/d/1Yt1LFZXHz5-C6dopcKKRAqLZ2dcfmpbZ/view?usp=sharing',
-      kind: 'resume',
-    },
+    // Served from this site rather than from Drive, so the file the button
+    // hands over is the one built from cv/cv.html and nothing else.
+    { label: 'CV', href: 'documents/Hanna_Shyliaieva_Senior_UX_UI_Designer.pdf', kind: 'resume' },
   ],
   heroPortrait,
   heroPortraitAlt: 'Hanna Shyliaieva, portrait',

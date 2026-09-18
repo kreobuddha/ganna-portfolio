@@ -24,14 +24,15 @@ npm run dev
 
 The dev server runs on <http://localhost:5181>.
 
-| Script               | What it does                                   |
-| -------------------- | ---------------------------------------------- |
-| `npm run dev`        | Dev server with HMR                            |
-| `npm run build`      | Type-check, production build, SPA 404 fallback |
-| `npm run preview`    | Serve the production build locally             |
-| `npm run type-check` | TypeScript only                                |
-| `npm run lint`       | Oxlint                                         |
-| `npm run format`     | Prettier over `src/` and root config files     |
+| Script               | What it does                                      |
+| -------------------- | ------------------------------------------------- |
+| `npm run dev`        | Dev server with HMR                               |
+| `npm run build`      | Type-check, production build, SPA 404 fallback    |
+| `npm run preview`    | Serve the production build locally                |
+| `npm run type-check` | TypeScript only                                   |
+| `npm run lint`       | Oxlint                                            |
+| `npm run format`     | Prettier over `src/` and root config files        |
+| `npm run cv`         | Build the CV PDF from `cv/cv.html` (needs Chrome) |
 
 ## Pages
 
@@ -47,12 +48,12 @@ The dev server runs on <http://localhost:5181>.
 
 All copy lives in `src/data/` — no need to touch components:
 
-| File                   | Holds                                                   |
-| ---------------------- | ------------------------------------------------------- |
-| `src/data/profile.ts`  | Name, title, hero highlights, contact links, resume URL |
-| `src/data/projects.ts` | Case studies (`slug` drives the URL)                    |
-| `src/data/clients.ts`  | Client / employer cards                                 |
-| `src/data/about.ts`    | Bio, experience, skills, tools, languages, education    |
+| File                   | Holds                                                |
+| ---------------------- | ---------------------------------------------------- |
+| `src/data/profile.ts`  | Name, title, hero highlights, contact links, CV link |
+| `src/data/projects.ts` | Case studies (`slug` drives the URL)                 |
+| `src/data/clients.ts`  | Client / employer cards                              |
+| `src/data/about.ts`    | Bio, experience, skills, tools, languages, education |
 
 Types for all of it are in `src/types.ts`.
 
@@ -76,6 +77,14 @@ folder and resolves the name, so a typo fails the build instead of 404ing.
 
 `public/images/` now holds only `og-cover.jpg`, which has to be reachable at a fixed URL for
 link-preview crawlers. See [`docs/public-images.md`](docs/public-images.md).
+
+## CV
+
+`cv/cv.html` is the source of the PDF that the CV button hands over, and
+`npm run cv` builds it with headless Chrome and copies it into
+`public/documents/`. Two A4 pages, real link annotations, and an employment
+history that has to stay in step with `src/data/about.ts`. See
+[`cv/README.md`](cv/README.md).
 
 ## Design tokens
 
