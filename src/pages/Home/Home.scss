@@ -19,12 +19,23 @@
 // than the text box. Both constants are measured from Satoshi Black at this
 // letter-spacing — re-measure if either changes.
 .home__wordmark {
-  // Butted against the header, not spaced off it: the caps are meant to start
-  // where the bar ends. `margin-top` is negative because the line box still
-  // carries room above the cap line — measured at 0.0417em for Satoshi Black at
-  // this line-height — which reads as a gap nobody asked for. Re-measure it if
-  // the face or the line-height changes.
-  margin-top: -0.042em;
+  // Butted against the top, not spaced off it: the caps are meant to start
+  // where the page does. Two measurements add up to the margin, both taken from
+  // Satoshi Black at this line-height — re-measure both if the face or the
+  // line-height changes.
+  //
+  // 0.0417em is the room the line box still carries above the cap line, which
+  // reads as a gap nobody asked for.
+  //
+  // 0.0130em is the O's overshoot. Round letters are cut taller than flat ones
+  // so they do not read as smaller, and cancelling the leading alone put the O
+  // on the edge with every flat letter below it — M, Y, P, R, T, F, L and I all
+  // measure the same height, 2.6px under the O at 1440px wide, and that strip
+  // of blue above them is what Hanna was seeing. The flat caps are the line the
+  // eye takes for the top of the word, so they get the edge and the O rides
+  // over it: clipped by the hero's `overflow` where the header is gone, tucked
+  // behind the bar below 900px where it is back. Agreed with her.
+  margin-top: -0.055em;
   margin-left: -0.077em;
   font-size: var(--fs-hero);
   line-height: 0.82;
