@@ -33,5 +33,8 @@ uses, so the two stay in step.
   paste it somewhere before sending.
 - **No fill behind text, no light grey below 10pt, no columns.** Same reason.
 - **No photograph and no date of birth**, anywhere.
+- **The site serves this file.** `npm run cv` copies the PDF into
+  `public/documents/`, which is where the CV button on the site points; the
+  copy is committed, because the deploy has no Chrome to rebuild it.
 - **Dates match `src/data/about.ts`.** They are the same employment history;
   if one moves, move the other.
